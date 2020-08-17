@@ -6,6 +6,9 @@ Mission
 =============
 To develop an agile, adaptable, and secure platform for the deployment of UAV swarms either autonomously, semi-autonomously, non-autonomously.
 
+.. image:: https://www.afacademyfoundation.org/s/1885/images/gid2/editor/NewsStories/uas.drone2.jpg
+  :align: center
+
 Introduction
 =============
 The United States Air Force Academy, Computer Science Department (DFCS) has requested that its students develop a platform capable of supporting numerous Unmanned Aerial Vehicles (UAV/UAS) synchronously with one another. Since this platform would be designed to theoretically support an unlimited number of UAV’s, the design team will co-opt the word “Swarm” hereafter to denote such a mass of UAV’s. This document remarks on the mission, principles, and requirements for the development of the “Swarm System”.
