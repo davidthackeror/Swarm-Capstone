@@ -67,21 +67,12 @@ class OptionPanes {
      */
     static Army armySize(int allianceNumber, String name) {
         if (name.equals("null")) {
-            return new Army(allianceNumber, 0, 0, 0, 0, 0, name);
+            return new Army(allianceNumber, 0, name);
 
         } else {
-            setWarriorArrayAttributes(Warrior.archerStats);
-            int numArchers = 2;
-            setWarriorArrayAttributes(Warrior.knightStats);
-            int numKnights = 2;
-            setWarriorArrayAttributes(Warrior.dragonStats);
-            int numDragons = 2;
-            setWarriorArrayAttributes(Warrior.orcStats);
-            int numOrcs = 2;
-            setWarriorArrayAttributes(Warrior.ogreStats);
-            int numOgres = 2;
+            setWarriorArrayAttributes(Drone.DJIStats);
 
-            return new Army(allianceNumber, numArchers, numKnights, numDragons, numOrcs, numOgres, name);
+            return new Army(allianceNumber, 4, name);
         }
     }
 

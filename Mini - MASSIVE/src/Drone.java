@@ -8,7 +8,7 @@ import java.util.Random;
  * Class: CS330
  */
 
-public abstract class Warrior {
+public abstract class Drone {
 
     /**
      * the random seed variable
@@ -18,23 +18,7 @@ public abstract class Warrior {
     /**
      * the attributes of an archer (health, min and max attack, min and max speed, min and max courage, size, and range
      */
-    static int[] archerStats = new int[10];
-    /**
-     * the attributes of an knight (health, min and max attack, min and max speed, min and max courage, size, and range
-     */
-    static int[] knightStats = new int[10];
-    /**
-     * the attributes of an dragon (health, min and max attack, min and max speed, min and max courage, size, and range
-     */
-    static int[] dragonStats = new int[10];
-    /**
-     * the attributes of an orc (health, min and max attack, min and max speed, min and max courage, size, and range
-     */
-    static int[] orcStats = new int[10];
-    /**
-     * the attributes of an ogre (health, min and max attack, min and max speed, min and max courage, size, and range
-     */
-    static int[] ogreStats = new int[10];
+    static int[] DJIStats = new int[10];
 
     /**
      * how far a warrior can attack from
@@ -83,7 +67,7 @@ public abstract class Warrior {
 
     private int[] minArray = new int[3];
 
-    Warrior() {
+    Drone() {
         this.xPos = 0;
         this.yPos = 0;
         this.health = 0;
@@ -95,7 +79,7 @@ public abstract class Warrior {
         this.isAlive = true;
     }
 
-    public Warrior(int xPos, int yPos, int health, int attack, int courage, int speed, int size, Color color, boolean isMoving, boolean isAlive){
+    public Drone(int xPos, int yPos, int health, int attack, int courage, int speed, int size, Color color, boolean isMoving, boolean isAlive){
         this.xPos = xPos;
         this.yPos = yPos;
         this.health = health;

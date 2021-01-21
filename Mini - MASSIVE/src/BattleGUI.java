@@ -169,7 +169,7 @@ public class BattleGUI {
                 if (name != null) {
 
                     battle.addArmy(ally, name, battle.getArmies());
-                    for (Warrior s : battle.getArmies().get(battle.getArmies().size() - 1).soldiers) {
+                    for (Drone s : battle.getArmies().get(battle.getArmies().size() - 1).soldiers) {
                         s.setSize(size);
                         s.setSize(health);
                         s.setSize(speed);
@@ -208,7 +208,7 @@ public class BattleGUI {
 
                 Object item = armyComboBox.getSelectedItem();
                 Army curArmy = ((ComboArmyItem) item).getValue();
-                for (Warrior s : curArmy.soldiers) {
+                for (Drone s : curArmy.soldiers) {
                     s.setSize(size);
                     s.setHealth(health);
                     s.setSpeed(speed);
