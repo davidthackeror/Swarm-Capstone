@@ -24,8 +24,20 @@ class Battle {
     private static ArrayList<Army> armies = new ArrayList<>();
 
 
+    static void setDroneArrayAttributes(int[] array) {
+        array[0] = 50;//health
+        array[1] = 10;//minAttack
+        array[2] = 20;//maxAttack
+        array[3] = 4;//minSpeed
+        array[4] = 6;//maxSpeed
+        array[5] = 10;//minCourage
+        array[6] = 30;//maxCourage
+        array[7] = 10;//Size
+        array[8] = 200;//Range
+
+    }
+
     Battle() {
-        OptionPanes.optionPanes();
         addArmy(0, "allies", armies);
         addArmy(1, "axis", armies);
 
@@ -41,7 +53,7 @@ class Battle {
      * @param armies         the arraylist containing all armys
      */
     static void addArmy(int allianceNumber, String name, ArrayList<Army> armies) {
-        armies.add(OptionPanes.armySize(allianceNumber, name));
+        armies.add(armySize(allianceNumber, name));
     }
 
     public ArrayList<Army> getArmies() {
@@ -249,5 +261,16 @@ class Battle {
         calcVector.setY(soldier.getyPos() - defender.soldiers.get(index).getyPos());
         distance = calcVector.magnitude();
         return distance;
+    }
+
+    static Army armySize(int allianceNumber, String name) {
+        if (name.equals("null")) {
+            return new Army(allianceNumber, 0, name);
+
+        } else {
+            setDroneArrayAttributes(Drone.DJIStats);
+
+            return new Army(allianceNumber, 4, name);
+        }
     }
 }
