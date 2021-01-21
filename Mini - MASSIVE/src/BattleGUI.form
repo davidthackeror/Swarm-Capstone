@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="BattleGUI">
-  <grid id="27dc6" binding="Hello" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="Hello" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="804" height="822"/>
+      <xy x="20" y="20" width="1054" height="1224"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -12,9 +12,9 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
-            <minimum-size width="600" height="600"/>
-            <preferred-size width="600" height="600"/>
-            <maximum-size width="600" height="600"/>
+            <minimum-size width="1000" height="1000"/>
+            <preferred-size width="1000" height="1000"/>
+            <maximum-size width="1000" height="1000"/>
           </grid>
         </constraints>
         <properties/>
@@ -27,135 +27,21 @@
           </vspacer>
         </children>
       </grid>
-      <grid id="8f833" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="8f833" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
           <component id="6862b" class="javax.swing.JButton" binding="pauseOrStart">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <enabled value="true"/>
               <text value="Start"/>
-            </properties>
-          </component>
-          <component id="5cabb" class="javax.swing.JComboBox" binding="armyComboBox">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="75d22" class="javax.swing.JButton" binding="delete">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <enabled value="false"/>
-              <text value="Delete?"/>
-            </properties>
-          </component>
-          <component id="5d610" class="javax.swing.JSlider" binding="sizeSlider">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <enabled value="false"/>
-              <majorTickSpacing value="25"/>
-              <minorTickSpacing value="10"/>
-              <paintLabels value="true"/>
-              <paintTicks value="true"/>
-              <snapToTicks value="true"/>
-              <valueIsAdjusting value="true"/>
-            </properties>
-          </component>
-          <component id="6a56" class="javax.swing.JLabel" binding="sizeSliderText">
-            <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Size Slider"/>
-            </properties>
-          </component>
-          <component id="9653e" class="javax.swing.JLabel" binding="selectArmyText">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Select Army"/>
-            </properties>
-          </component>
-          <component id="35c2d" class="javax.swing.JButton" binding="addArmyButton">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <enabled value="false"/>
-              <text value="Add"/>
-            </properties>
-          </component>
-          <component id="19cf" class="javax.swing.JButton" binding="changeButton">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Change?"/>
-            </properties>
-          </component>
-          <component id="7e6a5" class="javax.swing.JSlider" binding="healthSlider">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <enabled value="false"/>
-              <majorTickSpacing value="25"/>
-              <minorTickSpacing value="10"/>
-              <paintLabels value="true"/>
-              <paintTicks value="true"/>
-              <snapToTicks value="true"/>
-              <valueIsAdjusting value="true"/>
-            </properties>
-          </component>
-          <component id="4d655" class="javax.swing.JLabel" binding="healthSliderText">
-            <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Health Slider"/>
-            </properties>
-          </component>
-          <component id="ef36f" class="javax.swing.JSlider" binding="maxSpeedSlider">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <enabled value="false"/>
-              <majorTickSpacing value="25"/>
-              <minorTickSpacing value="10"/>
-              <paintLabels value="true"/>
-              <paintTicks value="true"/>
-              <snapToTicks value="true"/>
-              <valueIsAdjusting value="true"/>
-            </properties>
-          </component>
-          <component id="bcadc" class="javax.swing.JLabel" binding="maxSpeedSliderTxt">
-            <constraints>
-              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Max Speed Slider"/>
-            </properties>
-          </component>
-          <component id="80468" class="javax.swing.JButton" binding="restart">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Restart"/>
             </properties>
           </component>
         </children>

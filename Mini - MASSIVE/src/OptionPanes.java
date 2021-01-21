@@ -56,7 +56,7 @@ class OptionPanes {
         array[5] = 10;//minCourage
         array[6] = 30;//maxCourage
         array[7] = 10;//Size
-        array[8] = 10;//Range
+        array[8] = 200;//Range
 
     }
     /**
