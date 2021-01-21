@@ -19,7 +19,7 @@ public class Army{
     Army(int allianceNum, int numDJI, String armyName) {
         this.allianceNum = allianceNum;
         for (int i = 0; i < numDJI; i++) {
-            soldiers.add(new DJI(1,2,1,2,1,2,1,2, 3));
+            soldiers.add(new DJI(1,2,5,15,1,2,1,2, 3));
             soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
             soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
         }

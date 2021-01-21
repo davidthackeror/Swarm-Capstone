@@ -18,8 +18,8 @@ public class AnimationArea extends JPanel {
     // constructor for AnimationArea objects
     public AnimationArea() {
         super();    // constructor for JPanel
-        this.height = 600;
-       this.width = 600;
+        this.height = 1000;
+       this.width = 1000;
        this.setSize(this.height, this.width);
     }
 

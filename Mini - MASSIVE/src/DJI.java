@@ -1,4 +1,9 @@
+
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Project: Mini - MASSIVE
@@ -11,6 +16,8 @@ import java.awt.*;
 class DJI extends Drone {
 
     static String name= "DJI";
+
+
 
     DJI(int minHealth, int maxHealth, int minSpeed, int maxSpeed, int minCourage, int maxCourage, int size, int minAttack, int maxAttack){
         super();
@@ -56,13 +63,17 @@ class DJI extends Drone {
     @Override
     public void draw(Graphics2D g) {
         {
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File("drone.png"));
+            } catch (IOException e) {
+            }
 
             g.setColor(this.getColor());
-            g.fillOval(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(),
-                    this.getSize()*2, this.getSize()*2);
             g.setColor(Color.magenta);
-
-            g.drawString("Orc", this.getxPos(), this.getyPos());
+            g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
+            //g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
+            g.drawString(name, this.getxPos(), this.getyPos());
 
         }
     }
