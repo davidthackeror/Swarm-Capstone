@@ -21,7 +21,7 @@ public class Main {
         Battle battle = new Battle();
         BattleGUI battleGUI = new BattleGUI();
         battleGUI.setBattle(battle);
-        JFrame jFrame = new JFrame("This is a battle");
+        JFrame jFrame = new JFrame("DRONE SWARMING");
         jFrame.setContentPane(battleGUI.getHello());
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
@@ -30,9 +30,6 @@ public class Main {
         animationThread.start();
         animationThread.toggleAnimation();
         battleGUI.setAnimationThread(animationThread);
-        for (Army a : battle.getArmies()) {
-            battleGUI.getArmyComboBox().addItem(new ComboArmyItem(a.getArmyName(), a));
-        }
         //TODO: Fix drones spawning off screen
         //TODO: Change screen size
 

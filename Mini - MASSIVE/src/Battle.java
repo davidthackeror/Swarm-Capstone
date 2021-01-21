@@ -31,6 +31,8 @@ class Battle {
 
     }
 
+
+
     /**
      * adds an army with predetermined warrior allotments and the following attributes
      *
@@ -51,7 +53,6 @@ class Battle {
      * @param g the graphics panel to be drawn on
      */
     static void drawArmy(Graphics g) {
-
         Battle.drawWarriors((Graphics2D) g, armies);
     }
     /**
@@ -119,17 +120,8 @@ class Battle {
                             break;
                         }
                         Army axis = armies.get(soldierArray[2]);
-                        //calculate the cowardice which is 1 - a soldiers courage. if a random roll between 1-100 generates a number <= then they run away for a tick
-                        int cowardice = 100 * (1 - Attackers.soldiers.get(i).getCourage());
-                        if (rand.nextInt(100) <= cowardice) {
-                            //invert the vector to run on
-                            Attackers.soldiers.get(i).move(-(axis.soldiers.get(index).getxPos()), (-(axis.soldiers.get(index).getyPos())));
-
-                        } else {
-                            //move the soldier towards their target
-                            Attackers.soldiers.get(i).move(axis.soldiers.get(index).getxPos(), axis.soldiers.get(index).getyPos());
-
-                        }
+                        //move the soldier towards their target
+                        Attackers.soldiers.get(i).move(axis.soldiers.get(index).getxPos(), axis.soldiers.get(index).getyPos());
                     }
                 }
             }
@@ -148,6 +140,7 @@ class Battle {
             for (int i = 0; i < army.soldiers.size(); i++) {
                 if (army.soldiers.get(i).isAlive()) {
                     army.soldiers.get(i).draw(g);
+                    army.soldiers.get(i).drawFire(g);
                 }
             }
         }
@@ -189,6 +182,9 @@ class Battle {
                         if (!(rand.nextInt(100) <= 100 * Attackers.soldiers.get(i).getAttack() / (Attackers.soldiers.get(i).getAttack() + Defenders.soldiers.get(intArray[0]).getAttack()))) {
                             //stop them from moving so that they can shoot or attack
                             Attackers.soldiers.get(i).setMoving(false);
+                            Attackers.soldiers.get(i).setFireX(Defenders.soldiers.get(intArray[0]).getxPos());
+                            Attackers.soldiers.get(i).setFireY(Defenders.soldiers.get(intArray[0]).getyPos());
+                            Attackers.soldiers.get(i).setFiring(true);
                             Defenders.soldiers.get(intArray[0]).setHealth(Defenders.soldiers.get(intArray[0]).getHealth() - Attackers.soldiers.get(i).getAttack());
 
                             //show how much damage was done

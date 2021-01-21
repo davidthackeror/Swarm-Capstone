@@ -65,6 +65,10 @@ public abstract class Drone {
      */
     private Color color;
 
+    private int fireX;
+    private int fireY;
+    private boolean isFiring;
+
     private int[] minArray = new int[3];
 
     Drone() {
@@ -75,6 +79,7 @@ public abstract class Drone {
         this.courage = 0;
         this.speed = 0;
         this.size = 0;
+        this.isFiring = false;
         this.isMoving = true;
         this.isAlive = true;
     }
@@ -88,6 +93,7 @@ public abstract class Drone {
         this.speed = speed;
         this.size = size;
         this.color = color;
+        this.isFiring = false;
         this.isMoving = isMoving;
         this.isAlive = isAlive;
 
@@ -116,6 +122,7 @@ public abstract class Drone {
      * @param g The graphics window to be written to
      */
     public abstract void draw(Graphics2D g);
+    public abstract void drawFire(Graphics2D g);
 
     //begin non abstract methods (getter and setter methods)
 
@@ -300,6 +307,11 @@ public abstract class Drone {
         isAlive = alive;
     }
 
+    void setFireX(int x){ fireX = x;}
+    int getFireX(){return fireX;}
+
+    void setFireY(int y){ fireY = y;}
+    int getFireY(){return fireY;}
     void print() {
         System.out.println("Name is" + this.getName());
     }
@@ -310,5 +322,13 @@ public abstract class Drone {
 
     public void setMinArray(int[] minArray) {
         this.minArray = minArray;
+    }
+
+    public boolean isFiring() {
+        return isFiring;
+    }
+
+    public void setFiring(boolean firing) {
+        isFiring = firing;
     }
 }

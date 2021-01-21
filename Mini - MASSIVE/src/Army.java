@@ -19,7 +19,7 @@ public class Army{
     Army(int allianceNum, int numDJI, String armyName) {
         this.allianceNum = allianceNum;
         for (int i = 0; i < numDJI; i++) {
-            soldiers.add(new DJI(1,2,5,15,1,2,1,2, 3));
+            soldiers.add(new DJI(30,40,5,15,1,2,1,2, 10, 200));
             soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
             soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
         }
@@ -37,22 +37,22 @@ public class Army{
         switch (allianceNum) {
             case 0:
                 for (Drone drone : soldiers) {
-                    drone.setColor(Color.BLACK);
+                    drone.setColor(Color.RED);
                 }
                 break;
             case 2:
                 for (Drone soldier : soldiers) {
-                    soldier.setColor(Color.BLUE);
+                    soldier.setColor(Color.BLACK);
                 }
                 break;
             case 1:
                 for (Drone drone : soldiers) {
-                    drone.setColor(Color.YELLOW);
+                    drone.setColor(Color.BLUE);
                 }
                 break;
             case 3:
                 for (Drone drone : soldiers) {
-                    drone.setColor(Color.RED);
+                    drone.setColor(Color.YELLOW);
                 }
                 break;
             default:
