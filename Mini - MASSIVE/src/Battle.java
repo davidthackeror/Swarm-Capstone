@@ -61,7 +61,7 @@ class Battle {
      * @param attacker  the specific warrior to detect the closest enemy for
      * @param defenders the entire enemy army
      */
-    private static void detectEnemy(Warrior attacker, Army defenders, int[] minArray) {
+    private static void detectEnemy(Drone attacker, Army defenders, int[] minArray) {
         int index = -1;
         int minimumDistance = 1000;
         Vector330Class calcVector = new Vector330Class();
@@ -88,7 +88,7 @@ class Battle {
      * @param attacker the warrior to check its position
      * @return a true if out of bounds
      */
-    private static boolean outOfBounds(Warrior attacker) {
+    private static boolean outOfBounds(Drone attacker) {
         return attacker.getxPos() > Main.SIZE || attacker.getyPos() > Main.SIZE || attacker.getxPos() < 0 || attacker.getyPos() < 0;
     }
 
@@ -242,7 +242,7 @@ class Battle {
      * @param index    the location of the closest enemy to the selected warrior
      * @return the distance between a warrior and a selected enemy
      */
-    private static double magnitude(Warrior soldier, Army defender, int index) {
+    private static double magnitude(Drone soldier, Army defender, int index) {
         double distance;
         Vector330Class calcVector = new Vector330Class();
         calcVector.setX(soldier.getxPos() - defender.soldiers.get(index).getxPos());

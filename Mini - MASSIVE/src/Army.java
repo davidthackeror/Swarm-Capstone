@@ -13,33 +13,13 @@ public class Army{
 
     private int allianceNum;
     private String armyName;
-    ArrayList<Warrior> soldiers = new ArrayList<Warrior>();
+    ArrayList<Drone> soldiers = new ArrayList<Drone>();
 
 
-    Army(int allianceNum, int numArchers, int numKnights, int numDragons, int numOrcs, int numOgres, String armyName) {
+    Army(int allianceNum, int numDJI, String armyName) {
         this.allianceNum = allianceNum;
-        for (int i = 0; i < numArchers; i++) {
-            soldiers.add(new Archer());
-            soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
-            soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
-        }
-        for (int i = 0; i < numKnights; i++) {
-            soldiers.add(new Knight());
-            soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
-            soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
-        }
-        for (int i = 0; i < numOrcs; i++) {
-            soldiers.add(new Orc(50, 250, 3, 6, 10, 60, 20, 40, 50));
-            soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
-            soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
-        }
-        for (int i = 0; i < numOgres; i++) {
-            soldiers.add(new Ogre(100, 250, 3, 12, 10, 60, 20, 40, 50));
-            soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
-            soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
-        }
-        for (int i = 0; i < numDragons; i++) {
-            soldiers.add(new Dragon());
+        for (int i = 0; i < numDJI; i++) {
+            soldiers.add(new DJI(1,2,1,2,1,2,1,2, 3));
             soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
             soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
         }
@@ -53,31 +33,31 @@ public class Army{
      * @param allianceNum the selected alliance between 0 and 3 (max of 4 armies)
      * @param soldiers    the soldiers of the army to have their color set
      */
-    private static void setAllianceColor(int allianceNum, ArrayList<Warrior> soldiers){
+    private static void setAllianceColor(int allianceNum, ArrayList<Drone> soldiers){
         switch (allianceNum) {
             case 0:
-                for (Warrior warrior : soldiers) {
-                    warrior.setColor(Color.BLACK);
+                for (Drone drone : soldiers) {
+                    drone.setColor(Color.BLACK);
                 }
                 break;
             case 2:
-                for (Warrior soldier : soldiers) {
+                for (Drone soldier : soldiers) {
                     soldier.setColor(Color.BLUE);
                 }
                 break;
             case 1:
-                for (Warrior warrior : soldiers) {
-                    warrior.setColor(Color.YELLOW);
+                for (Drone drone : soldiers) {
+                    drone.setColor(Color.YELLOW);
                 }
                 break;
             case 3:
-                for (Warrior warrior : soldiers) {
-                    warrior.setColor(Color.RED);
+                for (Drone drone : soldiers) {
+                    drone.setColor(Color.RED);
                 }
                 break;
             default:
-                for (Warrior warrior : soldiers) {
-                    warrior.setColor(Color.GREEN);
+                for (Drone drone : soldiers) {
+                    drone.setColor(Color.GREEN);
                 }
                 break;
         }
@@ -163,7 +143,7 @@ public class Army{
      */
     int numAlive(){
         int numAlive = 0;
-        for (Warrior soldier : soldiers) {
+        for (Drone soldier : soldiers) {
             if (soldier.isAlive()) {
                 numAlive++;
             }
