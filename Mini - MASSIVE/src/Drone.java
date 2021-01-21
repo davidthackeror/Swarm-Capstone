@@ -123,6 +123,7 @@ public abstract class Drone {
      */
     public abstract void draw(Graphics2D g);
     public abstract void drawFire(Graphics2D g);
+    public abstract void drawExplosion(Graphics2D g);
 
     //begin non abstract methods (getter and setter methods)
 

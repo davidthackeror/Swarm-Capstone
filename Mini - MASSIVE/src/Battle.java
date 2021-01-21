@@ -142,6 +142,9 @@ class Battle {
                     army.soldiers.get(i).draw(g);
                     army.soldiers.get(i).drawFire(g);
                 }
+                else{
+                    army.soldiers.get(i).drawExplosion(g);
+                }
             }
         }
     }
@@ -194,6 +197,7 @@ class Battle {
                             if (Defenders.soldiers.get(intArray[0]).getHealth() <= 0) {
                                 playSound();
                                 Defenders.soldiers.get(intArray[0]).setAlive(false);
+                                Defenders.soldiers.get(intArray[0]).setHealth(0);
                                 System.out.println(Attackers.soldiers.get(i).getName() + " " + i + " just killed " + Defenders.soldiers.get(intArray[0]).getName() + " " + intArray[0] + " in army " + intArray[2]);
                             }
                         } else {

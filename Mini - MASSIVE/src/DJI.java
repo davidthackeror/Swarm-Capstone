@@ -85,4 +85,24 @@ class DJI extends Drone {
         }
 
     }
+
+    @Override
+    public void drawExplosion(Graphics2D g) {
+        {
+            if(this.getHealth() <= 0 && this.getHealth() >= -10){
+                BufferedImage img = null;
+                try {
+                    img = ImageIO.read(new File("explosion.png"));
+                } catch (IOException e) {
+                }
+
+                g.setColor(this.getColor());
+                g.drawRect(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), img.getWidth(), img.getHeight());
+                g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
+                g.drawString(name, this.getxPos(), this.getyPos());
+                this.setHealth(this.getHealth() - 1);
+            }
+
+        }
+    }
 }
