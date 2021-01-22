@@ -116,7 +116,6 @@ class Battle {
                                 throw new Exception("That does not exist.");
                             }
                         } catch (Exception e) {
-                            System.out.println("An index of the nearest soldier was not found");
                             break;
                         }
                         Army axis = armies.get(soldierArray[2]);
@@ -145,6 +144,8 @@ class Battle {
                 else{
                     army.soldiers.get(i).drawExplosion(g);
                 }
+                army.soldiers.get(i).locationTracking();
+                army.soldiers.get(i).drawTracking(g);
             }
         }
     }
