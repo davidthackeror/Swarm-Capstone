@@ -3,11 +3,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Project: Mini - MASSIVE
- * : Organizes groups of warriors
+ * Project: Swarm Capstone
+ * : Organizes groups of drones
+ *
  * @author David Thacker
- * Date: 22 Sept 19
- * Class: CS330
+ * Date: 21 Jan 21
+ * Class: Capstone
  */
 public class Swarm {
 
@@ -130,13 +131,6 @@ public class Swarm {
         return allianceNum;
     }
 
-    /**
-     * setAllianceNum() sets a armies alliance number
-     * @param allianceNum the new alliance number to be assigned
-     */
-    public void setAllianceNum(int allianceNum) {
-        this.allianceNum = allianceNum;
-    }
 
     /**
      * numAlive() fetches the number of warriors in an army with a health greater than 0
@@ -152,11 +146,4 @@ public class Swarm {
         return numAlive;
     }
 
-    public String getArmyName() {
-        return armyName;
-    }
-
-    public void setArmyName(String armyName) {
-        this.armyName = armyName;
-    }
 }

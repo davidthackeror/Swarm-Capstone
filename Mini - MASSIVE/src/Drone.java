@@ -2,11 +2,11 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 /**
- * Project: Mini - MASSIVE
- * : General category and attributes of the soldier sub-classes
+ * Project: Swarm Capstone
+ * : General category and attributes of the drone sub-classes
  * @author David Thacker
- * Date: 22 Sept 19
- * Class: CS330
+ * Date: 21 Jan 21
+ * Class: Capstone
  */
 
 public abstract class Drone {
@@ -66,11 +66,26 @@ public abstract class Drone {
      */
     private Color color;
 
+    /**
+     * the x firing coordinate of target drone
+     */
     private int fireX;
+    /**
+     * the y firing coordinate of target drone
+     */
     private int fireY;
+    /**
+     * boolean to indicate if weapons on drone are armed
+     */
     private boolean isFiring;
     //TODO: Probably a better way to do this
+    /**
+     * linkedList containing x position of the drone over each tick
+     */
     LinkedList<Integer> positionXArray = new LinkedList<Integer>();
+    /**
+     * linkedList containing y position of the drone over each tick
+     */
     LinkedList<Integer> positionYArray = new LinkedList<Integer>();
     private int[] minArray = new int[3];
 
@@ -120,19 +135,38 @@ public abstract class Drone {
      * @param g The graphics window to be written to
      */
     public abstract void draw(Graphics2D g);
+
+    /**
+     * overrided method to draw lasers from drones
+     * @param g the graphics window to be written to
+     */
     public abstract void drawFire(Graphics2D g);
+
+    /**
+     * overrided method to draw explosion upon drone death
+     * @param g the graphics window to be written to
+     */
     public abstract void drawExplosion(Graphics2D g);
 
+    /**
+     * adds the current x and y pos of the drone on each tick to a linked list
+     */
     public void locationTracking(){
         positionXArray.add(xPos);
         positionYArray.add(yPos);
     }
 
     //TODO: Investigate .drawPolyLine
+
+    /**
+     * takes in the linkedList inherent to each drone and draws a line of ovals marking its location over time
+     * @param g the graphics panel to draw on
+     */
     public void drawTracking(Graphics2D g){
-        g.setColor(this.color);
+        //X and Y are assigned at the same time
         for (int i = 0; i < positionYArray.size(); i++) {
             g.setColor(this.color);
+            //can mess with width and height to get thicker line, should probably use .drawPolyLine
             g.drawOval(positionXArray.get(i), positionYArray.get(i), 5 , 5);
         }
     }
@@ -205,14 +239,6 @@ public abstract class Drone {
      */
     void setAttack(int attack) {
         this.attack = attack;
-    }
-
-    /**
-     * gets the courage of the object
-     * @return the courage of the object
-     */
-    int getCourage() {
-        return courage;
     }
 
     /**
@@ -320,13 +346,40 @@ public abstract class Drone {
         isAlive = alive;
     }
 
+    /**
+     * sets the location the drone is to fire upon, variable used to fire laser
+     * @param x x location of target drone
+     */
     void setFireX(int x){ fireX = x;}
+
+    /**
+     * gets the location the drone is to fire upon, variable used to fire laser
+     * @return x location of target drone
+     */
     int getFireX(){return fireX;}
 
+    /**
+     * sets the location the drone is to fire upon, variable used to fire laser
+     * @param y location of the target drone
+     */
     void setFireY(int y){ fireY = y;}
+
+    /**
+     * gets the location the drone is to fire upon, variable used to fire laser
+     * @return location of the target drone
+     */
     int getFireY(){return fireY;}
 
+    /**
+     * fetches the unique ID of the specific drone in question
+     * @return name
+     */
     String getName() { return name; }
+
+    /**
+     * Each drone is identified by a name for ease of tracking
+     * @param b the name of the drone
+     */
     void setName(String b){name = b;}
 
     public int[] getMinArray() {
@@ -337,10 +390,18 @@ public abstract class Drone {
         this.minArray = minArray;
     }
 
+    /**
+     * determines if a drone is actively firing their laser
+     * @return a boolean indicating whether the laser is engaged
+     */
     public boolean isFiring() {
         return isFiring;
     }
 
+    /**
+     * switches the drone into weapons mode, indicated preparedness to fire laser
+     * @param firing a boolean indicating weapons ON or OFF
+     */
     public void setFiring(boolean firing) {
         isFiring = firing;
     }

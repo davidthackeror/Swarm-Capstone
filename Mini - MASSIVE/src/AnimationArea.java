@@ -2,12 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Project: Mini - MASSIVE
- * : creates and animates on the animationthread and JPanel
+ * Project: Swarm Capstone
+ * : Creates and animates on the animationThread and JPanel
  *
- * @author N/A
- * Date: 22 Sept 19
- * Class: CS330
+ * @author David Thacker
+ * Date: 21 Jan 21
+ * Class: Capstone
  */
 @SuppressWarnings("serial")
 public class AnimationArea extends JPanel {

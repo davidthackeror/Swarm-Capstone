@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Project: Mini - MASSIVE
+ * Project: Swarm Capstone
  * : Controls execution of the battle
  *
  * @author David Thacker
- * Date: 22 Sept 19
- * Class: CS330
+ * Date: 21 Jan 21
+ * Class: Capstone
  */
 class Battle {
     /**
@@ -26,6 +26,12 @@ class Battle {
     //TODO: Placeholder for a gui assignment of the # of drones.
     private static int numDrones = 4;
 
+    //TODO: do drone attributes in a different location
+    /**
+     * sets the attributes of the drones, should be refactored
+     *
+     * @param array stores attributes of the drones in an array
+     */
     static void setDroneArrayAttributes(int[] array) {
         array[0] = 50;//health
         array[1] = 10;//minAttack
@@ -45,8 +51,6 @@ class Battle {
 
     }
 
-
-
     /**
      * adds an army with predetermined warrior allotments and the following attributes
      *
@@ -56,10 +60,6 @@ class Battle {
      */
     static void addSwarm(int allianceNumber, String name, ArrayList<Swarm> swarms) {
         swarms.add(armySize(allianceNumber, name));
-    }
-
-    public ArrayList<Swarm> getSwarms() {
-        return swarms;
     }
 
     /**
@@ -268,6 +268,13 @@ class Battle {
         return distance;
     }
 
+    /**
+     * armySize takes in a (currently) class variable and uses that number to set the number of drones in an army
+     *
+     * @param allianceNumber the identifier of a swarm
+     * @param name the name of the swarm
+     * @return a new swarm, or collection of drones
+     */
     static Swarm armySize(int allianceNumber, String name) {
         if (name.equals("null")) {
             return new Swarm(allianceNumber, 0, name);

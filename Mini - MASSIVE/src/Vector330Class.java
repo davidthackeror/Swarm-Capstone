@@ -1,13 +1,13 @@
 import java.util.regex.Pattern;
 
 /**
- * Project: Mini - MASSIVE
+ * Project: Swarm Capstone
  * : Determines the distance and directions of soldiers in vector form
+ *
  * @author David Thacker
- * Date: 22 Sept 19
- * Class: CS330
+ * Date: 21 Jan 21
+ * Class: Capstone
  */
-
 
 public class Vector330Class {
 

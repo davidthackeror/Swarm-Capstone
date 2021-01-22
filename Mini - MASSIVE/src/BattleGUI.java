@@ -4,6 +4,15 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Project: Swarm Capstone
+ * : The GUI for displaying drone simulations
+ *
+ * @author David Thacker
+ * Date: 21 Jan 21
+ * Class: Capstone
+ */
+
 public class BattleGUI {
     /**
      * The panel running the battle simulation

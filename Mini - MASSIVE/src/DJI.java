@@ -6,12 +6,12 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Project: Mini - MASSIVE
- * : The Orc Soldier Sub-Class
+ * Project: Swarm Capstone
+ * : The DJI Drone Sub-Class (fake)
  *
  * @author David Thacker
- * Date: 22 Sept 19
- * Class: CS330
+ * Date: 21 Jan 21
+ * Class: Capstone
  */
 class DJI extends Drone {
 
@@ -57,7 +57,7 @@ class DJI extends Drone {
             BufferedImage img = null;
             try {
                 img = ImageIO.read(new File("drone.png"));
-            } catch (IOException e) {
+            } catch (IOException ignored) {
             }
 
             g.setColor(this.getColor());
@@ -68,6 +68,10 @@ class DJI extends Drone {
         }
     }
 
+    /**
+     * draws the laser coming from each drone
+     * @param g the graphics window to be written to
+     */
     @Override
     public void drawFire(Graphics2D g){
         if(this.isFiring()){
@@ -77,14 +81,19 @@ class DJI extends Drone {
 
     }
 
+    /**
+     * draws the explosion of a drone once it dies, explosion lasts for 10 ticks
+     * @param g the graphics window to be written to
+     */
     @Override
     public void drawExplosion(Graphics2D g) {
         {
-            if(this.getHealth() <= 0 && this.getHealth() >= -10){
+            //as long as drone is dead, and hasn't been dead for forever draw explosion
+            if(this.getHealth() <= 0 && this.getHealth() >= -10){ //change the greaterthan or equal to change duration
                 BufferedImage img = null;
                 try {
-                    img = ImageIO.read(new File("explosion.png"));
-                } catch (IOException e) {
+                    img = ImageIO.read(new File("explosion.png")); //relative file path
+                } catch (IOException ignored) {
                 }
 
                 g.setColor(this.getColor());

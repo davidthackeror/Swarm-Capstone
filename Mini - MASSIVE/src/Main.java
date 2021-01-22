@@ -1,11 +1,12 @@
 import javax.swing.*;
 
 /**
- * Project: Mini - MASSIVE
- * :The room where it happens
+ * Project: Swarm Capstone
+ * : The Room Where It Happens
+ *
  * @author David Thacker
- * Date: 22 Sept 19
- * Class: CS330
+ * Date: 21 Jan 21
+ * Class: Capstone
  */
 public class Main {
     //determines the size of the graphics display window
