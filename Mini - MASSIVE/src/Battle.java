@@ -18,14 +18,16 @@ class Battle {
      * the relative path to the death sound
      */
     static String fileName = "Minecraft-death-sound.wav";
+
     /**
      * the armies arraylist containing all armys and therefore warriors
      */
     private static ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
-    private static int numDrones = 4;
+    private static int numDrones = 6;
 
+    private static int collisionRadius = 300;
     //TODO: do drone attributes in a different location
     /**
      * sets the attributes of the drones, should be refactored
@@ -69,6 +71,7 @@ class Battle {
     static void drawSwarm(Graphics g) {
         Battle.drawDrone((Graphics2D) g, swarms);
     }
+
     /**
      * detectEnemy() uses the Vector330Class to determine the enemy closest to a selected warrior
      * and store the closest warrior, its magnitude, and army in the array
@@ -111,35 +114,95 @@ class Battle {
      * moveWarriors() will move all warriors of the respective armies closer to closest enemy detected
      *
      */
-    static void moveDrones() {
+    static void moveDrones()
+    {
         droneDamage(swarms);
         Random rand = new Random();
-        for (Object army : swarms) {
+        for (Object army : swarms)
+        {
             Swarm Attackers = (Swarm) army;
-            for (int i = 0; i < Attackers.soldiers.size(); i++) {
-                if (Attackers.soldiers.get(i).isAlive() && Attackers.soldiers.get(i).isMoving()) {
-                    if (outOfBounds(Attackers.soldiers.get(i))) {
+            for (int i = 0; i < Attackers.soldiers.size(); i++)
+            {
+                if (Attackers.soldiers.get(i).isAlive() && Attackers.soldiers.get(i).isMoving())
+                {
+                    if (outOfBounds(Attackers.soldiers.get(i)))
+                    {
                         Attackers.soldiers.get(i).setAlive(false);
-                    } else {
-                        //get the closest enemy
-                        int[] soldierArray = Attackers.soldiers.get(i).getMinArray();
-                        int index = soldierArray[0];
-                        //if detectEnemy comes back with a -1 then there are no more alive enemies
-                        try {
-                            if (soldierArray[0] == -1) {
-                                throw new Exception("That does not exist.");
-                            }
-                        } catch (Exception e) {
-                            break;
-                        }
-                        Swarm axis = swarms.get(soldierArray[2]);
-                        //move the soldier towards their target
-                        Attackers.soldiers.get(i).move(axis.soldiers.get(index).getxPos(), axis.soldiers.get(index).getyPos());
-
+                    }
+                    else if(!checkCollision(Attackers, Attackers.soldiers.get(i)))
+                    {
+                        int[] movementCoords = enemyDetection(Attackers, i);
+                        Attackers.soldiers.get(i).move(movementCoords[0], movementCoords[1]);
+                    }
+                    else{
+                        int[] movementCoords = collisionAvoidance(Attackers, i);
+                        Attackers.soldiers.get(i).move(movementCoords[0], movementCoords[1]);
                     }
                 }
             }
         }
+    }
+    static int[] enemyDetection(Swarm Attackers, int i){
+        int[] coords = new int[2];
+        int[] soldierArray = Attackers.soldiers.get(i).getMinArray();
+        int index = soldierArray[0];
+        //if detectEnemy comes back with a -1 then there are no more alive enemies
+        try
+        {
+            if (soldierArray[0] == -1)
+            {
+                throw new Exception("That does not exist.");
+            }
+        }
+        catch (Exception ignored)
+        {
+        }
+        Swarm axis = swarms.get(soldierArray[2]);
+        coords[0] = axis.soldiers.get(index).getxPos();
+        coords[1] = axis.soldiers.get(index).getyPos();
+        return coords;
+    }
+
+    static boolean checkCollision(Swarm friendlies, Drone avoidance){
+        int radiusSquared = collisionRadius * collisionRadius;
+        for (int i = 0; i < friendlies.soldiers.size(); i++) {
+            if(friendlies.soldiers.get(i).isAlive()){
+                Drone comparison = friendlies.soldiers.get(i);
+                int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
+                if(firstHalf < radiusSquared){
+                    System.out.println("Collision detected between" + avoidance.getName() + " and " + comparison.getName());
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    static int radiusCalculation(int x1, int y1, int x2, int y2){
+        int xCalc = (x1 - x2) * (x1 - x2);
+        int yCalc = (y1 - y2) * (y1 - y2);
+        return xCalc + yCalc;
+    }
+
+    //TODO: Collision Avoidance Algo
+    static int[] collisionAvoidance(Swarm friendlies, int epsilon){
+        int[] coords = new int[]{0,0};
+        int radiusSquared = collisionRadius * collisionRadius;
+        for (int i = 0; i < friendlies.soldiers.size(); i++) {
+            if(friendlies.soldiers.get(i).isAlive()){
+                Drone comparison = friendlies.soldiers.get(i);
+                Drone avoidance = friendlies.soldiers.get(epsilon);
+                int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
+                if(firstHalf < radiusSquared){
+                    coords = enemyDetection(friendlies, epsilon);
+                    coords[0] = coords[0] - Swarm.getRandomNumberInRange(50, 100);
+                    coords[1] = coords[1] - Swarm.getRandomNumberInRange(50, 100);
+                    System.out.println(friendlies.soldiers.get(epsilon).getName() + " moving towards " + coords[0] + "," + coords[1]);
+                    return coords;
+                }
+            }
+        }
+        return coords;
     }
 
     /**

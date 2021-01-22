@@ -65,7 +65,6 @@ public abstract class Drone {
      * the color of the warriors alliance (individually assigned for creativity later)
      */
     private Color color;
-
     /**
      * the x firing coordinate of target drone
      */

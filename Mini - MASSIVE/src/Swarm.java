@@ -21,12 +21,19 @@ public class Swarm {
         this.allianceNum = allianceNum;
         for (int i = 0; i < numDJI; i++) {
             String name = armyName + allianceNum + ";" + i;
-            soldiers.add(new DJI(30,40,5,15,1,2,1,2, 10, 200, name));
-            soldiers.get(soldiers.size() - 1).setxPos(generateX(allianceNum));
-            soldiers.get(soldiers.size() - 1).setyPos(generateY(allianceNum));
+            soldiers.add(addAttributes(name, allianceNum));
         }
         setAllianceColor(allianceNum, soldiers);
         this.armyName = armyName;
+    }
+
+    private Drone addAttributes(String name, int allianceNum){
+        Drone drone = new DJI(30,40,5,15,1,2,1,2, 10, 200, name);
+        int suggestedX = generateX(allianceNum);
+        int suggestedY = generateY(allianceNum);
+        drone.setxPos(suggestedX);
+        drone.setyPos(suggestedY);
+        return drone;
     }
 
     /**
@@ -42,21 +49,21 @@ public class Swarm {
                     drone.setColor(Color.RED);
                 }
                 break;
-            case 2:
-                for (Drone soldier : soldiers) {
-                    soldier.setColor(Color.BLACK);
-                }
-                break;
+//            case 2:
+//                for (Drone soldier : soldiers) {
+//                    soldier.setColor(Color.BLACK);
+//                }
+//                break;
             case 1:
                 for (Drone drone : soldiers) {
                     drone.setColor(Color.BLUE);
                 }
                 break;
-            case 3:
-                for (Drone drone : soldiers) {
-                    drone.setColor(Color.YELLOW);
-                }
-                break;
+//            case 3:
+//                for (Drone drone : soldiers) {
+//                    drone.setColor(Color.YELLOW);
+//                }
+//                break;
             default:
                 for (Drone drone : soldiers) {
                     drone.setColor(Color.GREEN);
@@ -88,7 +95,7 @@ public class Swarm {
      * @param allianceNum the selected alliance between 0 and 3 (max of 4 armies)
      * @return a random x value based on the spawn points for that alliance number
      */
-    private int generateX(int allianceNum){
+    static int generateX(int allianceNum){
         Random rand = new Random();
         switch (allianceNum) {
             case 0:
@@ -109,7 +116,7 @@ public class Swarm {
      * @param allianceNum the selected alliance between 0 and 3 (max of 4 armies)
      * @return a random y value based on the spawn points for that alliance number
      */
-    private int generateY(int allianceNum){
+    static int generateY(int allianceNum){
         Random rand = new Random();
         switch (allianceNum) {
             case 0:
