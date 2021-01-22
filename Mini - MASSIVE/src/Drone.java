@@ -128,11 +128,12 @@ public abstract class Drone {
         positionYArray.add(yPos);
     }
 
+    //TODO: Investigate .drawPolyLine
     public void drawTracking(Graphics2D g){
         g.setColor(this.color);
         for (int i = 0; i < positionYArray.size(); i++) {
             g.setColor(this.color);
-            g.drawOval(positionXArray.get(i), positionYArray.get(i), 10 , 10);
+            g.drawOval(positionXArray.get(i), positionYArray.get(i), 5 , 5);
         }
     }
 

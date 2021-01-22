@@ -22,9 +22,9 @@ class DJI extends Drone {
         this.setxPos(1);
         this.setyPos(1);
         this.setHealth(DJIStats[0]);
-        this.setAttack(Army.getRandomNumberInRange(DJIStats[1], DJIStats[2]));
-        this.setSpeed(Army.getRandomNumberInRange(DJIStats[3], DJIStats[4]));
-        this.setCourage(Army.getRandomNumberInRange(DJIStats[5], DJIStats[6]));
+        this.setAttack(Swarm.getRandomNumberInRange(DJIStats[1], DJIStats[2]));
+        this.setSpeed(Swarm.getRandomNumberInRange(DJIStats[3], DJIStats[4]));
+        this.setCourage(Swarm.getRandomNumberInRange(DJIStats[5], DJIStats[6]));
         this.setSize(DJIStats[7]);
         this.setRange(DJIStats[8]);
         this.setName(name);

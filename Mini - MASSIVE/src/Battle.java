@@ -21,7 +21,7 @@ class Battle {
     /**
      * the armies arraylist containing all armys and therefore warriors
      */
-    private static ArrayList<Army> armies = new ArrayList<>();
+    private static ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
     private static int numDrones = 4;
@@ -40,8 +40,8 @@ class Battle {
     }
 
     Battle() {
-        addArmy(0, "allies", armies);
-        addArmy(1, "axis", armies);
+        addSwarm(0, "allies", swarms);
+        addSwarm(1, "axis", swarms);
 
     }
 
@@ -52,22 +52,22 @@ class Battle {
      *
      * @param allianceNumber the number the army associates its alliance with
      * @param name           the name of that army
-     * @param armies         the arraylist containing all armys
+     * @param swarms         the arraylist containing all armys
      */
-    static void addArmy(int allianceNumber, String name, ArrayList<Army> armies) {
-        armies.add(armySize(allianceNumber, name));
+    static void addSwarm(int allianceNumber, String name, ArrayList<Swarm> swarms) {
+        swarms.add(armySize(allianceNumber, name));
     }
 
-    public ArrayList<Army> getArmies() {
-        return armies;
+    public ArrayList<Swarm> getSwarms() {
+        return swarms;
     }
 
     /**
      * calls drawWarriors while also passing the armies array contained within
      * @param g the graphics panel to be drawn on
      */
-    static void drawArmy(Graphics g) {
-        Battle.drawWarriors((Graphics2D) g, armies);
+    static void drawSwarm(Graphics g) {
+        Battle.drawDrone((Graphics2D) g, swarms);
     }
     /**
      * detectEnemy() uses the Vector330Class to determine the enemy closest to a selected warrior
@@ -76,7 +76,7 @@ class Battle {
      * @param attacker  the specific warrior to detect the closest enemy for
      * @param defenders the entire enemy army
      */
-    private static void detectEnemy(Drone attacker, Army defenders, int[] minArray) {
+    private static void detectEnemy(Drone attacker, Swarm defenders, int[] minArray) {
         int index = -1;
         int minimumDistance = 1000;
         Vector330Class calcVector = new Vector330Class();
@@ -111,11 +111,11 @@ class Battle {
      * moveWarriors() will move all warriors of the respective armies closer to closest enemy detected
      *
      */
-    static void moveWarriors() {
-        warriorDamage(armies);
+    static void moveDrones() {
+        droneDamage(swarms);
         Random rand = new Random();
-        for (Object army : armies) {
-            Army Attackers = (Army) army;
+        for (Object army : swarms) {
+            Swarm Attackers = (Swarm) army;
             for (int i = 0; i < Attackers.soldiers.size(); i++) {
                 if (Attackers.soldiers.get(i).isAlive() && Attackers.soldiers.get(i).isMoving()) {
                     if (outOfBounds(Attackers.soldiers.get(i))) {
@@ -132,7 +132,7 @@ class Battle {
                         } catch (Exception e) {
                             break;
                         }
-                        Army axis = armies.get(soldierArray[2]);
+                        Swarm axis = swarms.get(soldierArray[2]);
                         //move the soldier towards their target
                         Attackers.soldiers.get(i).move(axis.soldiers.get(index).getxPos(), axis.soldiers.get(index).getyPos());
 
@@ -148,21 +148,21 @@ class Battle {
      * @param g      the graphics window to draw to
      * @param armies a array list containing all the armies in play
      */
-    private static void drawWarriors(Graphics2D g, ArrayList<Army> armies) {
+    private static void drawDrone(Graphics2D g, ArrayList<Swarm> armies) {
 
-        for (Army army : armies) {
-            for (int i = 0; i < army.soldiers.size(); i++) {
-                if (army.soldiers.get(i).isAlive()) {
-                    army.soldiers.get(i).draw(g);
-                    army.soldiers.get(i).drawFire(g);
-                    army.soldiers.get(i).locationTracking();
-                    army.soldiers.get(i).drawTracking(g);
+        for (Swarm swarm : armies) {
+            for (int i = 0; i < swarm.soldiers.size(); i++) {
+                if (swarm.soldiers.get(i).isAlive()) {
+                    swarm.soldiers.get(i).draw(g);
+                    swarm.soldiers.get(i).drawFire(g);
+                    swarm.soldiers.get(i).locationTracking();
+                    swarm.soldiers.get(i).drawTracking(g);
                 }
                 else{
-                    army.soldiers.get(i).drawExplosion(g);
+                    swarm.soldiers.get(i).drawExplosion(g);
                 }
-                army.soldiers.get(i).locationTracking();
-                army.soldiers.get(i).drawTracking(g);
+                swarm.soldiers.get(i).locationTracking();
+                swarm.soldiers.get(i).drawTracking(g);
             }
         }
     }
@@ -172,11 +172,11 @@ class Battle {
      *
      * @param armies a array list containing all the armies in play
      */
-    private static void warriorDamage(ArrayList<Army> armies) {
+    private static void droneDamage(ArrayList<Swarm> armies) {
 
         Random rand = new Random();
         for (Object army : armies) {
-            Army Attackers = (Army) army;
+            Swarm Attackers = (Swarm) army;
             for (int i = 0; i < Attackers.soldiers.size(); i++) {
                 if (Attackers.soldiers.get(i).isAlive()) {
                     int[] intArray = new int[4];
@@ -184,9 +184,9 @@ class Battle {
                     intArray[1] = 1000; //magnitude of lowest
                     intArray[2] = -1; //army of lowest
                     for (Object o : armies) {
-                        Army enemyArmy = (Army) o;
-                        if (enemyArmy.getAllianceNum() != Attackers.getAllianceNum()) {
-                            detectEnemy(Attackers.soldiers.get(i), enemyArmy, intArray);
+                        Swarm enemySwarm = (Swarm) o;
+                        if (enemySwarm.getAllianceNum() != Attackers.getAllianceNum()) {
+                            detectEnemy(Attackers.soldiers.get(i), enemySwarm, intArray);
                         }
                     }
                     try {
@@ -194,10 +194,9 @@ class Battle {
                             throw new Exception("That does not exist.");
                         }
                     } catch (Exception e) {
-                        System.out.println("An index of the nearest soldier was not found");
                         break;
                     }
-                    Army Defenders = (Army) armies.get(intArray[2]);
+                    Swarm Defenders = (Swarm) armies.get(intArray[2]);
                     if (magnitude(Attackers.soldiers.get(i), Defenders, intArray[0]) <= Attackers.soldiers.get(i).getRange() + Attackers.soldiers.get(i).getSize() && Defenders.soldiers.get(intArray[0]).isAlive()) {
                         //determine if attacker has missed the defender
                         if (!(rand.nextInt(100) <= 100 * Attackers.soldiers.get(i).getAttack() / (Attackers.soldiers.get(i).getAttack() + Defenders.soldiers.get(intArray[0]).getAttack()))) {
@@ -260,7 +259,7 @@ class Battle {
      * @param index    the location of the closest enemy to the selected warrior
      * @return the distance between a warrior and a selected enemy
      */
-    private static double magnitude(Drone soldier, Army defender, int index) {
+    private static double magnitude(Drone soldier, Swarm defender, int index) {
         double distance;
         Vector330Class calcVector = new Vector330Class();
         calcVector.setX(soldier.getxPos() - defender.soldiers.get(index).getxPos());
@@ -269,14 +268,14 @@ class Battle {
         return distance;
     }
 
-    static Army armySize(int allianceNumber, String name) {
+    static Swarm armySize(int allianceNumber, String name) {
         if (name.equals("null")) {
-            return new Army(allianceNumber, 0, name);
+            return new Swarm(allianceNumber, 0, name);
 
         } else {
             setDroneArrayAttributes(Drone.DJIStats);
 
-            return new Army(allianceNumber, numDrones, name);
+            return new Swarm(allianceNumber, numDrones, name);
         }
     }
 

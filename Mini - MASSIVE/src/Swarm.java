@@ -9,14 +9,14 @@ import java.util.Random;
  * Date: 22 Sept 19
  * Class: CS330
  */
-public class Army{
+public class Swarm {
 
     private int allianceNum;
     private String armyName;
     ArrayList<Drone> soldiers = new ArrayList<Drone>();
 
 
-    Army(int allianceNum, int numDJI, String armyName) {
+    Swarm(int allianceNum, int numDJI, String armyName) {
         this.allianceNum = allianceNum;
         for (int i = 0; i < numDJI; i++) {
             String name = armyName + allianceNum + ";" + i;

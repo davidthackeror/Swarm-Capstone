@@ -8,9 +8,9 @@
  */
 public class ComboArmyItem {
     private String key;
-    private Army value;
+    private Swarm value;
 
-    public ComboArmyItem(String key, Army value) {
+    public ComboArmyItem(String key, Swarm value) {
         this.key = key;
         this.value = value;
     }
@@ -34,7 +34,7 @@ public class ComboArmyItem {
      *
      * @return the name of the army
      */
-    public Army getValue() {
+    public Swarm getValue() {
         return value;
     }
 
