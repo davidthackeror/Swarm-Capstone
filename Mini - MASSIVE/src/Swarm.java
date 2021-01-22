@@ -153,4 +153,18 @@ public class Swarm {
         return numAlive;
     }
 
+    //TODO: Add Z Coordinate
+    //TODO: Display Z Coordinate
+    //TODO: Fix Collision Avoidance Algo, could be altitude deconfliction
+    //TODO: Drone Fire Teams
+    //TODO: Drone RADAR Sensors (change omnipotent features)    
+    //TODO: Weapon Types and Ammunition
+    //TODO: Flight Time / Battery Life
+    //TODO: Wind -> Vector Added or Against Movement Vector
+    //TODO: Obstacles, mountains, trees, etc
+    //TODO: Different Maps
+    //TODO: Attribute Selection GUI
+
+
+
 }

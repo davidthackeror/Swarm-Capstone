@@ -170,7 +170,7 @@ class Battle {
                 Drone comparison = friendlies.soldiers.get(i);
                 int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
                 if(firstHalf < radiusSquared){
-                    System.out.println("Collision detected between" + avoidance.getName() + " and " + comparison.getName());
+                    System.out.println("Collision detected between " + avoidance.getName() + " and " + comparison.getName());
                     return true;
                 }
             }
