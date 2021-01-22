@@ -16,8 +16,6 @@ public class Main {
     public static void main(String[] args) {
 
         //call for preset values or not user selected values for each warrior class
-        //size of an army is determined in OptionPanes.ArmySize()
-        OptionPanes.optionPanes();
         Battle battle = new Battle();
         BattleGUI battleGUI = new BattleGUI();
         battleGUI.setBattle(battle);
