@@ -23,6 +23,8 @@ class Battle {
      */
     private static ArrayList<Army> armies = new ArrayList<>();
 
+    //TODO: Placeholder for a gui assignment of the # of drones.
+    private static int numDrones = 4;
 
     static void setDroneArrayAttributes(int[] array) {
         array[0] = 50;//health
@@ -134,6 +136,7 @@ class Battle {
                         Army axis = armies.get(soldierArray[2]);
                         //move the soldier towards their target
                         Attackers.soldiers.get(i).move(axis.soldiers.get(index).getxPos(), axis.soldiers.get(index).getyPos());
+
                     }
                 }
             }
@@ -153,6 +156,8 @@ class Battle {
                 if (army.soldiers.get(i).isAlive()) {
                     army.soldiers.get(i).draw(g);
                     army.soldiers.get(i).drawFire(g);
+                    army.soldiers.get(i).locationTracking();
+                    army.soldiers.get(i).drawTracking(g);
                 }
                 else{
                     army.soldiers.get(i).drawExplosion(g);
@@ -270,7 +275,8 @@ class Battle {
         } else {
             setDroneArrayAttributes(Drone.DJIStats);
 
-            return new Army(allianceNumber, 4, name);
+            return new Army(allianceNumber, numDrones, name);
         }
     }
+
 }

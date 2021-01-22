@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.LinkedList;
 import java.util.Random;
 /**
  * Project: Mini - MASSIVE
@@ -68,7 +69,9 @@ public abstract class Drone {
     private int fireX;
     private int fireY;
     private boolean isFiring;
-
+    //TODO: Probably a better way to do this
+    LinkedList<Integer> positionXArray = new LinkedList<Integer>();
+    LinkedList<Integer> positionYArray = new LinkedList<Integer>();
     private int[] minArray = new int[3];
 
     Drone() {
@@ -119,6 +122,19 @@ public abstract class Drone {
     public abstract void draw(Graphics2D g);
     public abstract void drawFire(Graphics2D g);
     public abstract void drawExplosion(Graphics2D g);
+
+    public void locationTracking(){
+        positionXArray.add(xPos);
+        positionYArray.add(yPos);
+    }
+
+    public void drawTracking(Graphics2D g){
+        g.setColor(this.color);
+        for (int i = 0; i < positionYArray.size(); i++) {
+            g.setColor(this.color);
+            g.drawOval(positionXArray.get(i), positionYArray.get(i), 10 , 10);
+        }
+    }
 
     //begin non abstract methods (getter and setter methods)
 
@@ -327,4 +343,5 @@ public abstract class Drone {
     public void setFiring(boolean firing) {
         isFiring = firing;
     }
+
 }
