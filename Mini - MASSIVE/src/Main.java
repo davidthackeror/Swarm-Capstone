@@ -10,7 +10,9 @@ import javax.swing.*;
  */
 public class Main {
     //determines the size of the graphics display window
-    static final int SIZE = 1000;
+    static final int ratioX = 16;
+    static final int ratioY = 9;
+    static final int SIZE = 100;
     //the time to wait between drawing on screen and moving to next tick
     private static final int TIME_STEP = 100;
 

@@ -35,7 +35,7 @@ public class AnimationArea extends JPanel {
 
     // paint() is called automatically by the JVM
     public void paint(Graphics g) {
-        g.clearRect(0,0, Main.SIZE, Main.SIZE);
+        g.clearRect(0,0, Main.SIZE * Main.ratioX, Main.SIZE * Main.ratioY);
 
         int rows = 20;
         int cols = 30;
