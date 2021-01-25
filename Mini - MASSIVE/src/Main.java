@@ -31,8 +31,6 @@ public class Main {
         animationThread.start();
         animationThread.toggleAnimation();
         battleGUI.setAnimationThread(animationThread);
-        //TODO: Fix drones spawning off screen
-        //TODO: Change screen size
 
 
     }

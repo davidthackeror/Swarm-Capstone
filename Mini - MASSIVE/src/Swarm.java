@@ -96,14 +96,21 @@ public class Swarm {
      * @return a random x value based on the spawn points for that alliance number
      */
     static int generateX(int allianceNum){
-        Random rand = new Random();
         switch (allianceNum) {
-            case 0:
             case 2:
-                return getRandomNumberInRange(40,Main.SIZE/2);
-            case 1:
+            case 0:
+                int rand = 0;
+                while (50 > rand) {
+                    rand = getRandomNumberInRange(40,(Main.SIZE * Main.ratioX)/2);
+                }
+                return rand;
             case 3:
-                return getRandomNumberInRange(Main.SIZE /2, Main.SIZE);
+            case 1:
+                rand = 0;
+                while (50 > rand) {
+                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioX / 2), (Main.SIZE * Main.ratioX));
+                }
+                return rand;
             default:
                 return 0;
         }
@@ -117,14 +124,21 @@ public class Swarm {
      * @return a random y value based on the spawn points for that alliance number
      */
     static int generateY(int allianceNum){
-        Random rand = new Random();
         switch (allianceNum) {
-            case 0:
-            case 3:
-                return getRandomNumberInRange(40,Main.SIZE/2);
-            case 1:
             case 2:
-                return getRandomNumberInRange(Main.SIZE /2, Main.SIZE);
+            case 0:
+                int rand = 0;
+                while (50 > rand) {
+                    rand = getRandomNumberInRange(40,(Main.SIZE * Main.ratioY)/2);
+                }
+                return rand;
+            case 3:
+            case 1:
+                rand = 0;
+                while (50 > rand) {
+                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioY / 2), (Main.SIZE * Main.ratioY));
+                }
+                return rand;
             default:
                 return 0;
         }
