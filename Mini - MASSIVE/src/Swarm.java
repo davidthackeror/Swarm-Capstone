@@ -100,17 +100,17 @@ public class Swarm {
             case 2:
             case 0:
                 int rand = 0;
-                while (50 > rand) {
-                    rand = getRandomNumberInRange(40,(Main.SIZE * Main.ratioX)/2);
+                while (1 > rand) {
+                    rand = getRandomNumberInRange(10,(Main.SIZE * Main.ratioX)/2) - 50;
                 }
                 return rand;
             case 3:
             case 1:
-                rand = 0;
-                while (50 > rand) {
-                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioX / 2), (Main.SIZE * Main.ratioX));
+                rand = 99999999;
+                while ((Main.SIZE * Main.ratioX) < rand) {
+                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioX / 2) + 50, (Main.SIZE * Main.ratioX));
                 }
-                return rand;
+                return rand - 50;
             default:
                 return 0;
         }
@@ -128,17 +128,17 @@ public class Swarm {
             case 2:
             case 0:
                 int rand = 0;
-                while (50 > rand) {
-                    rand = getRandomNumberInRange(40,(Main.SIZE * Main.ratioY)/2);
+                while (1 > rand) {
+                    rand = getRandomNumberInRange(10,(Main.SIZE * Main.ratioY)/2) - 50;
                 }
                 return rand;
             case 3:
             case 1:
-                rand = 0;
-                while (50 > rand) {
-                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioY / 2), (Main.SIZE * Main.ratioY));
+                rand = 9999999;
+                while ((Main.SIZE * Main.ratioY) < rand) {
+                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioY / 2) + 50, (Main.SIZE * Main.ratioY));
                 }
-                return rand;
+                return rand - 50;
             default:
                 return 0;
         }
