@@ -101,14 +101,14 @@ public class Swarm {
             case 0:
                 int rand = 0;
                 while (50 > rand) {
-                    rand = getRandomNumberInRange(40,(Main.SIZE * Main.ratioX)/2);
+                    rand = getRandomNumberInRange(40, (int) ((Main.SIZEWIDTH)/2));
                 }
                 return rand;
             case 3:
             case 1:
                 rand = 0;
                 while (50 > rand) {
-                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioX / 2), (Main.SIZE * Main.ratioX));
+                    rand = getRandomNumberInRange((int) (Main.SIZEWIDTH / 2), (int) Main.SIZEWIDTH);
                 }
                 return rand;
             default:
@@ -129,14 +129,14 @@ public class Swarm {
             case 0:
                 int rand = 0;
                 while (50 > rand) {
-                    rand = getRandomNumberInRange(40,(Main.SIZE * Main.ratioY)/2);
+                    rand = getRandomNumberInRange(40, (int) ((Main.SIZEHEIGHT)/2));
                 }
                 return rand;
             case 3:
             case 1:
                 rand = 0;
                 while (50 > rand) {
-                    rand = getRandomNumberInRange((Main.SIZE * Main.ratioY / 2), (Main.SIZE * Main.ratioY));
+                    rand = getRandomNumberInRange((int) (Main.SIZEHEIGHT / 2), (int) Main.SIZEHEIGHT);
                 }
                 return rand;
             default:

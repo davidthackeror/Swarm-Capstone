@@ -107,7 +107,7 @@ class Battle {
      * @return a true if out of bounds
      */
     private static boolean outOfBounds(Drone attacker) {
-        return attacker.getxPos() > Main.SIZE * Main.ratioX || attacker.getyPos() > Main.SIZE * Main.ratioY || attacker.getxPos() < 0 || attacker.getyPos() < 0;
+        return attacker.getxPos() > Main.SIZEWIDTH || attacker.getyPos() > Main.SIZEHEIGHT || attacker.getxPos() < 0 || attacker.getyPos() < 0;
     }
 
     /**

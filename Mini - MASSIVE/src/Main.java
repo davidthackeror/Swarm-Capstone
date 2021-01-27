@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Project: Swarm Capstone
@@ -10,9 +11,12 @@ import javax.swing.*;
  */
 public class Main {
     //determines the size of the graphics display window
+    static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    static final double SIZEWIDTH = screenSize.getWidth() - 100;
+    static final double SIZEHEIGHT = screenSize.getHeight() - 100;
     static final int ratioX = 16;
     static final int ratioY = 9;
-    static final int SIZE = 100;
+    static final int SIZE = 70;
     //the time to wait between drawing on screen and moving to next tick
     private static final int TIME_STEP = 100;
 
