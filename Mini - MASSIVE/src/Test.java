@@ -8,7 +8,7 @@ import javax.swing.*;
  * Date: 21 Jan 21
  * Class: Capstone
  */
-public class Main {
+public class Test {
     //determines the size of the graphics display window
     static final int ratioX = 16;
     static final int ratioY = 9;
@@ -31,6 +31,10 @@ public class Main {
         animationThread.start();
         animationThread.toggleAnimation();
         battleGUI.setAnimationThread(animationThread);
+
+
     }
+
+    //TODO: Fix screen size
 }
 

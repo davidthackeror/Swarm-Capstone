@@ -25,7 +25,7 @@ class Battle {
     private static ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
-    private static int numDrones = 500;
+    private static int numDrones = 15;
 
     private static int collisionRadius = 300;
     //TODO: do drone attributes in a different location
@@ -260,6 +260,8 @@ class Battle {
                         break;
                     }
                     Swarm Defenders = (Swarm) armies.get(intArray[2]);
+
+                    //TODO: make this a test case
                     if (magnitude(Attackers.soldiers.get(i), Defenders, intArray[0]) <= Attackers.soldiers.get(i).getRange() + Attackers.soldiers.get(i).getSize() && Defenders.soldiers.get(intArray[0]).isAlive()) {
                         //determine if attacker has missed the defender
                         if (!(rand.nextInt(100) <= 100 * Attackers.soldiers.get(i).getAttack() / (Attackers.soldiers.get(i).getAttack() + Defenders.soldiers.get(intArray[0]).getAttack()))) {
@@ -268,7 +270,9 @@ class Battle {
                             Attackers.soldiers.get(i).setFireX(Defenders.soldiers.get(intArray[0]).getxPos());
                             Attackers.soldiers.get(i).setFireY(Defenders.soldiers.get(intArray[0]).getyPos());
                             Attackers.soldiers.get(i).setFiring(true);
-                            Defenders.soldiers.get(intArray[0]).setHealth(Defenders.soldiers.get(intArray[0]).getHealth() - Attackers.soldiers.get(i).getAttack());
+
+                            //TODO: make test case
+                            Defenders.soldiers.get(intArray[0]).setHealth(Defenders.soldiers.get(intArray[0]).getHealth() - Attackers.soldiers.get(i).getAttack()); //removes health
 
                             //show how much damage was done
                             System.out.println(Attackers.soldiers.get(i).getName() + " just dealt " + (Attackers.soldiers.get(i).getAttack()) +
