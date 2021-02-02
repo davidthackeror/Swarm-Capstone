@@ -1,5 +1,6 @@
 import javax.swing.*;
 
+
 /**
  * Project: Swarm Capstone
  * : The Room Where It Happens
@@ -20,6 +21,14 @@ public class Test {
 
         //call for preset values or not user selected values for each warrior class
         Battle battle = new Battle();
+        for (int droneIdentifer = 0; droneIdentifer < Battle.numDrones; droneIdentifer++) { //
+            System.out.println("Team 1 (x & y): " + Battle.getSwarms().get(0).drones.get(droneIdentifer).getxPos() + ", " + Battle.getSwarms().get(0).drones.get(droneIdentifer).getyPos());
+            System.out.println("Team 2 (x & y): " + Battle.getSwarms().get(1).drones.get(droneIdentifer).getxPos() + ", " + Battle.getSwarms().get(1).drones.get(droneIdentifer).getyPos());
+            //Battle.checkCollision(Battle.getSwarms().get(0), Battle.getSwarms().get(0).drones.get(droneIdentifer));
+            assert(Battle.checkCollision(Battle.getSwarms().get(0), Battle.getSwarms().get(0).drones.get(droneIdentifer)) == true): "collision";
+            //TODO: test cases
+
+        }
         BattleGUI battleGUI = new BattleGUI();
         battleGUI.setBattle(battle);
         JFrame jFrame = new JFrame("DRONE SWARMING");
@@ -31,8 +40,6 @@ public class Test {
         animationThread.start();
         animationThread.toggleAnimation();
         battleGUI.setAnimationThread(animationThread);
-
-
     }
 
     //TODO: Fix screen size
