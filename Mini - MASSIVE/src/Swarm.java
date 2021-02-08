@@ -14,16 +14,16 @@ public class Swarm {
 
     private int allianceNum;
     private String armyName;
-    ArrayList<Drone> soldiers = new ArrayList<Drone>();
+    ArrayList<Drone> drones = new ArrayList<Drone>();
 
 
     Swarm(int allianceNum, int numDJI, String armyName) {
         this.allianceNum = allianceNum;
         for (int i = 0; i < numDJI; i++) {
             String name = armyName + allianceNum + ";" + i;
-            soldiers.add(addAttributes(name, allianceNum));
+            drones.add(addAttributes(name, allianceNum));
         }
-        setAllianceColor(allianceNum, soldiers);
+        setAllianceColor(allianceNum, drones);
         this.armyName = armyName;
     }
 
@@ -159,7 +159,7 @@ public class Swarm {
      */
     int numAlive(){
         int numAlive = 0;
-        for (Drone soldier : soldiers) {
+        for (Drone soldier : drones) {
             if (soldier.isAlive()) {
                 numAlive++;
             }

@@ -25,7 +25,7 @@ class Battle {
     private static ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
-    private static int numDrones = 500;
+    public static int numDrones = 15;
 
     private static int collisionRadius = 300;
     //TODO: do drone attributes in a different location
@@ -64,6 +64,9 @@ class Battle {
         swarms.add(armySize(allianceNumber, name));
     }
 
+    static ArrayList<Swarm> getSwarms(){
+        return swarms;
+    }
     /**
      * calls drawWarriors while also passing the armies array contained within
      * @param g the graphics panel to be drawn on
@@ -84,12 +87,12 @@ class Battle {
         int minimumDistance = 1000;
         Vector330Class calcVector = new Vector330Class();
         //for every defender in the army check to see their distance
-        for (int j = 0; j < defenders.soldiers.size(); j++) {
+        for (int j = 0; j < defenders.drones.size(); j++) {
             //check to see if that selected soldier is alive
-            if (defenders.soldiers.get(j).isAlive()) {
+            if (defenders.drones.get(j).isAlive()) {
                 //calculate a vector for the difference in positions between the warrior and the selected defender
-                calcVector.setX(defenders.soldiers.get(j).getxPos() - attacker.getxPos());
-                calcVector.setY(defenders.soldiers.get(j).getyPos() - attacker.getyPos());
+                calcVector.setX(defenders.drones.get(j).getxPos() - attacker.getxPos());
+                calcVector.setY(defenders.drones.get(j).getyPos() - attacker.getyPos());
                 //check to see if that magnitude is the smallest yet
                 if (calcVector.magnitude() < minArray[1]) {
                     minArray[2] = defenders.getAllianceNum();
@@ -121,22 +124,22 @@ class Battle {
         for (Object army : swarms)
         {
             Swarm Attackers = (Swarm) army;
-            for (int i = 0; i < Attackers.soldiers.size(); i++)
+            for (int i = 0; i < Attackers.drones.size(); i++)
             {
-                if (Attackers.soldiers.get(i).isAlive() && Attackers.soldiers.get(i).isMoving())
+                if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving())
                 {
-                    if (outOfBounds(Attackers.soldiers.get(i)))
+                    if (outOfBounds(Attackers.drones.get(i)))
                     {
-                        Attackers.soldiers.get(i).setAlive(false);
+                        Attackers.drones.get(i).setAlive(false);
                     }
-                    else if(!checkCollision(Attackers, Attackers.soldiers.get(i)))
+                    else if(!checkCollision(Attackers, Attackers.drones.get(i)))
                     {
                         int[] movementCoords = enemyDetection(Attackers, i);
-                        Attackers.soldiers.get(i).move(movementCoords[0], movementCoords[1]);
+                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1]);
                     }
                     else{
                         int[] movementCoords = collisionAvoidance(Attackers, i);
-                        Attackers.soldiers.get(i).move(movementCoords[0], movementCoords[1]);
+                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1]);
                     }
                 }
             }
@@ -144,7 +147,7 @@ class Battle {
     }
     static int[] enemyDetection(Swarm Attackers, int i){
         int[] coords = new int[2];
-        int[] soldierArray = Attackers.soldiers.get(i).getMinArray();
+        int[] soldierArray = Attackers.drones.get(i).getMinArray();
         int index = soldierArray[0];
         //if detectEnemy comes back with a -1 then there are no more alive enemies
         try
@@ -158,16 +161,16 @@ class Battle {
         {
         }
         Swarm axis = swarms.get(soldierArray[2]);
-        coords[0] = axis.soldiers.get(index).getxPos();
-        coords[1] = axis.soldiers.get(index).getyPos();
+        coords[0] = axis.drones.get(index).getxPos();
+        coords[1] = axis.drones.get(index).getyPos();
         return coords;
     }
 
     static boolean checkCollision(Swarm friendlies, Drone avoidance){
         int radiusSquared = collisionRadius * collisionRadius;
-        for (int i = 0; i < friendlies.soldiers.size(); i++) {
-            if(friendlies.soldiers.get(i).isAlive()){
-                Drone comparison = friendlies.soldiers.get(i);
+        for (int i = 0; i < friendlies.drones.size(); i++) {
+            if(friendlies.drones.get(i).isAlive()){
+                Drone comparison = friendlies.drones.get(i);
                 int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
                 if(firstHalf < radiusSquared){
                     System.out.println("Collision detected between " + avoidance.getName() + " and " + comparison.getName());
@@ -188,16 +191,16 @@ class Battle {
     static int[] collisionAvoidance(Swarm friendlies, int epsilon){
         int[] coords = new int[]{0,0};
         int radiusSquared = collisionRadius * collisionRadius;
-        for (int i = 0; i < friendlies.soldiers.size(); i++) {
-            if(friendlies.soldiers.get(i).isAlive()){
-                Drone comparison = friendlies.soldiers.get(i);
-                Drone avoidance = friendlies.soldiers.get(epsilon);
+        for (int i = 0; i < friendlies.drones.size(); i++) {
+            if(friendlies.drones.get(i).isAlive()){
+                Drone comparison = friendlies.drones.get(i);
+                Drone avoidance = friendlies.drones.get(epsilon);
                 int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
                 if(firstHalf < radiusSquared){
                     coords = enemyDetection(friendlies, epsilon);
                     coords[0] = coords[0] - Swarm.getRandomNumberInRange(50, 100);
                     coords[1] = coords[1] - Swarm.getRandomNumberInRange(50, 100);
-                    System.out.println(friendlies.soldiers.get(epsilon).getName() + " moving towards " + coords[0] + "," + coords[1]);
+                    System.out.println(friendlies.drones.get(epsilon).getName() + " moving towards " + coords[0] + "," + coords[1]);
                     return coords;
                 }
             }
@@ -214,18 +217,18 @@ class Battle {
     private static void drawDrone(Graphics2D g, ArrayList<Swarm> armies) {
 
         for (Swarm swarm : armies) {
-            for (int i = 0; i < swarm.soldiers.size(); i++) {
-                if (swarm.soldiers.get(i).isAlive()) {
-                    swarm.soldiers.get(i).draw(g);
-                    swarm.soldiers.get(i).drawFire(g);
-                    swarm.soldiers.get(i).locationTracking();
-                    swarm.soldiers.get(i).drawTracking(g);
+            for (int i = 0; i < swarm.drones.size(); i++) {
+                if (swarm.drones.get(i).isAlive()) {
+                    swarm.drones.get(i).draw(g);
+                    swarm.drones.get(i).drawFire(g);
+                    swarm.drones.get(i).locationTracking();
+                    swarm.drones.get(i).drawTracking(g);
                 }
                 else{
-                    swarm.soldiers.get(i).drawExplosion(g);
+                    swarm.drones.get(i).drawExplosion(g);
                 }
-                swarm.soldiers.get(i).locationTracking();
-                swarm.soldiers.get(i).drawTracking(g);
+                swarm.drones.get(i).locationTracking();
+                swarm.drones.get(i).drawTracking(g);
             }
         }
     }
@@ -240,8 +243,8 @@ class Battle {
         Random rand = new Random();
         for (Object army : armies) {
             Swarm Attackers = (Swarm) army;
-            for (int i = 0; i < Attackers.soldiers.size(); i++) {
-                if (Attackers.soldiers.get(i).isAlive()) {
+            for (int i = 0; i < Attackers.drones.size(); i++) {
+                if (Attackers.drones.get(i).isAlive()) {
                     int[] intArray = new int[4];
                     intArray[0] = -1; //index of lowest
                     intArray[1] = 1000; //magnitude of lowest
@@ -249,7 +252,7 @@ class Battle {
                     for (Object o : armies) {
                         Swarm enemySwarm = (Swarm) o;
                         if (enemySwarm.getAllianceNum() != Attackers.getAllianceNum()) {
-                            detectEnemy(Attackers.soldiers.get(i), enemySwarm, intArray);
+                            detectEnemy(Attackers.drones.get(i), enemySwarm, intArray);
                         }
                     }
                     try {
@@ -260,34 +263,38 @@ class Battle {
                         break;
                     }
                     Swarm Defenders = (Swarm) armies.get(intArray[2]);
-                    if (magnitude(Attackers.soldiers.get(i), Defenders, intArray[0]) <= Attackers.soldiers.get(i).getRange() + Attackers.soldiers.get(i).getSize() && Defenders.soldiers.get(intArray[0]).isAlive()) {
+
+                    //TODO: make this a test case
+                    if (magnitude(Attackers.drones.get(i), Defenders, intArray[0]) <= Attackers.drones.get(i).getRange() + Attackers.drones.get(i).getSize() && Defenders.drones.get(intArray[0]).isAlive()) {
                         //determine if attacker has missed the defender
-                        if (!(rand.nextInt(100) <= 100 * Attackers.soldiers.get(i).getAttack() / (Attackers.soldiers.get(i).getAttack() + Defenders.soldiers.get(intArray[0]).getAttack()))) {
+                        if (!(rand.nextInt(100) <= 100 * Attackers.drones.get(i).getAttack() / (Attackers.drones.get(i).getAttack() + Defenders.drones.get(intArray[0]).getAttack()))) {
                             //stop them from moving so that they can shoot or attack
-                            Attackers.soldiers.get(i).setMoving(false);
-                            Attackers.soldiers.get(i).setFireX(Defenders.soldiers.get(intArray[0]).getxPos());
-                            Attackers.soldiers.get(i).setFireY(Defenders.soldiers.get(intArray[0]).getyPos());
-                            Attackers.soldiers.get(i).setFiring(true);
-                            Defenders.soldiers.get(intArray[0]).setHealth(Defenders.soldiers.get(intArray[0]).getHealth() - Attackers.soldiers.get(i).getAttack());
+                            Attackers.drones.get(i).setMoving(false);
+                            Attackers.drones.get(i).setFireX(Defenders.drones.get(intArray[0]).getxPos());
+                            Attackers.drones.get(i).setFireY(Defenders.drones.get(intArray[0]).getyPos());
+                            Attackers.drones.get(i).setFiring(true);
+
+                            //TODO: make test case
+                            Defenders.drones.get(intArray[0]).setHealth(Defenders.drones.get(intArray[0]).getHealth() - Attackers.drones.get(i).getAttack()); //removes health
 
                             //show how much damage was done
-                            System.out.println(Attackers.soldiers.get(i).getName() + " just dealt " + (Attackers.soldiers.get(i).getAttack()) +
-                                    " damage to " + Defenders.soldiers.get(intArray[0]).getName() + " in army " + intArray[2]);
+                            System.out.println(Attackers.drones.get(i).getName() + " just dealt " + (Attackers.drones.get(i).getAttack()) +
+                                    " damage to " + Defenders.drones.get(intArray[0]).getName() + " in army " + intArray[2]);
 
-                            if (Defenders.soldiers.get(intArray[0]).getHealth() <= 0) {
+                            if (Defenders.drones.get(intArray[0]).getHealth() <= 0) {
                                 playSound();
-                                Defenders.soldiers.get(intArray[0]).setAlive(false);
-                                Defenders.soldiers.get(intArray[0]).setHealth(0);
-                                System.out.println(Attackers.soldiers.get(i).getName() + " " + i + " just killed " + Defenders.soldiers.get(intArray[0]).getName() + " " + intArray[0] + " in army " + intArray[2]);
+                                Defenders.drones.get(intArray[0]).setAlive(false);
+                                Defenders.drones.get(intArray[0]).setHealth(0);
+                                System.out.println(Attackers.drones.get(i).getName() + " " + i + " just killed " + Defenders.drones.get(intArray[0]).getName() + " " + intArray[0] + " in army " + intArray[2]);
                             }
                         } else {
                             //print out a missed message
-                            System.out.println(Attackers.soldiers.get(i).getName() + " has just missed " + Defenders.soldiers.get(intArray[0]).getName());
+                            System.out.println(Attackers.drones.get(i).getName() + " has just missed " + Defenders.drones.get(intArray[0]).getName());
                         }
                     } else {
-                        Attackers.soldiers.get(i).setMoving(true);
+                        Attackers.drones.get(i).setMoving(true);
                     }
-                    Attackers.soldiers.get(i).setMinArray(intArray);
+                    Attackers.drones.get(i).setMinArray(intArray);
                 }
 
             }
@@ -325,8 +332,8 @@ class Battle {
     private static double magnitude(Drone soldier, Swarm defender, int index) {
         double distance;
         Vector330Class calcVector = new Vector330Class();
-        calcVector.setX(soldier.getxPos() - defender.soldiers.get(index).getxPos());
-        calcVector.setY(soldier.getyPos() - defender.soldiers.get(index).getyPos());
+        calcVector.setX(soldier.getxPos() - defender.drones.get(index).getxPos());
+        calcVector.setY(soldier.getyPos() - defender.drones.get(index).getyPos());
         distance = calcVector.magnitude();
         return distance;
     }
@@ -348,5 +355,6 @@ class Battle {
             return new Swarm(allianceNumber, numDrones, name);
         }
     }
+
 
 }
