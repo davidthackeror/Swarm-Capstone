@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.math.*;
+
 
 /**
  * Project: Swarm Capstone
@@ -175,6 +177,7 @@ class Battle {
                 int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
                 if(firstHalf < radiusSquared){
                     System.out.println("Collision detected between " + avoidance.getName() + " and " + comparison.getName());
+                    System.out.println(friendlies.drones.get(i).getzPos());
                     return true;
                 }
             }
@@ -332,10 +335,12 @@ class Battle {
      */
     private static double magnitude(Drone soldier, Swarm defender, int index) {
         double distance;
+        double deltaZ;
         Vector330Class calcVector = new Vector330Class();
         calcVector.setX(soldier.getxPos() - defender.drones.get(index).getxPos());
         calcVector.setY(soldier.getyPos() - defender.drones.get(index).getyPos());
-        distance = calcVector.magnitude();
+        deltaZ = Math.abs(soldier.getzPos() - defender.drones.get(index).getzPos());
+        distance = Math.sqrt(deltaZ * deltaZ) + (calcVector.magnitude() + calcVector.magnitude());
         return distance;
     }
 
