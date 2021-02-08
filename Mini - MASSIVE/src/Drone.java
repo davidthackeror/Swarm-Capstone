@@ -42,6 +42,10 @@ public abstract class Drone {
      */
     private int yPos;
     /**
+     * the warriors z position
+     */
+    private int zPos;
+    /**
      * the warriors total health at any given point
      */
     private int health;
@@ -74,6 +78,10 @@ public abstract class Drone {
      */
     private int fireY;
     /**
+     * the z firing coordinate of target drone
+     */
+    private int fireZ;
+    /**
      * boolean to indicate if weapons on drone are armed
      */
     private boolean isFiring;
@@ -86,11 +94,17 @@ public abstract class Drone {
      * linkedList containing y position of the drone over each tick
      */
     LinkedList<Integer> positionYArray = new LinkedList<Integer>();
+    /**
+     * linkedList containing z position of the drone over each tick
+     */
+    LinkedList<Integer> positionZArray = new LinkedList<Integer>();
+
     private int[] minArray = new int[3];
 
     Drone() {
         this.xPos = 0;
         this.yPos = 0;
+        this.zPos = 0;
         this.health = 0;
         this.attack = 0;
         this.courage = 0;
@@ -101,9 +115,10 @@ public abstract class Drone {
         this.isAlive = true;
     }
 
-    public Drone(int xPos, int yPos, int health, int attack, int courage, int speed, int size, Color color, boolean isMoving, boolean isAlive, String name){
+    public Drone(int xPos, int yPos, int zPos, int health, int attack, int courage, int speed, int size, Color color, boolean isMoving, boolean isAlive, String name){
         this.xPos = xPos;
         this.yPos = yPos;
+        this.zPos = zPos;
         this.health = health;
         this.attack = attack;
         this.courage = courage;
@@ -125,8 +140,9 @@ public abstract class Drone {
      *
      * @param xTarget The x coordinate of the target enemy soldier
      * @param yTarget The y coordinate of the target enemy soldier
+     * @param zTarget The y coordinate of the target enemy soldier
      */
-    public abstract void move(int xTarget, int yTarget);
+    public abstract void move(int xTarget, int yTarget, int zTarget);
 
     /**
      * puts the selected warrior on the screen with its assigned x, y, size, and color
@@ -153,6 +169,7 @@ public abstract class Drone {
     public void locationTracking(){
         positionXArray.add(xPos);
         positionYArray.add(yPos);
+        positionZArray.add(zPos);
     }
 
     //TODO: Investigate .drawPolyLine
@@ -169,6 +186,8 @@ public abstract class Drone {
             g.drawOval(positionXArray.get(i), positionYArray.get(i), 5 , 5);
         }
     }
+
+    //TODO: CHECK Z ABOVE
 
     //begin non abstract methods (getter and setter methods)
 
@@ -205,6 +224,23 @@ public abstract class Drone {
      */
     void setyPos(int yPos) {
         this.yPos = yPos;
+    }
+
+    /**
+     * gets the z position of an object
+     * @return the z position of the object
+     */
+    int getzPos() {
+        return zPos;
+    }
+
+    /**
+     * sets the z position of an object
+     *
+     * @param zPos the z position to be inserted into the object
+     */
+    void setzPos(int zPos) {
+        this.zPos = zPos;
     }
 
     /**
@@ -368,6 +404,18 @@ public abstract class Drone {
      * @return location of the target drone
      */
     int getFireY(){return fireY;}
+
+    /**
+     * sets the location the drone is to fire upon, variable used to fire laser
+     * @param z location of the target drone
+     */
+    void setFireZ(int z){ fireZ = z;}
+
+    /**
+     * gets the location the drone is to fire upon, variable used to fire laser
+     * @return location of the target drone
+     */
+    int getFireZ(){return fireZ;}
 
     /**
      * fetches the unique ID of the specific drone in question

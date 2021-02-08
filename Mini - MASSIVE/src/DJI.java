@@ -21,6 +21,7 @@ class DJI extends Drone {
         super();
         this.setxPos(1);
         this.setyPos(1);
+        this.setzPos(1);
         this.setHealth(DJIStats[0]);
         this.setAttack(Swarm.getRandomNumberInRange(DJIStats[1], DJIStats[2]));
         this.setSpeed(Swarm.getRandomNumberInRange(DJIStats[3], DJIStats[4]));
@@ -35,15 +36,18 @@ class DJI extends Drone {
      *
      * @param xTarget The x coordinate of the target enemy soldier
      * @param yTarget The y coordinate of the target enemy soldier
+     * @param zTarget The z coordinate of the target enemy soldier
      */
     @Override
-    public void move(int xTarget, int yTarget) {
-        Vector330Class unitVector = new Vector330Class(xTarget- this.getxPos(), yTarget - this.getyPos());
+    public void move(int xTarget, int yTarget, int zTarget) {
+        Vector330Class unitVector = new Vector330Class(xTarget- this.getxPos(), yTarget - this.getyPos(), zTarget - this.getzPos());
         Vector330Class unit = unitVector.normalize();
         double xShift = (unit.getX() * this.getSpeed());
         double yShift = (unit.getY() * this.getSpeed());
+        double zShift = (unit.getZ() * this.getSpeed());
         this.setxPos((int) (xShift + this.getxPos()));
         this.setyPos((int) (yShift+ this.getyPos()));
+        this.setzPos((int) (zShift+ this.getzPos()));
 
     }
 
@@ -67,6 +71,8 @@ class DJI extends Drone {
 
         }
     }
+
+    //TODO: check Z above and below
 
     /**
      * draws the laser coming from each drone

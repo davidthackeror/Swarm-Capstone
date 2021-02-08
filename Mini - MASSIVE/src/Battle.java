@@ -135,18 +135,18 @@ class Battle {
                     else if(!checkCollision(Attackers, Attackers.drones.get(i)))
                     {
                         int[] movementCoords = enemyDetection(Attackers, i);
-                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1]);
+                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
                     }
                     else{
                         int[] movementCoords = collisionAvoidance(Attackers, i);
-                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1]);
+                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
                     }
                 }
             }
         }
     }
     static int[] enemyDetection(Swarm Attackers, int i){
-        int[] coords = new int[2];
+        int[] coords = new int[3];
         int[] soldierArray = Attackers.drones.get(i).getMinArray();
         int index = soldierArray[0];
         //if detectEnemy comes back with a -1 then there are no more alive enemies
@@ -163,6 +163,7 @@ class Battle {
         Swarm axis = swarms.get(soldierArray[2]);
         coords[0] = axis.drones.get(index).getxPos();
         coords[1] = axis.drones.get(index).getyPos();
+        coords[2] = axis.drones.get(index).getzPos();
         return coords;
     }
 

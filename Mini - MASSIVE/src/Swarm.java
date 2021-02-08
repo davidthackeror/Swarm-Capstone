@@ -31,8 +31,10 @@ public class Swarm {
         Drone drone = new DJI(30,40,5,15,1,2,1,2, 10, 200, name);
         int suggestedX = generateX(allianceNum);
         int suggestedY = generateY(allianceNum);
+        int suggestedZ = generateZ(allianceNum);
         drone.setxPos(suggestedX);
         drone.setyPos(suggestedY);
+        drone.setzPos(suggestedZ);
         return drone;
     }
 
@@ -137,6 +139,33 @@ public class Swarm {
                 rand = 9999999;
                 while ((Main.SIZE * Main.ratioY) < rand) {
                     rand = getRandomNumberInRange((Main.SIZE * Main.ratioY / 2) + 50, (Main.SIZE * Main.ratioY));
+                }
+                return rand - 50;
+            default:
+                return 0;
+        }
+    }
+
+    /**
+     * generateZ() creates a random y value based on the spawn point of its alliance
+     *
+     * @param allianceNum the selected alliance between 0 and 3 (max of 4 armies)
+     * @return a random z value based on the spawn points for that alliance number
+     */
+    static int generateZ(int allianceNum){
+        switch (allianceNum) {
+            case 2:
+            case 0:
+                int rand = 0;
+                while (1 > rand) {
+                    rand = getRandomNumberInRange(0, Main.CEILING);
+                }
+                return rand;
+            case 3:
+            case 1:
+                rand = 9999999;
+                while (Main.CEILING < rand) {
+                    rand = getRandomNumberInRange(0, Main.CEILING);
                 }
                 return rand - 50;
             default:
