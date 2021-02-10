@@ -134,13 +134,8 @@ class Battle {
                     {
                         Attackers.drones.get(i).setAlive(false);
                     }
-                    else if(!checkCollision(Attackers, Attackers.drones.get(i)))
-                    {
-                        int[] movementCoords = enemyDetection(Attackers, i);
-                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
-                    }
                     else{
-                        int[] movementCoords = collisionAvoidance(Attackers, i);
+                        int[] movementCoords = enemyDetection(Attackers, i);
                         Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
                     }
                 }
@@ -166,6 +161,7 @@ class Battle {
         coords[0] = axis.drones.get(index).getxPos();
         coords[1] = axis.drones.get(index).getyPos();
         coords[2] = axis.drones.get(index).getzPos();
+        System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
 
@@ -177,7 +173,6 @@ class Battle {
                 int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
                 if(firstHalf < radiusSquared){
                     //System.out.println("Collision detected between " + avoidance.getName() + " and " + comparison.getName());
-                    System.out.println(friendlies.drones.get(i).getName() + " Z : " + friendlies.drones.get(i).getzPos());
                     return true;
                 }
             }

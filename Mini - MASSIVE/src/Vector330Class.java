@@ -260,7 +260,7 @@ public class Vector330Class {
      * @return magnitude of the vector
      */
     public double magnitude() {
-        return Math.sqrt((this.x * this.x) + (this.y * this.y));
+        return Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
     }
 
     /**
