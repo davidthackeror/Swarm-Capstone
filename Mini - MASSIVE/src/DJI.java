@@ -68,6 +68,8 @@ class DJI extends Drone {
             g.drawRect(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), img.getWidth(), img.getHeight());
             g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
             g.drawString(this.getName(), this.getxPos(), this.getyPos() - 15);
+            g.drawString(String.valueOf(this.getzPos()), this.getxPos(), this.getyPos() - 30);
+
 
         }
     }

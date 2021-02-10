@@ -27,7 +27,7 @@ class Battle {
     private static ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
-    public static int numDrones = 15;
+    public static int numDrones = 3;
 
     private static int collisionRadius = 300;
     //TODO: do drone attributes in a different location
@@ -176,8 +176,8 @@ class Battle {
                 Drone comparison = friendlies.drones.get(i);
                 int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
                 if(firstHalf < radiusSquared){
-                    System.out.println("Collision detected between " + avoidance.getName() + " and " + comparison.getName());
-                    System.out.println(friendlies.drones.get(i).getzPos());
+                    //System.out.println("Collision detected between " + avoidance.getName() + " and " + comparison.getName());
+                    System.out.println(friendlies.drones.get(i).getName() + " Z : " + friendlies.drones.get(i).getzPos());
                     return true;
                 }
             }
@@ -204,7 +204,7 @@ class Battle {
                     coords = enemyDetection(friendlies, epsilon);
                     coords[0] = coords[0] - Swarm.getRandomNumberInRange(50, 100);
                     coords[1] = coords[1] - Swarm.getRandomNumberInRange(50, 100);
-                    System.out.println(friendlies.drones.get(epsilon).getName() + " moving towards " + coords[0] + "," + coords[1]);
+                    //System.out.println(friendlies.drones.get(epsilon).getName() + " moving towards " + coords[0] + "," + coords[1]);
                     return coords;
                 }
             }
