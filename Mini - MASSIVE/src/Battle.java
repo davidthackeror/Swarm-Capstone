@@ -27,7 +27,7 @@ class Battle {
     private static ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
-    public static int numDrones = 3;
+    public static int numDrones = 5;
 
     private static int collisionRadius = 300;
     //TODO: do drone attributes in a different location

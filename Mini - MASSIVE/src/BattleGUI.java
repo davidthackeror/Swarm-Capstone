@@ -24,6 +24,10 @@ public class BattleGUI {
      * the button starts or pauses the simulation
      */
     private JButton pauseOrStart;
+    private JRadioButton redTeam;
+    private JRadioButton blueTeam;
+    private JComboBox algorithmSelector;
+    private JLabel Label1;
 
     /**
      * the animationthread battle is ran in
@@ -61,11 +65,26 @@ public class BattleGUI {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (redTeam.isSelected()){
+                    System.out.println("red");
+                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins")){
+                        System.out.println("Leroy Jenkins");
+                    } else if (algorithmSelector.getSelectedItem().equals("Algorithm 2")){
+                        System.out.println("Algorithm 2");
+                    }
+                } else if (blueTeam.isSelected()){
+                    System.out.println("blue");
+                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins")){
+                        System.out.println("Leroy Jenkins");
+                    } else if (algorithmSelector.getSelectedItem().equals("Algorithm 2")){
+                        System.out.println("Algorithm 2");
+                    }
+                }
+
                 if (pauseOrStart.getText().equals("Start")) {
                     pauseOrStart.setText("Pause");
                 } else {
                     pauseOrStart.setText("Start");
-
                 }
                 animationThread.toggleAnimation();
             }
