@@ -19,7 +19,7 @@ class Battle {
     /**
      * the relative path to the death sound
      */
-    static String fileName = "Minecraft-death-sound.wav";
+    static String fileName = "Explosion.wav";
 
     /**
      * the armies arraylist containing all armys and therefore warriors
