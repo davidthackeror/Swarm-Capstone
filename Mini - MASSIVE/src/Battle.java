@@ -50,8 +50,9 @@ class Battle {
     }
 
     Battle() {
-        addSwarm(0, "allies", swarms);
-        addSwarm(1, "axis", swarms);
+        //TODO: Change ALgo Num
+        addSwarm(0, "allies", swarms, 0);
+        addSwarm(1, "axis", swarms, 1);
 
     }
 
@@ -62,8 +63,8 @@ class Battle {
      * @param name           the name of that army
      * @param swarms         the arraylist containing all armys
      */
-    static void addSwarm(int allianceNumber, String name, ArrayList<Swarm> swarms) {
-        swarms.add(armySize(allianceNumber, name));
+    static void addSwarm(int allianceNumber, String name, ArrayList<Swarm> swarms, int algoNum) {
+        swarms.add(armySize(allianceNumber, name, algoNum));
     }
 
     static ArrayList<Swarm> getSwarms(){
@@ -124,7 +125,7 @@ class Battle {
     {
         Controller.Cont(swarms);
     }
-    
+
     static int[] enemyDetection(Swarm Attackers, int i){
         int[] coords = new int[3];
         int[] soldierArray = Attackers.drones.get(i).getMinArray();
@@ -308,14 +309,14 @@ class Battle {
      * @param name the name of the swarm
      * @return a new swarm, or collection of drones
      */
-    static Swarm armySize(int allianceNumber, String name) {
+    static Swarm armySize(int allianceNumber, String name, int algoNum) {
         if (name.equals("null")) {
             return new Swarm(allianceNumber, 0, name, 0);
 
         } else {
             setDroneArrayAttributes(Drone.DJIStats);
 
-            return new Swarm(allianceNumber, numDrones, name, 0);
+            return new Swarm(allianceNumber, numDrones, name, algoNum);
         }
     }
 
