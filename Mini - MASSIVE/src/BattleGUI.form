@@ -31,9 +31,9 @@
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="1" use-parent-layout="false">
-            <minimum-size width="1600" height="900"/>
-            <preferred-size width="1600" height="900"/>
-            <maximum-size width="1920" height="1080"/>
+            <minimum-size width="800" height="450"/>
+            <preferred-size width="800" height="450"/>
+            <maximum-size width="900" height="450"/>
           </grid>
         </constraints>
         <properties/>
@@ -73,12 +73,12 @@
           </model>
         </properties>
       </component>
-      <component id="52735" class="javax.swing.JLabel" binding="Label1">
+      <component id="7fc36" class="javax.swing.JButton" binding="updateButton">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Algorithm Selector"/>
+          <text value="Update"/>
         </properties>
       </component>
     </children>
