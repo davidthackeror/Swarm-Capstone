@@ -14,10 +14,11 @@ public class Swarm {
 
     private int allianceNum;
     private String armyName;
+    private int swarmAlgo;
     ArrayList<Drone> drones = new ArrayList<Drone>();
 
 
-    Swarm(int allianceNum, int numDJI, String armyName) {
+    Swarm(int allianceNum, int numDJI, String armyName, int swarmAlgo) {
         this.allianceNum = allianceNum;
         for (int i = 0; i < numDJI; i++) {
             String name = armyName + allianceNum + ";" + i;
@@ -25,6 +26,7 @@ public class Swarm {
         }
         setAllianceColor(allianceNum, drones);
         this.armyName = armyName;
+        this.swarmAlgo = swarmAlgo;
     }
 
     private Drone addAttributes(String name, int allianceNum){
@@ -171,6 +173,14 @@ public class Swarm {
             default:
                 return 0;
         }
+    }
+
+    public int getSwarmAlgo(){
+        return swarmAlgo;
+    }
+
+    public void setSwarmAlgo(int x){
+        swarmAlgo = x;
     }
 
     /**

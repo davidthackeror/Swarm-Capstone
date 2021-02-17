@@ -111,7 +111,8 @@ class Battle {
      * @param attacker the warrior to check its position
      * @return a true if out of bounds
      */
-    private static boolean outOfBounds(Drone attacker) {
+
+    static boolean outOfBounds(Drone attacker) {
         return attacker.getxPos() > Main.SIZE * Main.ratioX || attacker.getyPos() > Main.SIZE * Main.ratioY || attacker.getxPos() < 0 || attacker.getyPos() < 0;
     }
 
@@ -121,27 +122,9 @@ class Battle {
      */
     static void moveDrones()
     {
-        droneDamage(swarms);
-        Random rand = new Random();
-        for (Object army : swarms)
-        {
-            Swarm Attackers = (Swarm) army;
-            for (int i = 0; i < Attackers.drones.size(); i++)
-            {
-                if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving())
-                {
-                    if (outOfBounds(Attackers.drones.get(i)))
-                    {
-                        Attackers.drones.get(i).setAlive(false);
-                    }
-                    else{
-                        int[] movementCoords = enemyDetection(Attackers, i);
-                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
-                    }
-                }
-            }
-        }
+        Controller.Cont(swarms);
     }
+    
     static int[] enemyDetection(Swarm Attackers, int i){
         int[] coords = new int[3];
         int[] soldierArray = Attackers.drones.get(i).getMinArray();
@@ -186,26 +169,6 @@ class Battle {
         return xCalc + yCalc;
     }
 
-    //TODO: Collision Avoidance Algo
-    static int[] collisionAvoidance(Swarm friendlies, int epsilon){
-        int[] coords = new int[]{0,0};
-        int radiusSquared = collisionRadius * collisionRadius;
-        for (int i = 0; i < friendlies.drones.size(); i++) {
-            if(friendlies.drones.get(i).isAlive()){
-                Drone comparison = friendlies.drones.get(i);
-                Drone avoidance = friendlies.drones.get(epsilon);
-                int firstHalf = radiusCalculation(avoidance.getxPos(), avoidance.getyPos(), comparison.getxPos(), comparison.getyPos());
-                if(firstHalf < radiusSquared){
-                    coords = enemyDetection(friendlies, epsilon);
-                    coords[0] = coords[0] - Swarm.getRandomNumberInRange(50, 100);
-                    coords[1] = coords[1] - Swarm.getRandomNumberInRange(50, 100);
-                    //System.out.println(friendlies.drones.get(epsilon).getName() + " moving towards " + coords[0] + "," + coords[1]);
-                    return coords;
-                }
-            }
-        }
-        return coords;
-    }
 
     /**
      * drawWarriors() puts the alive warriors of each army on screen in accordance with their x and y positions
@@ -237,8 +200,7 @@ class Battle {
      *
      * @param armies a array list containing all the armies in play
      */
-    private static void droneDamage(ArrayList<Swarm> armies) {
-
+     static void droneDamage(ArrayList<Swarm> armies) {
         Random rand = new Random();
         for (Object army : armies) {
             Swarm Attackers = (Swarm) army;
@@ -348,12 +310,12 @@ class Battle {
      */
     static Swarm armySize(int allianceNumber, String name) {
         if (name.equals("null")) {
-            return new Swarm(allianceNumber, 0, name);
+            return new Swarm(allianceNumber, 0, name, 0);
 
         } else {
             setDroneArrayAttributes(Drone.DJIStats);
 
-            return new Swarm(allianceNumber, numDrones, name);
+            return new Swarm(allianceNumber, numDrones, name, 0);
         }
     }
 
