@@ -10,11 +10,11 @@ public class Controller {
         for (int i = 0; i < swarms.size(); i++) {
             switch (swarms.get(i).getSwarmAlgo()) {
                 case 0:
-                    Flight.LeeroyJenkins(swarms);
+                    Flight.LeeroyJenkins(swarms, swarms.get(i));
                     break;
 
                 case 1:
-                    //goto algo 1
+                    Flight.flank(swarms);
                     break;
                 case 2:
                     //goto algo 2

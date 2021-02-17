@@ -27,7 +27,7 @@ class Battle {
     private static ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
-    public static int numDrones = 5;
+    public static int numDrones = 30;
 
     private static int collisionRadius = 300;
     //TODO: do drone attributes in a different location
@@ -145,6 +145,52 @@ class Battle {
         coords[0] = axis.drones.get(index).getxPos();
         coords[1] = axis.drones.get(index).getyPos();
         coords[2] = axis.drones.get(index).getzPos();
+        System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
+        return coords;
+    }
+
+    static int[] flankLeft(Swarm Attackers, int i){
+        int[] coords = new int[3];
+        int[] soldierArray = Attackers.drones.get(i).getMinArray();
+        int index = soldierArray[0];
+        //if detectEnemy comes back with a -1 then there are no more alive enemies
+        try
+        {
+            if (soldierArray[0] == -1)
+            {
+                throw new Exception("That does not exist.");
+            }
+        }
+        catch (Exception ignored)
+        {
+        }
+        Swarm axis = swarms.get(soldierArray[2]);
+        coords[0] = (Main.SIZE * Main.ratioX) / 2;
+        coords[1] = 50;
+        coords[2] = Attackers.drones.get(index).getzPos();
+        System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
+        return coords;
+    }
+
+    static int[] flankRight(Swarm Attackers, int i){
+        int[] coords = new int[3];
+        int[] soldierArray = Attackers.drones.get(i).getMinArray();
+        int index = soldierArray[0];
+        //if detectEnemy comes back with a -1 then there are no more alive enemies
+        try
+        {
+            if (soldierArray[0] == -1)
+            {
+                throw new Exception("That does not exist.");
+            }
+        }
+        catch (Exception ignored)
+        {
+        }
+        Swarm axis = swarms.get(soldierArray[2]);
+            coords[0] = (Main.SIZE * Main.ratioX) / 2;
+            coords[1] = (Main.SIZE * Main.ratioY) - 50;
+            coords[2] = Attackers.drones.get(index).getzPos();
         System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
