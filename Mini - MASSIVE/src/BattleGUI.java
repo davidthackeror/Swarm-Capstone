@@ -27,7 +27,7 @@ public class BattleGUI {
     private JRadioButton redTeam;
     private JRadioButton blueTeam;
     private JComboBox algorithmSelector;
-    private JButton updateButton;
+    private JButton updateButton1;
 
     /**
      * the animationthread battle is ran in
