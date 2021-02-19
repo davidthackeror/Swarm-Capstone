@@ -17,7 +17,7 @@ public class Controller {
                     Flight.flank(swarms);
                     break;
                 case 2:
-                    //goto algo 2
+                    //Flight.fireTeam(swarms);
                     break;
                 case 3:
                     //goto algo 3
