@@ -59,4 +59,10 @@ public class Flight {
             }
         }
     }
+
+    public static void fireTeam(ArrayList<Swarm> swarms, Swarm Attackers){
+        int size = Attackers.drones.size();
+        
+    }
+
 }
