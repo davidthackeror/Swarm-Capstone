@@ -160,14 +160,14 @@ public class Swarm {
             case 0:
                 int rand = 0;
                 while (1 > rand) {
-                    rand = getRandomNumberInRange(0, Main.CEILING);
+                    rand = getRandomNumberInRange(Main.FLOOR, Main.CEILING);
                 }
                 return rand;
             case 3:
             case 1:
                 rand = 9999999;
                 while (Main.CEILING < rand) {
-                    rand = getRandomNumberInRange(0, Main.CEILING);
+                    rand = getRandomNumberInRange(Main.FLOOR, Main.CEILING);
                 }
                 return rand - 50;
             default:
