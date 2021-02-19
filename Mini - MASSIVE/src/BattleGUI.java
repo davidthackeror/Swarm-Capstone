@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -69,6 +70,11 @@ public class BattleGUI {
                     System.out.println("red");
                     if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins")){
                         System.out.println("Leroy Jenkins");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.RED){
+                                Battle.getSwarms().get(i).setSwarmAlgo(0);
+                            }
+                        }
                     } else if (algorithmSelector.getSelectedItem().equals("Algorithm 2")){
                         System.out.println("Algorithm 2");
                     }
@@ -90,6 +96,7 @@ public class BattleGUI {
             }
         });
     }
+
 
     /**
      * Generated JVM command run automagically, instantiates the animation area and battle panel
