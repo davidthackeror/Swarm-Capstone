@@ -14,7 +14,7 @@ public class Swarm {
 
     private int allianceNum;
     private String armyName;
-    private int swarmAlgo;
+    public int swarmAlgo;
     ArrayList<Drone> drones = new ArrayList<Drone>();
 
 

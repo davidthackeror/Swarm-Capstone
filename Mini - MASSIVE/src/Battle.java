@@ -165,9 +165,22 @@ class Battle {
         {
         }
         Swarm axis = swarms.get(soldierArray[2]);
-        coords[0] = (Main.SIZE * Main.ratioX) / 2;
-        coords[1] = 50;
-        coords[2] = Attackers.drones.get(index).getzPos();
+
+        //TODO FIX SO IT ONLY CHECKS IT ONCE
+        if(Attackers.drones.get(i).getyPos() < 75) {
+            coords[0] = Attackers.drones.get(i).getxPos();
+            coords[1] = 50;
+            coords[2] = Attackers.drones.get(i).getzPos();
+        }else if(Attackers.drones.get(i).getxPos() != (Main.SIZE * Main.ratioX) / 2) {
+            coords[0] = (Main.SIZE * Main.ratioX) / 2;
+            coords[1] = 50;
+            coords[2] = Attackers.drones.get(i).getzPos();
+        } else{
+            coords[0] = axis.drones.get(index).getxPos();
+            coords[1] = axis.drones.get(index).getyPos();
+            coords[2] = axis.drones.get(index).getzPos();
+        }
+
         System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
@@ -190,7 +203,7 @@ class Battle {
         Swarm axis = swarms.get(soldierArray[2]);
             coords[0] = (Main.SIZE * Main.ratioX) / 2;
             coords[1] = (Main.SIZE * Main.ratioY) - 50;
-            coords[2] = Attackers.drones.get(index).getzPos();
+            coords[2] = 2000;
         System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
