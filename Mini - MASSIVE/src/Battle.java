@@ -52,7 +52,7 @@ class Battle {
     Battle() {
         //TODO: Change ALgo Num
         addSwarm(0, "allies", swarms, 0);
-        addSwarm(1, "axis", swarms, 1);
+        addSwarm(1, "axis", swarms, 0);
 
     }
 
