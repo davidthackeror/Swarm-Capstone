@@ -68,8 +68,9 @@
         </constraints>
         <properties>
           <model>
-            <item value="Leroy Jenkins"/>
+            <item value="Leeroy Jenkins"/>
             <item value="Flanking"/>
+            <item value="Fire Teams"/>
           </model>
         </properties>
       </component>

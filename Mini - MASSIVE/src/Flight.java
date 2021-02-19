@@ -28,6 +28,7 @@ public class Flight {
         Random rand = new Random();
         for (Object army : swarms)
         {
+            System.out.println("Shit");
             Swarm Attackers = (Swarm) army;
             for (int i = 0; i < Attackers.drones.size()/2; i++)
             {

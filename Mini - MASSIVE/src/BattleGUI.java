@@ -81,7 +81,7 @@ public class BattleGUI {
             public void actionPerformed(ActionEvent e) {
                 if (redTeam.isSelected()){
                     System.out.println("red");
-                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins") && updateButton1.isValid()){
+                    if (algorithmSelector.getSelectedItem().equals("Leeroy Jenkins") && updateButton1.isValid()){
                         System.out.println("Leroy Jenkins");
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
                             if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.RED){
@@ -96,10 +96,17 @@ public class BattleGUI {
                             }
                         }
 
+                    } else if (algorithmSelector.getSelectedItem().equals("Fire Teams") && updateButton1.isValid()){
+                        System.out.println("Red Fire Teams");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.RED){
+                                Battle.getSwarms().get(i).setSwarmAlgo(2);
+                            }
+                        }
                     }
                 } else if (blueTeam.isSelected()){
                     System.out.println("blue");
-                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins") && updateButton1.isValid()){
+                    if (algorithmSelector.getSelectedItem().equals("Leeroy Jenkins") && updateButton1.isValid()){
                         System.out.println("Leroy Jenkins");
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
                             if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.BLUE){
@@ -111,6 +118,13 @@ public class BattleGUI {
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
                             if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.BLUE){
                                 Battle.getSwarms().get(i).setSwarmAlgo(1);
+                            }
+                        }
+                    } else if (algorithmSelector.getSelectedItem().equals("Fire Teams") && updateButton1.isValid()){
+                        System.out.println("Blue Fire Teams");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.BLUE){
+                                Battle.getSwarms().get(i).setSwarmAlgo(2);
                             }
                         }
                     }
