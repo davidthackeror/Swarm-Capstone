@@ -40,12 +40,12 @@ class DJI extends Drone {
      */
     @Override
     public void move(int xTarget, int yTarget, int zTarget) {
-        System.out.println(this.getName() + " targetZ " + (zTarget - this.getzPos()));
-        System.out.println(this.getName() + " nonunit: " + (xTarget- this.getxPos()) + " " + (yTarget - this.getyPos()) + " " + (zTarget - this.getzPos()));
+        //System.out.println(this.getName() + " targetZ " + (zTarget - this.getzPos()));
+        //System.out.println(this.getName() + " nonunit: " + (xTarget- this.getxPos()) + " " + (yTarget - this.getyPos()) + " " + (zTarget - this.getzPos()));
 
         Vector330Class unitVector = new Vector330Class(xTarget- this.getxPos(), yTarget - this.getyPos(), zTarget - this.getzPos());
         Vector330Class unit = unitVector.normalize();
-        System.out.println(this.getName() + " unit: " + unit.getX() + " " + unit.getY() + " " + unit.getZ());
+        //System.out.println(this.getName() + " unit: " + unit.getX() + " " + unit.getY() + " " + unit.getZ());
         double xShift = (unit.getX() * this.getSpeed());
         double yShift = (unit.getY() * this.getSpeed());
         double zShift = (unit.getZ() * this.getSpeed());

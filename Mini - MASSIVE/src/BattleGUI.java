@@ -59,33 +59,13 @@ public class BattleGUI {
 
     public BattleGUI() {
         pauseOrStart.addActionListener(new ActionListener() {
-            /**
+             /**
              * Invoked when an action occurs.
              *
              * @param e the event to be processed
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (redTeam.isSelected()){
-                    System.out.println("red");
-                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins")){
-                        System.out.println("Leroy Jenkins");
-                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
-                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.RED){
-                                Battle.getSwarms().get(i).setSwarmAlgo(0);
-                            }
-                        }
-                    } else if (algorithmSelector.getSelectedItem().equals("Algorithm 2")){
-                        System.out.println("Algorithm 2");
-                    }
-                } else if (blueTeam.isSelected()){
-                    System.out.println("blue");
-                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins")){
-                        System.out.println("Leroy Jenkins");
-                    } else if (algorithmSelector.getSelectedItem().equals("Algorithm 2")){
-                        System.out.println("Algorithm 2");
-                    }
-                }
 
                 if (pauseOrStart.getText().equals("Start")) {
                     pauseOrStart.setText("Pause");
@@ -93,6 +73,48 @@ public class BattleGUI {
                     pauseOrStart.setText("Start");
                 }
                 animationThread.toggleAnimation();
+            }
+        });
+
+        updateButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (redTeam.isSelected()){
+                    System.out.println("red");
+                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins") && updateButton1.isValid()){
+                        System.out.println("Leroy Jenkins");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.RED){
+                                Battle.getSwarms().get(i).setSwarmAlgo(0);
+                            }
+                        }
+                    } else if (algorithmSelector.getSelectedItem().equals("Flanking") && updateButton1.isValid()){
+                        System.out.println("Red Flanking");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.RED){
+                                Battle.getSwarms().get(i).setSwarmAlgo(1);
+                            }
+                        }
+
+                    }
+                } else if (blueTeam.isSelected()){
+                    System.out.println("blue");
+                    if (algorithmSelector.getSelectedItem().equals("Leroy Jenkins") && updateButton1.isValid()){
+                        System.out.println("Leroy Jenkins");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.BLUE){
+                                Battle.getSwarms().get(i).setSwarmAlgo(0);
+                            }
+                        }
+                    } else if (algorithmSelector.getSelectedItem().equals("Flanking") && updateButton1.isValid()){
+                        System.out.println("Blue Flanking");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.BLUE){
+                                Battle.getSwarms().get(i).setSwarmAlgo(1);
+                            }
+                        }
+                    }
+                }
             }
         });
     }
@@ -143,4 +165,5 @@ public class BattleGUI {
     public void setAnimationThread(AnimationThread animationThread) {
         this.animationThread = animationThread;
     }
-}
+
+    }

@@ -145,7 +145,7 @@ class Battle {
         coords[0] = axis.drones.get(index).getxPos();
         coords[1] = axis.drones.get(index).getyPos();
         coords[2] = axis.drones.get(index).getzPos();
-        System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
+        //System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
 
@@ -181,7 +181,7 @@ class Battle {
             coords[2] = axis.drones.get(index).getzPos();
         }
 
-        System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
+        //System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
 
@@ -204,7 +204,7 @@ class Battle {
             coords[0] = (Main.SIZE * Main.ratioX) / 2;
             coords[1] = (Main.SIZE * Main.ratioY) - 50;
             coords[2] = 2000;
-        System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
+        //System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
 
@@ -299,18 +299,17 @@ class Battle {
                             Defenders.drones.get(intArray[0]).setHealth(Defenders.drones.get(intArray[0]).getHealth() - Attackers.drones.get(i).getAttack()); //removes health
 
                             //show how much damage was done
-                            System.out.println(Attackers.drones.get(i).getName() + " just dealt " + (Attackers.drones.get(i).getAttack()) +
-                                    " damage to " + Defenders.drones.get(intArray[0]).getName() + " in army " + intArray[2]);
+                            //System.out.println(Attackers.drones.get(i).getName() + " just dealt " + (Attackers.drones.get(i).getAttack()) + " damage to " + Defenders.drones.get(intArray[0]).getName() + " in army " + intArray[2]);
 
                             if (Defenders.drones.get(intArray[0]).getHealth() <= 0) {
                                 playSound();
                                 Defenders.drones.get(intArray[0]).setAlive(false);
                                 Defenders.drones.get(intArray[0]).setHealth(0);
-                                System.out.println(Attackers.drones.get(i).getName() + " " + i + " just killed " + Defenders.drones.get(intArray[0]).getName() + " " + intArray[0] + " in army " + intArray[2]);
+                                //System.out.println(Attackers.drones.get(i).getName() + " " + i + " just killed " + Defenders.drones.get(intArray[0]).getName() + " " + intArray[0] + " in army " + intArray[2]);
                             }
                         } else {
                             //print out a missed message
-                            System.out.println(Attackers.drones.get(i).getName() + " has just missed " + Defenders.drones.get(intArray[0]).getName());
+                            //System.out.println(Attackers.drones.get(i).getName() + " has just missed " + Defenders.drones.get(intArray[0]).getName());
                         }
                     } else {
                         Attackers.drones.get(i).setMoving(true);
@@ -334,9 +333,9 @@ class Battle {
             clip.open(audioStream);
             clip.start();
         } catch (UnsupportedAudioFileException e) {
-            System.out.println("Audio file not supported, make sure its a wav");
+            //System.out.println("Audio file not supported, make sure its a wav");
         } catch (IOException e) {
-            System.out.println("IO exception");
+            //System.out.println("IO exception");
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
