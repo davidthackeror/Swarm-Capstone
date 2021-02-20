@@ -191,6 +191,8 @@ public class Swarm {
         return allianceNum;
     }
 
+    public String getArmyName(){return armyName;}
+
 
     /**
      * numAlive() fetches the number of warriors in an army with a health greater than 0
