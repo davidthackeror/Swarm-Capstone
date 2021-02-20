@@ -13,7 +13,8 @@ public class Main {
     static final int ratioX = 16;
     static final int ratioY = 9;
     static final int SIZE = 75;
-    static final int CEILING = 1000;
+    static final int FLOOR = 1000;
+    static final int CEILING = 2000;
     //the time to wait between drawing on screen and moving to next tick
     private static final int TIME_STEP = 100;
 

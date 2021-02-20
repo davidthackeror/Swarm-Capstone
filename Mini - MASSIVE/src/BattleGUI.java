@@ -29,6 +29,8 @@ public class BattleGUI {
     private JRadioButton blueTeam;
     private JComboBox algorithmSelector;
     private JButton updateButton1;
+    private JLabel one;
+    private JLabel two;
 
     /**
      * the animationthread battle is ran in
@@ -88,6 +90,7 @@ public class BattleGUI {
                                 Battle.getSwarms().get(i).setSwarmAlgo(0);
                             }
                         }
+                        one.setText("Red Team Algorithm: Leeroy Jenkins");
                     } else if (algorithmSelector.getSelectedItem().equals("Flanking") && updateButton1.isValid()){
                         System.out.println("Red Flanking");
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
@@ -95,7 +98,7 @@ public class BattleGUI {
                                 Battle.getSwarms().get(i).setSwarmAlgo(1);
                             }
                         }
-
+                        one.setText("Red Team Algorithm: Flanking");
                     } else if (algorithmSelector.getSelectedItem().equals("Fire Teams") && updateButton1.isValid()){
                         System.out.println("Red Fire Teams");
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
@@ -103,6 +106,7 @@ public class BattleGUI {
                                 Battle.getSwarms().get(i).setSwarmAlgo(2);
                             }
                         }
+                        one.setText("Red Team Algorithm: Fire Teams");
                     }
                 } else if (blueTeam.isSelected()){
                     System.out.println("blue");
@@ -113,6 +117,7 @@ public class BattleGUI {
                                 Battle.getSwarms().get(i).setSwarmAlgo(0);
                             }
                         }
+                        two.setText("Blue Team Algorithm: Leeroy Jenkins");
                     } else if (algorithmSelector.getSelectedItem().equals("Flanking") && updateButton1.isValid()){
                         System.out.println("Blue Flanking");
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
@@ -120,6 +125,7 @@ public class BattleGUI {
                                 Battle.getSwarms().get(i).setSwarmAlgo(1);
                             }
                         }
+                        two.setText("Blue Team Algorithm: Flanking");
                     } else if (algorithmSelector.getSelectedItem().equals("Fire Teams") && updateButton1.isValid()){
                         System.out.println("Blue Fire Teams");
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
@@ -127,6 +133,7 @@ public class BattleGUI {
                                 Battle.getSwarms().get(i).setSwarmAlgo(2);
                             }
                         }
+                        two.setText("Blue Team Algorithm: Fire Teams");
                     }
                 }
             }
