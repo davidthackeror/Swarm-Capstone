@@ -21,7 +21,6 @@ public class Flight {
     public static void flank(ArrayList<Swarm> swarms) {
         Battle.droneDamage(swarms);
         for (Object army : swarms) {
-            System.out.println("Shit");
             Swarm Attackers = (Swarm) army;
             for (int i = 0; i < Attackers.drones.size() / 2; i++) {
                 if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
@@ -46,10 +45,16 @@ public class Flight {
         }
     }
 
+    /**
+     * this algorithm separates drones into 4 fire teams that will act and move together - David & Manny
+     * @param swarms a collection of all swarms in the battle
+     * @param Attackers the swarm to aggregate the drones inside
+     */
     public static void fireTeam(ArrayList<Swarm> swarms, Swarm Attackers) {
         Battle.droneDamage(swarms);
         int size = Attackers.drones.size();
 
+        //Seperate drones in one swarm into quartiles
         ArrayList<Drone> firstQuarter = new ArrayList<Drone>();
         ArrayList<Drone> secondQuarter = new ArrayList<Drone>();
         ArrayList<Drone> thirdQuarter = new ArrayList<Drone>();
@@ -67,11 +72,13 @@ public class Flight {
             }
         }
 
+        //Have the Drones group together, and wait for others, or move if all are nearby
         aggregate(firstQuarter, Attackers);
         aggregate(secondQuarter, Attackers);
         aggregate(thirdQuarter, Attackers);
         aggregate(fourthQuarter, Attackers);
 
+        //check if the enemy team has been destroyed
         if(checkAlive(swarms, Attackers)){
             for (Drone d: Attackers.drones) {
                 d.setMoving(false);
@@ -83,10 +90,21 @@ public class Flight {
 
     }
 
+    /**
+     * Print a victory message
+     * @param Victors the swarm that won
+     * @throws InterruptedException handles a thread.sleep if necessary, fucks with the GUI though
+     */
     public static void gameOver(Swarm Victors) throws InterruptedException {
         System.out.println(Victors.getArmyName() + " has won!");
     }
 
+    /**
+     * helper function to determine if the enemy swarms have been deveated
+     * @param swarms all the swarms in the battle
+     * @param Attackers the hypothesized victorious swarm
+     * @return true if the enemy has no drones left alive, otherwise false
+     */
     public static boolean checkAlive(ArrayList<Swarm> swarms, Swarm Attackers){
         for (Swarm s: swarms) {
             if(s != Attackers){
@@ -99,6 +117,11 @@ public class Flight {
     }
 
 
+    /**
+     * determines if the drones in a fireteam are close enough to each other to keep moving
+     * @param quarter the fireteam of drones
+     * @return false if the drones are to far apart, otherwise true
+     */
     public static boolean checkLocationAggregate(ArrayList<Drone> quarter) {
         for (Drone drone : quarter) {
             int xDiff = differenceInPosition(quarter.get(0).getxPos(), drone.getxPos());
@@ -113,14 +136,26 @@ public class Flight {
         return true;
     }
 
+    /**
+     * helper function to find the abs difference in the position of two drones
+     * @param x1 any coordinate of a drone
+     * @param x2 the matching coordinate of another drone
+     * @return the integer representing the abs value of their difference
+     */
     public static int differenceInPosition(int x1, int x2) {
         return Math.abs(x1 - x2);
     }
 
+    /**
+     * Directs movement of fireteams, can direct them to move to the same point if to far away, or perform modified leeroyJenkins if they are close enough
+     * @param quarter the fireteam to move
+     * @param Attackers the entire swarm of attackers, from which the fireteam came
+     */
     public static void aggregate(ArrayList<Drone> quarter, Swarm Attackers) {
         int xCompilation = 0;
         int yCompilation = 0;
 
+        //formula for rough midpoint is (x1 + x2 + ... xi)/n
         for (Drone e : quarter) {
             xCompilation = xCompilation + e.getxPos();
             yCompilation = yCompilation + e.getyPos();
@@ -128,6 +163,7 @@ public class Flight {
         int xAggregate = xCompilation / quarter.size();
         int yAggregate = yCompilation / quarter.size();
 
+        //for each drone in the fireteam check if they are close enough, if true leeroyJenkins, if not move to midpoint
         for (Drone e : quarter) {
             if (checkLocationAggregate(quarter)) {
                 modifiedLeeroyJenkins(quarter, Attackers);
@@ -138,6 +174,11 @@ public class Flight {
         }
     }
 
+    /**
+     * modified version of leeroyJenkins to work with the fireteams, move all drones directly at closest enemy
+     * @param quarter fireteam to be moved
+     * @param Attackers the swarm from which the fireteams came from
+     */
     public static void modifiedLeeroyJenkins(ArrayList<Drone> quarter, Swarm Attackers){
         for (Drone e: quarter) {
             if (e.isAlive() && e.isMoving()) {
