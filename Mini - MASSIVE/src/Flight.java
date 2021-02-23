@@ -20,28 +20,41 @@ public class Flight {
 
     public static void flank(ArrayList<Swarm> swarms) {
         Battle.droneDamage(swarms);
+        int check1 = 0;
+        int check2 = 0;
         for (Object army : swarms) {
             Swarm Attackers = (Swarm) army;
-            for (int i = 0; i < Attackers.drones.size() / 2; i++) {
-                if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
-                    if (Battle.outOfBounds(Attackers.drones.get(i))) {
-                        Attackers.drones.get(i).setAlive(false);
-                    } else {
-                        int[] movementCoords = Battle.flankLeft(Attackers, i);
-                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
+            if (check1 == 0) {
+                for (int i = 0; i < Attackers.drones.size() / 2; i++) {
+                    if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
+                        if (Battle.outOfBounds(Attackers.drones.get(i))) {
+                            Attackers.drones.get(i).setAlive(false);
+                        } else {
+                            int[] movementCoords = Battle.flankLeft(Attackers, i);
+                            Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
+                        }
+                    }
+                    if (i == Attackers.drones.size() / 2){
+                        check1 = 1;
                     }
                 }
             }
-            for (int i = Attackers.drones.size() / 2; i < Attackers.drones.size(); i++) {
-                if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
-                    if (Battle.outOfBounds(Attackers.drones.get(i))) {
-                        Attackers.drones.get(i).setAlive(false);
-                    } else {
-                        int[] movementCoords = Battle.flankRight(Attackers, i);
-                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
+            if (check2 == 0){
+                for (int i = Attackers.drones.size() / 2; i < Attackers.drones.size(); i++) {
+                    if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
+                        if (Battle.outOfBounds(Attackers.drones.get(i))) {
+                            Attackers.drones.get(i).setAlive(false);
+                        } else {
+                            int[] movementCoords = Battle.flankRight(Attackers, i);
+                            Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
+                        }
+                    }
+                    if (i == Attackers.drones.size()){
+                        check2 = 1;
                     }
                 }
             }
+
         }
     }
 
