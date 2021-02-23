@@ -46,6 +46,10 @@ public abstract class Drone {
      */
     private int zPos;
     /**
+     * the warriors pos achieved
+     */
+    private int posAchieved;
+    /**
      * the warriors total health at any given point
      */
     private int health;
@@ -105,6 +109,7 @@ public abstract class Drone {
         this.xPos = 0;
         this.yPos = 0;
         this.zPos = 0;
+        this.posAchieved = 0;
         this.health = 0;
         this.attack = 0;
         this.courage = 0;
@@ -115,10 +120,11 @@ public abstract class Drone {
         this.isAlive = true;
     }
 
-    public Drone(int xPos, int yPos, int zPos, int health, int attack, int courage, int speed, int size, Color color, boolean isMoving, boolean isAlive, String name){
+    public Drone(int xPos, int yPos, int zPos, int posAchieved, int health, int attack, int courage, int speed, int size, Color color, boolean isMoving, boolean isAlive, String name){
         this.xPos = xPos;
         this.yPos = yPos;
         this.zPos = zPos;
+        this.posAchieved = posAchieved;
         this.health = health;
         this.attack = attack;
         this.courage = courage;
@@ -453,4 +459,19 @@ public abstract class Drone {
         isFiring = firing;
     }
 
+    /**
+     * gets the speed of the object
+     * @return the speed of the object
+     */
+    int getposAchieved() {
+        return posAchieved;
+    }
+
+    /**
+     * set the speed of an object
+     * @param speed the speed parameter to be inserted into the object
+     */
+    void setposAchieved(int posAchieved) {
+        this.posAchieved = posAchieved;
+    }
 }

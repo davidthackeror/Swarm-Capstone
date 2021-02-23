@@ -166,47 +166,17 @@ class Battle {
         }
         Swarm axis = swarms.get(soldierArray[2]);
 
-        //TODO FIX SO IT ONLY CHECKS IT ONCE
-        if(Attackers.drones.get(i).getyPos() < 75) {
-            coords[0] = Attackers.drones.get(i).getxPos();
+        if(Attackers.drones.get(i).getposAchieved() == 0) {
+            Attackers.drones.get(i).setSpeed(Attackers.drones.get(i).getSpeed());
+            coords[0] = ((Main.SIZE * Main.ratioX) / 2) ;
             coords[1] = 50;
-            coords[2] = Attackers.drones.get(i).getzPos();
-        }else if(Attackers.drones.get(i).getxPos() != (Main.SIZE * Main.ratioX) / 2) {
-            coords[0] = (Main.SIZE * Main.ratioX) / 2;
-            coords[1] = 50;
-            coords[2] = Attackers.drones.get(i).getzPos();
-        } else{
-            coords[0] = axis.drones.get(index).getxPos();
-            coords[1] = axis.drones.get(index).getyPos();
-            coords[2] = axis.drones.get(index).getzPos();
+            coords[2] = 1500; //TODO FIX Z STUFF
         }
 
         //System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
         return coords;
     }
 
-    static int[] flankRight(Swarm Attackers, int i){
-        int[] coords = new int[3];
-        int[] soldierArray = Attackers.drones.get(i).getMinArray();
-        int index = soldierArray[0];
-        //if detectEnemy comes back with a -1 then there are no more alive enemies
-        try
-        {
-            if (soldierArray[0] == -1)
-            {
-                throw new Exception("That does not exist.");
-            }
-        }
-        catch (Exception ignored)
-        {
-        }
-        Swarm axis = swarms.get(soldierArray[2]);
-            coords[0] = (Main.SIZE * Main.ratioX) / 2;
-            coords[1] = (Main.SIZE * Main.ratioY) - 50;
-            coords[2] = 2000;
-        //System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
-        return coords;
-    }
 
     static boolean checkCollision(Swarm friendlies, Drone avoidance){
         int radiusSquared = collisionRadius * collisionRadius;

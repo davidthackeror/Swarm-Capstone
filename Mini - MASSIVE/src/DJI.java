@@ -22,6 +22,7 @@ class DJI extends Drone {
         this.setxPos(1);
         this.setyPos(1);
         this.setzPos(1);
+        this.setposAchieved(0);
         this.setHealth(DJIStats[0]);
         this.setAttack(Swarm.getRandomNumberInRange(DJIStats[1], DJIStats[2]));
         this.setSpeed(Swarm.getRandomNumberInRange(DJIStats[3], DJIStats[4]));
@@ -116,7 +117,7 @@ class DJI extends Drone {
             g.drawRect(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), img.getWidth(), img.getHeight());
             g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
             g.drawString(this.getName(), this.getxPos(), this.getyPos() - 15);
-            g.drawString(String.valueOf(this.getxPos()) + "," + String.valueOf(this.getyPos()) + "," + String.valueOf(this.getzPos()), this.getxPos(), this.getyPos() - 30);
+            g.drawString(String.valueOf(this.getzPos()), this.getxPos(), this.getyPos() - 30);
 
         }
     }
