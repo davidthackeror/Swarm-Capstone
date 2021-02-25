@@ -7,20 +7,26 @@ public class Controller {
     public static void Cont(ArrayList<Swarm> swarms) {
         //placeholder
 
+        //Figures out which algorithm to call in flight
         for (int i = 0; i < swarms.size(); i++) {
             switch (swarms.get(i).getSwarmAlgo()) {
-                case 0:
+                case 0: //Flanking algorithm before initializing
                     Flight.LeeroyJenkins(swarms, swarms.get(i));
                     break;
 
                 case 1:
-                    Flight.flank(swarms);
+                    swarms.get(i).setSwarmAlgo(3);
+                    Flight.flank(swarms, 0);
                     break;
                 case 2:
                     Flight.fireTeam(swarms, swarms.get(i));
                     break;
-                case 3:
-                    //goto algo 3
+                case 3: //Flanking algorithm after initializing
+                    swarms.get(i).setSwarmAlgo(4);
+                    Flight.flank(swarms, 1);
+                    break;
+                case 4:
+                    Flight.flank(swarms, 2);
                     break;
                 default:
                     //goto algo 0

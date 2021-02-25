@@ -18,53 +18,54 @@ public class Flight {
 
     }
 
-    public static void flank(ArrayList<Swarm> swarms) {
+    public static void flank(ArrayList<Swarm> swarms, int check) {
         Battle.droneDamage(swarms);
-        int check1 = 0;
-        int check2 = 0;
         for (Object army : swarms) {
             Swarm Attackers = (Swarm) army;
-            for (int i = 0;  i < Attackers.drones.size(); i++){
-                //TODO FIGURE OUT CLOSER DRONES
-            }
-            if (check2 == 0){
-                for (int i = Attackers.drones.size() / 2; i < Attackers.drones.size(); i++) {
-                    if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
-                        if (Battle.outOfBounds(Attackers.drones.get(i))) {
-                            Attackers.drones.get(i).setAlive(false);
-                        } else {
-                            int[] movementCoords = Battle.enemyDetection(Attackers, i);
-                            Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
-                        }
-                    }
-                    if (i == Attackers.drones.size()){
-                        check2 = 1;
+            //Drones flanking
+            if (check == 0) { //only do this once
+                //Determine if the drones is the draw in drone or not
+                for (int i = 0; i < Attackers.drones.size(); i++) {
+                    if (Attackers.drones.get(i).getyPos() > ((Main.SIZE * Main.ratioY) / 2) - (Main.ratioY * 20) && Attackers.drones.get(i).getyPos() < ((Main.SIZE * Main.ratioY) / 2) + (Main.ratioY * 20)
+                            && Attackers.drones.get(i).getxPos() > ((Main.SIZE * Main.ratioX) / 2) - (Main.ratioX * 20) && Attackers.drones.get(i).getxPos() < ((Main.SIZE * Main.ratioX) / 2) + (Main.ratioX * 20)) {
+                        Attackers.drones.get(i).setposAchieved(4);
                     }
                 }
             }
-            if (check1 == 0) {
-                for (int i = 0; i < Attackers.drones.size() / 2; i++) {
-                    if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
-                        if (Battle.outOfBounds(Attackers.drones.get(i))) {
-                            Attackers.drones.get(i).setAlive(false);
-                        } else {
-                            if ((Attackers.drones.get(i).getxPos() < ((Main.SIZE * Main.ratioX) / 2) + 10  && Attackers.drones.get(i).getxPos() > ((Main.SIZE * Main.ratioX) / 2) - 10)  &&
-                                    ((Attackers.drones.get(i).getyPos()  > 40 && Attackers.drones.get(i).getyPos()  < 60) || (Attackers.drones.get(i).getyPos()  > Main.SIZE * Main.ratioY - 60 && Attackers.drones.get(i).getyPos()  < Main.SIZE * Main.ratioY - 40))){
-                                Attackers.drones.get(i).setposAchieved(1);
-                            }
-                            int[] movementCoords;
-                            if (Attackers.drones.get(i).getposAchieved() == 0){
-                                movementCoords = Battle.flankLeft(Attackers, i);
-                            } else{
-                                movementCoords = Battle.enemyDetection(Attackers, i);
-                            }
-                            Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
+            Vector330Class calcVector = new Vector330Class();
+            //Every other time that the algorithm is called
+            for (int i = 0; i < Attackers.drones.size(); i++) {
+                if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
+                    if (Battle.outOfBounds(Attackers.drones.get(i))) {
+                        Attackers.drones.get(i).setAlive(false);
+                    } else {
+
+
+
+                        if ((Attackers.drones.get(i).getxPos() < ((Main.SIZE * Main.ratioX) / 2) + 10 && Attackers.drones.get(i).getxPos() > ((Main.SIZE * Main.ratioX) / 2) - 10) &&
+                                ((Attackers.drones.get(i).getyPos() > 40 && Attackers.drones.get(i).getyPos() < 60) || (Attackers.drones.get(i).getyPos() > Main.SIZE * Main.ratioY - 60 && Attackers.drones.get(i).getyPos() < Main.SIZE * Main.ratioY - 40))) {
+                            Attackers.drones.get(i).setposAchieved(1);
                         }
-                    }
-                    if (i == Attackers.drones.size() / 2){
-                        check1 = 1;
+                        int[] movementCoords;
+
+                        if (Attackers.drones.get(i).getposAchieved() == 0) {
+                            movementCoords = Battle.flankLeft(Attackers, i);
+                        }
+
+                        else if (Attackers.drones.get(i).getposAchieved() == 2) {
+                            movementCoords = new int[]{25, Main.ratioY * Main.SIZE - 50, Attackers.drones.get(i).getzPos()}; //draw in position
+                            if (Attackers.drones.get(i).getxPos() < 25 + 50 && Attackers.drones.get(i).getxPos() > (0)) { //check for at the draw in position
+                                Attackers.drones.get(i).setposAchieved(1); //Set to go and go Leeroy Jenkins
+                            }
+                        }
+
+                        else {
+                            movementCoords = Battle.enemyDetection(Attackers, i);
+                        }
+                        Attackers.drones.get(i).move(movementCoords[0], movementCoords[1], movementCoords[2]);
                     }
                 }
+
             }
 
         }
@@ -72,7 +73,8 @@ public class Flight {
 
     /**
      * this algorithm separates drones into 4 fire teams that will act and move together - David & Manny
-     * @param swarms a collection of all swarms in the battle
+     *
+     * @param swarms    a collection of all swarms in the battle
      * @param Attackers the swarm to aggregate the drones inside
      */
     public static void fireTeam(ArrayList<Swarm> swarms, Swarm Attackers) {
@@ -104,12 +106,13 @@ public class Flight {
         aggregate(fourthQuarter, Attackers);
 
         //check if the enemy team has been destroyed
-        if(checkAlive(swarms, Attackers)){
-            for (Drone d: Attackers.drones) {
+        if (checkAlive(swarms, Attackers)) {
+            for (Drone d : Attackers.drones) {
                 d.setMoving(false);
                 try {
                     gameOver(Attackers);
-                }catch (Exception ignored){}
+                } catch (Exception ignored) {
+                }
             }
         }
 
@@ -117,6 +120,7 @@ public class Flight {
 
     /**
      * Print a victory message
+     *
      * @param Victors the swarm that won
      * @throws InterruptedException handles a thread.sleep if necessary, fucks with the GUI though
      */
@@ -126,14 +130,15 @@ public class Flight {
 
     /**
      * helper function to determine if the enemy swarms have been deveated
-     * @param swarms all the swarms in the battle
+     *
+     * @param swarms    all the swarms in the battle
      * @param Attackers the hypothesized victorious swarm
      * @return true if the enemy has no drones left alive, otherwise false
      */
-    public static boolean checkAlive(ArrayList<Swarm> swarms, Swarm Attackers){
-        for (Swarm s: swarms) {
-            if(s != Attackers){
-                if(s.numAlive() == 0){
+    public static boolean checkAlive(ArrayList<Swarm> swarms, Swarm Attackers) {
+        for (Swarm s : swarms) {
+            if (s != Attackers) {
+                if (s.numAlive() == 0) {
                     return true;
                 }
             }
@@ -144,6 +149,7 @@ public class Flight {
 
     /**
      * determines if the drones in a fireteam are close enough to each other to keep moving
+     *
      * @param quarter the fireteam of drones
      * @return false if the drones are to far apart, otherwise true
      */
@@ -163,6 +169,7 @@ public class Flight {
 
     /**
      * helper function to find the abs difference in the position of two drones
+     *
      * @param x1 any coordinate of a drone
      * @param x2 the matching coordinate of another drone
      * @return the integer representing the abs value of their difference
@@ -173,7 +180,8 @@ public class Flight {
 
     /**
      * Directs movement of fireteams, can direct them to move to the same point if to far away, or perform modified leeroyJenkins if they are close enough
-     * @param quarter the fireteam to move
+     *
+     * @param quarter   the fireteam to move
      * @param Attackers the entire swarm of attackers, from which the fireteam came
      */
     public static void aggregate(ArrayList<Drone> quarter, Swarm Attackers) {
@@ -201,17 +209,18 @@ public class Flight {
 
     /**
      * modified version of leeroyJenkins to work with the fireteams, move all drones directly at closest enemy
-     * @param quarter fireteam to be moved
+     *
+     * @param quarter   fireteam to be moved
      * @param Attackers the swarm from which the fireteams came from
      */
-    public static void modifiedLeeroyJenkins(ArrayList<Drone> quarter, Swarm Attackers){
-        for (Drone e: quarter) {
+    public static void modifiedLeeroyJenkins(ArrayList<Drone> quarter, Swarm Attackers) {
+        for (Drone e : quarter) {
             if (e.isAlive() && e.isMoving()) {
                 if (Battle.outOfBounds(e)) {
-                   e.setAlive(false);
+                    e.setAlive(false);
                 } else {
                     for (int i = 0; i < Attackers.drones.size(); i++) {
-                        if(Attackers.drones.get(i) == e){
+                        if (Attackers.drones.get(i) == e) {
                             int[] movementCoords = Battle.enemyDetection(Attackers, i);
                             e.move(movementCoords[0], movementCoords[1], movementCoords[2]);
                         }

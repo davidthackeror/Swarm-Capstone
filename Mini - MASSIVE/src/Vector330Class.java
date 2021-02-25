@@ -252,7 +252,7 @@ public class Vector330Class {
         return ((this.x * v.getX()) + (this.y * v.getY()));
     }
 
-    //TODO: Z?
+
 
     /**
      * magnitude - computes the magnitude of this vector

@@ -96,6 +96,7 @@ class Battle {
                 //calculate a vector for the difference in positions between the warrior and the selected defender
                 calcVector.setX(defenders.drones.get(j).getxPos() - attacker.getxPos());
                 calcVector.setY(defenders.drones.get(j).getyPos() - attacker.getyPos());
+                calcVector.setY(defenders.drones.get(j).getzPos() - attacker.getzPos()); //Check this line
                 //check to see if that magnitude is the smallest yet
                 if (calcVector.magnitude() < minArray[1]) {
                     minArray[2] = defenders.getAllianceNum();
@@ -167,10 +168,10 @@ class Battle {
         Swarm axis = swarms.get(soldierArray[2]);
 
         if(Attackers.drones.get(i).getposAchieved() == 0) {
-            Attackers.drones.get(i).setSpeed(Attackers.drones.get(i).getSpeed());
+            //Attackers.drones.get(i).setSpeed(Attackers.drones.get(i).getSpeed());
             coords[0] = ((Main.SIZE * Main.ratioX) / 2) ;
             coords[1] = 50;
-            coords[2] = 1500; //TODO FIX Z STUFF
+            coords[2] = Attackers.drones.get(i).getzPos(); //TODO FIX Z STUFF
         }
 
         //System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
