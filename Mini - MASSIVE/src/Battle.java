@@ -167,10 +167,14 @@ class Battle {
         }
         Swarm axis = swarms.get(soldierArray[2]);
 
-        if(Attackers.drones.get(i).getposAchieved() == 0) {
+        if(Attackers.drones.get(i).getposAchieved() == 0 && Attackers.getAllianceNum() == 0) {
             //Attackers.drones.get(i).setSpeed(Attackers.drones.get(i).getSpeed());
-            coords[0] = ((Main.SIZE * Main.ratioX) / 2) ;
+            coords[0] = ((Main.SIZE * Main.ratioX) / 2) + 300;
             coords[1] = 50;
+            coords[2] = Attackers.drones.get(i).getzPos(); //TODO FIX Z STUFF
+        } else if (Attackers.drones.get(i).getposAchieved() == 0 && Attackers.getAllianceNum() == 1) {
+            coords[0] = ((Main.SIZE * Main.ratioX) / 2) - 300;
+            coords[1] = (Main.SIZE*Main.ratioY - 50) ;
             coords[2] = Attackers.drones.get(i).getzPos(); //TODO FIX Z STUFF
         }
 

@@ -16,17 +16,17 @@ public class Controller {
 
                 case 1:
                     swarms.get(i).setSwarmAlgo(3);
-                    Flight.flank(swarms, 0);
+                    Flight.flank(swarms, 0, swarms.get(i));
                     break;
                 case 2:
                     Flight.fireTeam(swarms, swarms.get(i));
                     break;
                 case 3: //Flanking algorithm after initializing
                     swarms.get(i).setSwarmAlgo(4);
-                    Flight.flank(swarms, 1);
+                    Flight.flank(swarms, 1, swarms.get(i));
                     break;
                 case 4:
-                    Flight.flank(swarms, 2);
+                    Flight.flank(swarms, 2, swarms.get(i));
                     break;
                 default:
                     //goto algo 0
