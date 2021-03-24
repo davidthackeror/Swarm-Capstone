@@ -102,46 +102,6 @@ public class Flight {
         aggregate(secondQuarter, Attackers);
         aggregate(thirdQuarter, Attackers);
         aggregate(fourthQuarter, Attackers);
-
-        //check if the enemy team has been destroyed
-        if (checkAlive(swarms, Attackers)) {
-            for (Drone d : Attackers.drones) {
-                d.setMoving(false);
-                try {
-                    gameOver(Attackers);
-                } catch (Exception ignored) {
-                }
-            }
-        }
-
-    }
-
-    /**
-     * Print a victory message
-     *
-     * @param Victors the swarm that won
-     * @throws InterruptedException handles a thread.sleep if necessary, fucks with the GUI though
-     */
-    public static void gameOver(Swarm Victors) throws InterruptedException {
-        System.out.println(Victors.getArmyName() + " has won!");
-    }
-
-    /**
-     * helper function to determine if the enemy swarms have been deveated
-     *
-     * @param swarms    all the swarms in the battle
-     * @param Attackers the hypothesized victorious swarm
-     * @return true if the enemy has no drones left alive, otherwise false
-     */
-    public static boolean checkAlive(ArrayList<Swarm> swarms, Swarm Attackers) {
-        for (Swarm s : swarms) {
-            if (s != Attackers) {
-                if (s.numAlive() == 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
 
