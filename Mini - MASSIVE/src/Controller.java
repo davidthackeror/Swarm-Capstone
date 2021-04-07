@@ -28,6 +28,9 @@ public class Controller {
                 case 4:
                     Flight.flank(swarms, 2, swarms.get(i));
                     break;
+                case 5:
+                    Flight.brainSwarm(swarms, swarms.get(i));
+                    break;
                 default:
                     //goto algo 0
             }

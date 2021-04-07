@@ -116,6 +116,55 @@ public class Flight {
 
     }
 
+    public static void brainSwarm(ArrayList<Swarm> swarms, Swarm Attackers) {
+        Battle.droneDamage(swarms);
+        int size = Attackers.drones.size();
+
+        //Seperate drones in one swarm into quartiles
+        ArrayList<Drone> firstSixth = new ArrayList<Drone>();
+        ArrayList<Drone> secondSixth = new ArrayList<Drone>();
+        ArrayList<Drone> thirdSixth = new ArrayList<Drone>();
+        ArrayList<Drone> fourthSixth = new ArrayList<Drone>();
+        ArrayList<Drone> fifthSixth = new ArrayList<Drone>();
+        ArrayList<Drone> sixSixth = new ArrayList<Drone>();
+
+        for (int i = 0; i < size; i++) {
+            if (i < size / 6) {
+                firstSixth.add(Attackers.drones.get(i));
+            } else if (i >= size / 6 && i < (size / 6) * 2) {
+                secondSixth.add(Attackers.drones.get(i));
+            } else if (i >= (size / 6) * 2 && i < (size / 2 )) {
+                thirdSixth.add(Attackers.drones.get(i));
+            } else if (i >= (size / 2) && i < ((size / 2) + (size / 6))) {
+                fourthSixth.add(Attackers.drones.get(i));
+            } else if (i >= ((size / 2) + (size / 6)) && i < ((size / 2) + ((size / 6) * 2))) {
+                fifthSixth.add(Attackers.drones.get(i));
+            } else {
+                sixSixth.add(Attackers.drones.get(i));
+            }
+        }
+
+        //Have the Drones group together, and wait for others, or move if all are nearby
+        solve(firstSixth, 1, Attackers);
+        solve(secondSixth, 2, Attackers);
+        solve(thirdSixth, 3, Attackers);
+        solve(fourthSixth, 4, Attackers);
+        solve(fifthSixth, 5, Attackers);
+        solve(sixSixth, 6, Attackers);
+
+        //check if the enemy team has been destroyed
+        if (checkAlive(swarms, Attackers)) {
+            for (Drone d : Attackers.drones) {
+                d.setMoving(false);
+                try {
+                    gameOver(Attackers);
+                } catch (Exception ignored) {
+                }
+            }
+        }
+
+    }
+
     /**
      * Print a victory message
      *
@@ -198,6 +247,77 @@ public class Flight {
         for (Drone e : quarter) {
             if (checkLocationAggregate(quarter)) {
                 modifiedLeeroyJenkins(quarter, Attackers);
+            } else {
+                e.move(xAggregate, yAggregate, e.getzPos());
+
+            }
+        }
+    }
+
+    /**
+     * Directs movement of fireteams, can direct them to move to the same point if to far away, or perform solution to find optimal place to move
+     *
+     * @param sixth   the fireteam to move
+     * @param team   the number of the fireteam to move
+     * @param Attackers the entire swarm of attackers, from which the fireteam came
+     */
+    public static void solve(ArrayList<Drone> sixth, int team, Swarm Attackers) {
+        int xCompilation = 0;
+        int yCompilation = 0;
+
+        //formula for rough midpoint is (x1 + x2 + ... xi)/n
+        for (Drone e : sixth) {
+            xCompilation = xCompilation + e.getxPos();
+            yCompilation = yCompilation + e.getyPos();
+        }
+        int xAggregate = xCompilation / sixth.size();
+        int yAggregate = yCompilation / sixth.size();
+
+        //for each drone in the fireteam check if they are close enough, if true leeroyJenkins, if not move to midpoint
+        for (Drone e : sixth) {
+            if (checkLocationAggregate(sixth)) {
+
+
+
+                //Code to find optimal solution
+                if (e.isAlive() && e.isMoving()) {
+                    if (Battle.outOfBounds(e)) {
+                        e.setAlive(false);
+                    } else {
+                        for (int i = 0; i < Attackers.drones.size(); i++) {
+                            if (Attackers.drones.get(i) == e) {
+                                //Swarm axis = Battle.getSwarms().get(1);
+                                //for (int j = 0; j < axis.drones.size(); j++) {
+                                //}
+                                //System.out.println(axis.drones.get(0).getxPos());
+
+                                int[] movementCoords = Battle.enemyDetection(Attackers, i);
+                                if (team == 1) {
+                                    e.move(movementCoords[0], movementCoords[1], movementCoords[2]); // leeroy
+                                } else if (team == 2){
+                                    e.move(movementCoords[0], movementCoords[1] + 50, movementCoords[2]); //go high
+                                } else if (team == 3){
+                                    e.move(movementCoords[0], movementCoords[1] - 50, movementCoords[2]); // go lower
+
+
+                                //TODO: Make these drones team think intelligently to pick enemies off (aka meet them at locations not just go to their current location)
+                                //TODO: write equation to figure out based off past movement and speed where the enemy drone should be given the attackers drones current location in regards to it.
+                                } else if (team == 4){
+                                    e.move(movementCoords[0], movementCoords[1], Main.CEILING); // go to ceiling
+                                } else if (team == 5){
+                                    e.move(movementCoords[0], movementCoords[1] + 50, Main.CEILING); // go high ceiling
+                                } else if (team == 6){
+                                    e.move(movementCoords[0], movementCoords[1] - 50, Main.CEILING); // go lower ceiling
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
             } else {
                 e.move(xAggregate, yAggregate, e.getzPos());
 

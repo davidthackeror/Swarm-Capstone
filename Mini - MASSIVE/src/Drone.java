@@ -469,7 +469,6 @@ public abstract class Drone {
 
     /**
      * set the speed of an object
-     * @param speed the speed parameter to be inserted into the object
      */
     void setposAchieved(int posAchieved) {
         this.posAchieved = posAchieved;
