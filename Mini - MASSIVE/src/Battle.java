@@ -150,6 +150,30 @@ class Battle {
         return coords;
     }
 
+    static int[] highestEnemyDetection(Swarm Attackers){
+        int[] coords = new int[3];
+        int saveHighest = 0;
+        int i;
+        Swarm axis = null;
+        int team = Attackers.getAllianceNum();
+        if (team == 1){
+            axis = swarms.get(0); //blue teams algo
+        } else if (team == 0){
+            axis = swarms.get(1); //red teams algo
+        }
+        
+        for (i = 0; i < axis.drones.size() - 1; i++){
+            if (axis.drones.get(saveHighest).getzPos() < axis.drones.get(i).getzPos()){
+                saveHighest = i;
+            }
+        }
+        coords[0] = axis.drones.get(i).getxPos();
+        coords[1] = axis.drones.get(i).getyPos();
+        coords[2] = axis.drones.get(i).getzPos();
+        //System.out.println("Target; " + coords[0] + " , " + coords[1] + " , " + coords[2] );
+        return coords;
+    }
+
     static int[] flankLeft(Swarm Attackers, int i){
         int[] coords = new int[3];
         int[] soldierArray = Attackers.drones.get(i).getMinArray();
