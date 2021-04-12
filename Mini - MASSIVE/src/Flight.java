@@ -116,6 +116,8 @@ public class Flight {
 
     }
 
+    //TODO: smartly choose who climbs
+    //This algorithm send drones forward to flight the enemy while fire teams climb to gain a height advantage
     public static void brainSwarm(ArrayList<Swarm> swarms, Swarm Attackers) {
         Battle.droneDamage(swarms);
         int size = Attackers.drones.size();
@@ -128,7 +130,7 @@ public class Flight {
         ArrayList<Drone> fifthSixth = new ArrayList<Drone>();
         ArrayList<Drone> sixSixth = new ArrayList<Drone>();
 
-        for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
             if (i < size / 6) {
                 firstSixth.add(Attackers.drones.get(i));
             } else if (i >= size / 6 && i < (size / 6) * 2) {
@@ -286,29 +288,37 @@ public class Flight {
                     } else {
                         for (int i = 0; i < Attackers.drones.size(); i++) {
                             if (Attackers.drones.get(i) == e) {
-                                //Swarm axis = Battle.getSwarms().get(1);
-                                //for (int j = 0; j < axis.drones.size(); j++) {
-                                //}
-                                //System.out.println(axis.drones.get(0).getxPos());
-
                                 int[] movementCoords = Battle.enemyDetection(Attackers, i);
+
+
+
                                 if (team == 1) {
                                     e.move(movementCoords[0], movementCoords[1], movementCoords[2]); // leeroy
                                 } else if (team == 2){
                                     e.move(movementCoords[0], movementCoords[1] + 50, movementCoords[2]); //go high
                                 } else if (team == 3){
                                     e.move(movementCoords[0], movementCoords[1] - 50, movementCoords[2]); // go lower
-
-
-                                //TODO: Make these drones team think intelligently to pick enemies off (aka meet them at locations not just go to their current location)
-                                //TODO: write equation to figure out based off past movement and speed where the enemy drone should be given the attackers drones current location in regards to it.
-                                } else if (team == 4){
-                                    e.move(movementCoords[0], movementCoords[1], Main.CEILING); // go to ceiling
-                                } else if (team == 5){
-                                    e.move(movementCoords[0], movementCoords[1] + 50, Main.CEILING); // go high ceiling
-                                } else if (team == 6){
-                                    e.move(movementCoords[0], movementCoords[1] - 50, Main.CEILING); // go lower ceiling
                                 }
+
+                                int[] highestAttackCoords = Battle.highestEnemyDetection(Attackers);
+                                double tangentXY = Math.sqrt(Math.pow(Math.abs(highestAttackCoords[0] - Attackers.drones.get(i).getxPos()), 2) + Math.pow(Math.abs(highestAttackCoords[1] - Attackers.drones.get(i).getyPos()), 2));
+                                double tangentXYZ = Math.sqrt(tangentXY + Math.pow(Math.abs(highestAttackCoords[2] - Attackers.drones.get(i).getzPos()), 2));
+
+                                //change number here to change the range of attack
+                                if (tangentXYZ < 250){ //if the drones can attack
+                                        if (team == 4 || team == 5 || team == 6) {
+                                            e.move(highestAttackCoords[0], highestAttackCoords[1], highestAttackCoords[2]); //go destroy target
+                                        }
+                                } else { //if the drones are not in an optimal attack range
+                                    if (team == 4) {
+                                        e.move(highestAttackCoords[0], highestAttackCoords[1], Main.CEILING); // go to ceiling
+                                    } else if (team == 5) {
+                                        e.move(highestAttackCoords[0], highestAttackCoords[1] + 50, Main.CEILING); // go high ceiling
+                                    } else if (team == 6) {
+                                        e.move(highestAttackCoords[0], highestAttackCoords[1] - 50, Main.CEILING); // go lower ceiling
+                                    }
+                                }
+
                             }
                         }
                     }
@@ -319,8 +329,11 @@ public class Flight {
 
 
             } else {
-                e.move(xAggregate, yAggregate, e.getzPos());
-
+                if (team == 4 || team == 5 || team == 6){
+                    e.move(xAggregate, yAggregate, Main.CEILING);
+                } else {
+                    e.move(xAggregate, yAggregate, e.getzPos());
+                }
             }
         }
     }
