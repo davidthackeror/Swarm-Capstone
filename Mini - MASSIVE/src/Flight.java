@@ -30,7 +30,6 @@ public class Flight {
                 }
             }
         }
-        Vector330Class calcVector = new Vector330Class();
         //Every other time that the algorithm is called
         for (int i = 0; i < Attackers.drones.size(); i++) {
             if (Attackers.drones.get(i).isAlive() && Attackers.drones.get(i).isMoving()) {
@@ -121,6 +120,8 @@ public class Flight {
     public static void brainSwarm(ArrayList<Swarm> swarms, Swarm Attackers) {
         Battle.droneDamage(swarms);
         int size = Attackers.drones.size();
+        int[] indexArray =  new int[Attackers.drones.size()];
+        int[] zCoordinateArray = new int[Attackers.drones.size()];
 
         //Seperate drones in one swarm into quartiles
         ArrayList<Drone> firstSixth = new ArrayList<Drone>();
@@ -130,19 +131,42 @@ public class Flight {
         ArrayList<Drone> fifthSixth = new ArrayList<Drone>();
         ArrayList<Drone> sixSixth = new ArrayList<Drone>();
 
-            for (int i = 0; i < size; i++) {
+        for (int i = 0; i < Attackers.drones.size(); i++) {
+            indexArray[i] = i;
+            zCoordinateArray[i] = Attackers.drones.get(i).getzPos();
+        }
+            
+        for(int i = 0; i < Attackers.drones.size(); i++){ 
+            for (int j = 0; j < Attackers.drones.size(); j++){
+                if(zCoordinateArray[i] < zCoordinateArray[j])
+                    {
+                        int tempZ = zCoordinateArray[i];
+                        int tempI = indexArray[i];
+                        zCoordinateArray[i] = zCoordinateArray[j];
+                        indexArray[i] = indexArray[j];
+                        zCoordinateArray[j] = tempZ;
+                        indexArray[j] = tempI;
+                    }
+                }
+            }
+        
+        //for(int i = 0; i < Attackers.drones.size(); i++){
+          //  System.out.println("Z Coordinate: " + zCoordinateArray[i] + "Index: " + indexArray[i]);
+        //}
+
+        for (int i = 0; i < size; i++) {
             if (i < size / 6) {
-                firstSixth.add(Attackers.drones.get(i));
+                firstSixth.add(Attackers.drones.get(indexArray[i]));
             } else if (i >= size / 6 && i < (size / 6) * 2) {
-                secondSixth.add(Attackers.drones.get(i));
+                secondSixth.add(Attackers.drones.get(indexArray[i]));
             } else if (i >= (size / 6) * 2 && i < (size / 2 )) {
-                thirdSixth.add(Attackers.drones.get(i));
+                thirdSixth.add(Attackers.drones.get(indexArray[i]));
             } else if (i >= (size / 2) && i < ((size / 2) + (size / 6))) {
-                fourthSixth.add(Attackers.drones.get(i));
+                fourthSixth.add(Attackers.drones.get(indexArray[i]));
             } else if (i >= ((size / 2) + (size / 6)) && i < ((size / 2) + ((size / 6) * 2))) {
-                fifthSixth.add(Attackers.drones.get(i));
+                fifthSixth.add(Attackers.drones.get(indexArray[i]));
             } else {
-                sixSixth.add(Attackers.drones.get(i));
+                sixSixth.add(Attackers.drones.get(indexArray[i]));
             }
         }
 
