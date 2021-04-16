@@ -167,6 +167,48 @@ public class Flight {
 
     }
 
+    public static void StutterStep(ArrayList<Swarm> swarms, Swarm Attackers) {
+        Battle.droneDamage(swarms);
+        int size = Attackers.drones.size();
+
+        //Seperate drones in one swarm into quartiles
+        ArrayList<Drone> firstQuarter = new ArrayList<Drone>();
+        ArrayList<Drone> secondQuarter = new ArrayList<Drone>();
+        ArrayList<Drone> thirdQuarter = new ArrayList<Drone>();
+        ArrayList<Drone> fourthQuarter = new ArrayList<Drone>();
+
+        for (int i = 0; i < size; i++) {
+            if (i < size / 4) {
+                firstQuarter.add(Attackers.drones.get(i));
+            } else if (i >= size / 4 && i < size / 2) {
+                secondQuarter.add(Attackers.drones.get(i));
+            } else if (i >= size / 2 && i < ((size / 2) + size / 4)) {
+                thirdQuarter.add(Attackers.drones.get(i));
+            } else {
+                fourthQuarter.add(Attackers.drones.get(i));
+            }
+        }
+
+        //Have the Drones group together, and wait for others, or move if all are nearby
+        aggregateStutter(firstQuarter, Attackers);
+        aggregateStutter(secondQuarter, Attackers);
+        aggregateStutter(thirdQuarter, Attackers);
+        aggregateStutter(fourthQuarter, Attackers);
+
+        //check if the enemy team has been destroyed
+        if (checkAlive(swarms, Attackers)) {
+            for (Drone d : Attackers.drones) {
+                d.setMoving(false);
+                try {
+                    gameOver(Attackers);
+                } catch (Exception ignored) {
+                }
+            }
+        }
+
+    }
+
+
     /**
      * Print a victory message
      *
@@ -249,6 +291,29 @@ public class Flight {
         for (Drone e : quarter) {
             if (checkLocationAggregate(quarter)) {
                 modifiedLeeroyJenkins(quarter, Attackers);
+            } else {
+                e.move(xAggregate, yAggregate, e.getzPos());
+
+            }
+        }
+    }
+
+    public static void aggregateStutter(ArrayList<Drone> quarter, Swarm Attackers) {
+        int xCompilation = 0;
+        int yCompilation = 0;
+
+        //formula for rough midpoint is (x1 + x2 + ... xi)/n
+        for (Drone e : quarter) {
+            xCompilation = xCompilation + e.getxPos();
+            yCompilation = yCompilation + e.getyPos();
+        }
+        int xAggregate = xCompilation / quarter.size();
+        int yAggregate = yCompilation / quarter.size();
+
+        //for each drone in the fireteam check if they are close enough, if true leeroyJenkins, if not move to midpoint
+        for (Drone e : quarter) {
+            if (checkLocationAggregate(quarter)) {
+                modifiedStutterStep(quarter, Attackers);
             } else {
                 e.move(xAggregate, yAggregate, e.getzPos());
 
@@ -363,4 +428,37 @@ public class Flight {
 
     }
 
+    public static void modifiedStutterStep(ArrayList<Drone> quarter, Swarm Attackers) {
+        for (Drone e : quarter) {
+            if (e.isAlive() && e.isMoving()) {
+                if (Battle.outOfBounds(e)) {
+                    e.setAlive(false);
+                } else {
+                    for (int i = 0; i < Attackers.drones.size(); i++) {
+                        if (Attackers.drones.get(i) == e) {
+                            if(magnitude(e,Attackers,i)<200) {
+                                int[] movementCoords = Battle.enemyDetection(Attackers, i);
+                                e.move((-1*movementCoords[0]), (-1*movementCoords[1]), (-1*movementCoords[2]));
+                            }
+                            else {
+                                int[] movementCoords = Battle.enemyDetection(Attackers, i);
+                                e.move(movementCoords[0], movementCoords[1], movementCoords[2]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static double magnitude(Drone soldier, Swarm defender, int index) {
+        double distance;
+        double deltaZ;
+        Vector330Class calcVector = new Vector330Class();
+        calcVector.setX(soldier.getxPos() - defender.drones.get(index).getxPos());
+        calcVector.setY(soldier.getyPos() - defender.drones.get(index).getyPos());
+        deltaZ = Math.abs(soldier.getzPos() - defender.drones.get(index).getzPos());
+        distance = Math.sqrt(deltaZ * deltaZ) + (calcVector.magnitude() + calcVector.magnitude());
+        return distance;
+    }
 }
