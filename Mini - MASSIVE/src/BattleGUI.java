@@ -141,7 +141,7 @@ public class BattleGUI {
                                 Battle.getSwarms().get(i).setSwarmAlgo(2);
                             }
                         }
-                        two.setText("Blue Team Algorithm: Brain Swarm");
+                        two.setText("Blue Team Algorithm: Fire Teams");
                     } else if (algorithmSelector.getSelectedItem().equals("Brain Swarm") && updateButton1.isValid()){
                         System.out.println("Blue Brain Swarm");
                         for (int i = 0; i < Battle.getSwarms().size(); i++) {
