@@ -107,6 +107,14 @@ public class BattleGUI {
                             }
                         }
                         one.setText("Red Team Algorithm: Fire Teams");
+                    } else if (algorithmSelector.getSelectedItem().equals("Stutter Step") && updateButton1.isValid()){
+                        System.out.println("Red Stutter Step");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.RED){
+                                Battle.getSwarms().get(i).setSwarmAlgo(5);
+                            }
+                        }
+                        one.setText("Red Team Algorithm: Stutter Step");
                     }
                 } else if (blueTeam.isSelected()){
                     System.out.println("blue");
@@ -134,6 +142,14 @@ public class BattleGUI {
                             }
                         }
                         two.setText("Blue Team Algorithm: Fire Teams");
+                    }  else if (algorithmSelector.getSelectedItem().equals("Stutter Step") && updateButton1.isValid()){
+                        System.out.println("Blue Stutter Step");
+                        for (int i = 0; i < Battle.getSwarms().size(); i++) {
+                            if(Battle.getSwarms().get(i).drones.get(0).getColor() == Color.BLUE){
+                                Battle.getSwarms().get(i).setSwarmAlgo(5);
+                            }
+                        }
+                        one.setText("Blue Team Algorithm: Stutter Step");
                     }
                 }
             }

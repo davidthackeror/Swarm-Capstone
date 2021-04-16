@@ -1,4 +1,8 @@
 import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -35,7 +39,7 @@ public class AnimationThread extends Thread {
     public boolean getToggle() {
         return this.stopper;}
 
-    public void battleSummary(){
+    public void battleSummary() throws IOException {
         ArrayList<Swarm> swarms = Battle.getSwarms();
         for (int i = 0; i < swarms.size(); i++) {
             Swarm currSwarm = swarms.get(i);
@@ -57,6 +61,19 @@ public class AnimationThread extends Thread {
                             otherSwarm.numAlive() + " " + otherSwarm.getArmyName() + " remain.\n" +
                             "Algo " + otherSwarm.swarmAlgo + " beat Algo " + currSwarm.swarmAlgo + ".");
                     toggleAnimation();
+                    FileWriter fw = new FileWriter("src/results.txt", true);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    PrintWriter pw = new PrintWriter(bw);
+                    String resultsString = ticks + ", " + currSwarm.getArmyName() + ", " + otherSwarm.numAlive() + ", " + otherSwarm.swarmAlgo + ", " + currSwarm.swarmAlgo;
+                    //BufferedWriter writer = new BufferedWriter(new FileWriter("src/results.txt", true));
+                    pw.println(resultsString);
+                    pw.flush();
+
+                    pw.close();
+                    bw.close();
+                    fw.close();
+
+                    //writer.close();
                 }
             }
         }
@@ -73,7 +90,11 @@ public class AnimationThread extends Thread {
                     } // end of run() method
                 });
                 ticks++;
-                battleSummary();
+                try {
+                    battleSummary();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             try {
                 sleep(100);  // pause between thread launches

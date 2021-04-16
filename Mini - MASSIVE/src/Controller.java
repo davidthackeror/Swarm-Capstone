@@ -13,7 +13,6 @@ public class Controller {
                 case 0: //Flanking algorithm before initializing
                     Flight.LeeroyJenkins(swarms, swarms.get(i));
                     break;
-
                 case 1:
                     swarms.get(i).setSwarmAlgo(3);
                     Flight.flank(swarms, 0, swarms.get(i));
@@ -27,6 +26,10 @@ public class Controller {
                     break;
                 case 4:
                     Flight.flank(swarms, 2, swarms.get(i));
+                    break;
+                case 5: // Stutter Step algorithm goes here
+                    //Flight.flank(swarms, 2, swarms.get(i));
+                    System.out.println("Algorithm not yet implemented");
                     break;
                 default:
                     //goto algo 0
