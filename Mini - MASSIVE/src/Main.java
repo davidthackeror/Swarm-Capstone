@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Scanner;
 
 /**
  * Project: Swarm Capstone
@@ -19,20 +20,34 @@ public class Main {
     private static final int TIME_STEP = 100;
 
     public static void main(String[] args) {
-
         //call for preset values or not user selected values for each warrior class
-        Battle battle = new Battle();
-        BattleGUI battleGUI = new BattleGUI();
-        battleGUI.setBattle(battle);
-        JFrame jFrame = new JFrame("DRONE SWARMING");
-        jFrame.setContentPane(battleGUI.getHello());
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.pack();
-        jFrame.setVisible(true);
-        AnimationThread animationThread = new AnimationThread(battleGUI.getAnimationArea());
-        animationThread.start();
-        animationThread.toggleAnimation();
-        battleGUI.setAnimationThread(animationThread);
+        while(true){
+            Scanner myObj = new Scanner(System.in);
+
+            System.out.println("Enter 0th Drone #");
+
+            // String input
+            int droneZero = myObj.nextInt();
+            if(droneZero == -1){
+                System.exit(1);
+            }
+            System.out.println("Enter 1th Drone #");
+
+            // String input
+            int droneOne = myObj.nextInt();
+            Battle battle = new Battle(droneZero, droneOne);
+            BattleGUI battleGUI = new BattleGUI();
+            battleGUI.setBattle(battle);
+            JFrame jFrame = new JFrame("DRONE SWARMING");
+            jFrame.setContentPane(battleGUI.getHello());
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            jFrame.pack();
+            jFrame.setVisible(true);
+            AnimationThread animationThread = new AnimationThread(battleGUI.getAnimationArea());
+            animationThread.start();
+            animationThread.toggleAnimation();
+            battleGUI.setAnimationThread(animationThread);
+        }
     }
 }
 
