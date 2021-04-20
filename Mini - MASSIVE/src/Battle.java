@@ -56,6 +56,13 @@ class Battle {
 
     }
 
+    Battle(int firstAlgo, int secondAlgo) {
+        //TODO: Change ALgo Num
+        addSwarm(0, "allies", swarms, firstAlgo);
+        addSwarm(1, "axis", swarms, secondAlgo);
+
+    }
+
     /**
      * adds an army with predetermined warrior allotments and the following attributes
      *
