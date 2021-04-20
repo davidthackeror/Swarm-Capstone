@@ -104,7 +104,8 @@ public class AnimationThread extends Thread {
                 return "Fire Teams";
             case 5:
                 return "Brain Swarm";
-
+            case 6:
+                return "Stutter Step";
             default:
                 //goto algo 0
         }

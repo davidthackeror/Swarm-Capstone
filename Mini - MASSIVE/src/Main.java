@@ -21,21 +21,21 @@ public class Main {
 
     public static void main(String[] args) {
         //call for preset values or not user selected values for each warrior class
-        while(true){
-            Scanner myObj = new Scanner(System.in);
-
-            System.out.println("Enter 0th Drone #");
-
-            // String input
-            int droneZero = myObj.nextInt();
-            if(droneZero == -1){
-                System.exit(1);
-            }
-            System.out.println("Enter 1th Drone #");
-
-            // String input
-            int droneOne = myObj.nextInt();
-            Battle battle = new Battle(droneZero, droneOne);
+//        while(true){
+//            Scanner myObj = new Scanner(System.in);
+//
+//            System.out.println("Enter 0th Drone #");
+//
+//            // String input
+//            int droneZero = myObj.nextInt();
+//            if(droneZero == -1){
+//                System.exit(1);
+//            }
+//            System.out.println("Enter 1th Drone #");
+//
+//            // String input
+//            int droneOne = myObj.nextInt();
+            Battle battle = new Battle(2,6);
             BattleGUI battleGUI = new BattleGUI();
             battleGUI.setBattle(battle);
             JFrame jFrame = new JFrame("DRONE SWARMING");
@@ -48,6 +48,6 @@ public class Main {
             animationThread.toggleAnimation();
             battleGUI.setAnimationThread(animationThread);
         }
-    }
+//    }
 }
 

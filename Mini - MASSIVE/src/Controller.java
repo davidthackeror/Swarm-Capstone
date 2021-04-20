@@ -31,6 +31,8 @@ public class Controller {
                 case 5:
                     Flight.brainSwarm(swarms, swarms.get(i));
                     break;
+                case 6:
+                    Flight.StutterStep(swarms, swarms.get(i));
                 default:
                     //goto algo 0
             }
