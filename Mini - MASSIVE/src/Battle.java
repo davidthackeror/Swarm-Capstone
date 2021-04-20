@@ -45,7 +45,7 @@ class Battle {
         array[5] = 10;//minCourage
         array[6] = 30;//maxCourage
         array[7] = 10;//Size
-        array[8] = 200;//Range
+        array[8] = 1;//Range
 
     }
 
@@ -292,7 +292,7 @@ class Battle {
                     Swarm Defenders = (Swarm) armies.get(intArray[2]);
 
                     //TODO: make this a test case
-                    if (magnitude(Attackers.drones.get(i), Defenders, intArray[0]) <= Attackers.drones.get(i).getRange() + Attackers.drones.get(i).getSize() && Defenders.drones.get(intArray[0]).isAlive()) {
+                    if (magnitude(Attackers.drones.get(i), Defenders, intArray[0]) <= Attackers.drones.get(i).getRange() + Attackers.drones.get(i).getSize() * (Attackers.drones.get(i).getzPos() * 0.03)&& Defenders.drones.get(intArray[0]).isAlive()) {
                         //determine if attacker has missed the defender
                         if (!(rand.nextInt(100) <= 100 * Attackers.drones.get(i).getAttack() / (Attackers.drones.get(i).getAttack() + Defenders.drones.get(intArray[0]).getAttack()))) {
                             //stop them from moving so that they can shoot or attack
