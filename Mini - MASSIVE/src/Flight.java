@@ -460,9 +460,10 @@ public class Flight {
                 } else {
                     for (int i = 0; i < Attackers.drones.size(); i++) {
                         if (Attackers.drones.get(i) == e) {
-                            if(magnitude(e,Attackers,i)<200) {
+                            double k = magnitude(e,Attackers,i)*200.0;
+                            if(k<-50.0) {
                                 int[] movementCoords = Battle.enemyDetection(Attackers, i);
-                                e.move((-1*movementCoords[0]), (-1*movementCoords[1]), (-1*movementCoords[2]));
+                                e.move((int)(0.1*(-1*movementCoords[0])),((int) (-1*movementCoords[1])), (1*movementCoords[2]));
                             }
                             else {
                                 int[] movementCoords = Battle.enemyDetection(Attackers, i);
