@@ -4,6 +4,10 @@ public class Controller {
 
     int algoChoice;
 
+    /**
+     * Control execution of drone algo's passing commands to functions in flight
+     * @param swarms the arrayList of swarms
+     */
     public static void Cont(ArrayList<Swarm> swarms) {
         //placeholder
 

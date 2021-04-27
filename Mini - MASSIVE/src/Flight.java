@@ -3,6 +3,11 @@ import java.util.Random;
 
 public class Flight {
 
+    /**
+     * The Original Algorithm, drones lock on and target the closest drone to them
+     * @param swarms the arrayList of swarms
+     * @param Attackers the swarm that targets and attacks
+     */
     public static void LeeroyJenkins(ArrayList<Swarm> swarms, Swarm Attackers) {
         Battle.droneDamage(swarms);
         for (int i = 0; i < Attackers.drones.size(); i++) {
@@ -18,6 +23,12 @@ public class Flight {
 
     }
 
+    /**
+     * Flanking organizes a group of drones where one group performs leeroy jenkins while one attempts to roll around the side
+     * @param swarms the arrayList of swarms, containing drones
+     * @param check a check variable to execute a different section of flank from the controller
+     * @param Attackers the swarm that targets and attacks
+     */
     public static void flank(ArrayList<Swarm> swarms, int check, Swarm Attackers) {
         Battle.droneDamage(swarms);
         //Drones flanking
@@ -67,10 +78,8 @@ public class Flight {
 
     }
 
-
     /**
      * this algorithm separates drones into 4 fire teams that will act and move together - David & Manny
-     *
      * @param swarms    a collection of all swarms in the battle
      * @param Attackers the swarm to aggregate the drones inside
      */
@@ -115,8 +124,11 @@ public class Flight {
 
     }
 
-    //TODO: smartly choose who climbs
-    //This algorithm send drones forward to flight the enemy while fire teams climb to gain a height advantage
+    /**
+     * This algorithm send drones forward to flight the enemy while fire teams climb to gain a height advantage
+     * @param swarms the arrayList of swarms, containing drones
+     * @param Attackers the swarm that target and attacks
+     */
     public static void brainSwarm(ArrayList<Swarm> swarms, Swarm Attackers) {
         Battle.droneDamage(swarms);
         int size = Attackers.drones.size();
@@ -191,6 +203,11 @@ public class Flight {
 
     }
 
+    /**
+     * Based of Starcraft stutter step of players, moves forward and back to try and juke the enemy
+     * @param swarms the arrayList of swarms, containing drones
+     * @param Attackers the swarm that targets and attacks
+     */
     public static void StutterStep(ArrayList<Swarm> swarms, Swarm Attackers) {
         Battle.droneDamage(swarms);
         int size = Attackers.drones.size();
@@ -232,7 +249,6 @@ public class Flight {
 
     }
 
-
     /**
      * Print a victory message
      *
@@ -260,7 +276,6 @@ public class Flight {
         }
         return false;
     }
-
 
     /**
      * determines if the drones in a fireteam are close enough to each other to keep moving
@@ -322,6 +337,11 @@ public class Flight {
         }
     }
 
+    /**
+     * Aggregate drones to separate into fireteams to perform stutter step
+     * @param quarter the quarter of a swarm containing drones
+     * @param Attackers the attacking drone swarm
+     */
     public static void aggregateStutter(ArrayList<Drone> quarter, Swarm Attackers) {
         int xCompilation = 0;
         int yCompilation = 0;
@@ -452,6 +472,11 @@ public class Flight {
 
     }
 
+    /**
+     * A modified leeroy jenkins to perform stutter step, for those drones who are not flanking
+     * @param quarter the quarter of drones that perform leeroy jenkins
+     * @param Attackers the attacking drone swarm
+     */
     public static void modifiedStutterStep(ArrayList<Drone> quarter, Swarm Attackers) {
         for (Drone e : quarter) {
             if (e.isAlive() && e.isMoving()) {
@@ -476,6 +501,13 @@ public class Flight {
         }
     }
 
+    /**
+     * calculates the distance between two drones, a friendly and an enemy
+     * @param soldier the current drone we want to see how far away it is from another drone
+     * @param defender the enemy drone swarm to calculate the distance to
+     * @param index the index of the enemy drone
+     * @return the normalized distance from the enemy to friendly drone
+     */
     private static double magnitude(Drone soldier, Swarm defender, int index) {
         double distance;
         double deltaZ;

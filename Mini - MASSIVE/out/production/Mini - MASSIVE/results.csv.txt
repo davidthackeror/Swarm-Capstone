@@ -1,0 +1,20 @@
+Ticks;  Losing Team; Number of Drones Left Alive; Winning Drone Num; Losing Drone Num
+219, axis, 16, Leeroy Jenkins, Flank
+175, axis, 8, Leeroy Jenkins, Fire Teams
+166, axis, 9, Leeroy Jenkins, Leeroy Jenkins
+50, allies, 0, Leeroy Jenkins, Leeroy Jenkins
+193, axis, 16, Fire Teams, Unknown Algo
+155, allies, 8, Fire Teams, Fire Teams
+156, Red, 12, Fire Teams, Fire Teams
+189, Blue, 9, Fire Teams, Leeroy Jenkins
+179, Red, 22, Flank, Fire Teams
+225, Red, 5, Flank, Fire Teams
+242, Blue, 4, Fire Teams, Flank
+219, Red, 13, Brain Swarm, Fire Teams
+158, Blue, 11, Fire Teams, Leeroy Jenkins
+179, Blue, 12, Fire Teams, Leeroy Jenkins
+189, Blue, 15, Fire Teams, Leeroy Jenkins
+200, Blue, 4, Fire Teams, Leeroy Jenkins
+150, Red, 28, Flank, Fire Teams
+217, Red, 13, Flank, Fire Teams
+204, Blue, 15, Fire Teams, Stutter Step

@@ -51,15 +51,15 @@ class Battle {
 
     Battle() {
         //TODO: Change ALgo Num
-        addSwarm(0, "allies", swarms, 0);
-        addSwarm(1, "axis", swarms, 0);
+        addSwarm(0, "Red", swarms, 0); //allies
+        addSwarm(1, "Blue", swarms, 0); //axis
 
     }
 
     Battle(int firstAlgo, int secondAlgo) {
         //TODO: Change ALgo Num
-        addSwarm(0, "allies", swarms, firstAlgo);
-        addSwarm(1, "axis", swarms, secondAlgo);
+        addSwarm(0, "Red", swarms, firstAlgo); //allies
+        addSwarm(1, "Blue", swarms, secondAlgo); //axis
 
     }
 
