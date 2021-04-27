@@ -20,7 +20,10 @@ public class Main {
     private static final int TIME_STEP = 100;
 
     public static void main(String[] args) {
-            Battle battle = new Battle(2,2);
+        int testNumber = 0; //the test number variable
+
+        while (testNumber < 2) { //loop through all the tests
+            Battle battle = new Battle(2, 2);
             BattleGUI battleGUI = new BattleGUI();
             battleGUI.setBattle(battle);
             JFrame jFrame = new JFrame("DRONE SWARMING");
@@ -30,9 +33,14 @@ public class Main {
             jFrame.setVisible(true);
             AnimationThread animationThread = new AnimationThread(battleGUI.getAnimationArea());
             animationThread.start();
-            animationThread.toggleAnimation();
+            //animationThread.toggleAnimation();
             battleGUI.setAnimationThread(animationThread);
+
+            while (Battle.getSwarms().get(0).numAlive() > 0 && Battle.getSwarms().get(1).numAlive() > 0){ //waits for the fight to finish
+                System.out.println("waiting");
+            }
+            testNumber++; //increment the test
         }
-//    }
+    }
 }
 

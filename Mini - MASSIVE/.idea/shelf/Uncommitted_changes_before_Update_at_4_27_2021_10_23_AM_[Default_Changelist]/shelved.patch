@@ -1,0 +1,77 @@
+Index: src/results.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Ticks;  Losing Team; Number of Drones Left Alive; Winning Drone Num; Losing Drone Num\r\n219, axis, 16, Leeroy Jenkins, Flank\r\n175, axis, 8, Leeroy Jenkins, Fire Teams\r\n166, axis, 9, Leeroy Jenkins, Leeroy Jenkins\r\n50, allies, 0, Leeroy Jenkins, Leeroy Jenkins\r\n193, axis, 16, Fire Teams, Unknown Algo\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/results.txt b/src/results.txt
+--- a/src/results.txt	(revision fdf4237a2d5f2f6512878fd4c66b58a95caeb9aa)
++++ b/src/results.txt	(date 1619108599003)
+@@ -1,6 +1,20 @@
+-Ticks;  Losing Team; Number of Drones Left Alive; Winning Drone Num; Losing Drone Num
+-219, axis, 16, Leeroy Jenkins, Flank
+-175, axis, 8, Leeroy Jenkins, Fire Teams
+-166, axis, 9, Leeroy Jenkins, Leeroy Jenkins
+-50, allies, 0, Leeroy Jenkins, Leeroy Jenkins
+-193, axis, 16, Fire Teams, Unknown Algo
++370, axis, 12, Brain Swarm, Leeroy Jenkins
++278, axis, 14, Brain Swarm, Leeroy Jenkins
++183, allies, 15, Brain Swarm, Leeroy Jenkins
++309, axis, 13, Brain Swarm, Leeroy Jenkins
++325, axis, 15, Brain Swarm, Leeroy Jenkins
++185, allies, 23, Flank, Brain Swarm
++193, allies, 25, Flank, Brain Swarm
++181, allies, 25, Flank, Brain Swarm
++227, allies, 21, Flank, Brain Swarm
++216, allies, 21, Flank, Brain Swarm
++239, axis, 15, Brain Swarm, Stutter Step
++229, axis, 13, Brain Swarm, Stutter Step
++232, allies, 4, Stutter Step, Brain Swarm
++215, axis, 15, Brain Swarm, Stutter Step
++214, axis, 14, Brain Swarm, Stutter Step
++217, axis, 13, Brain Swarm, Fire Teams
++286, axis, 11, Brain Swarm, Fire Teams
++254, axis, 9, Brain Swarm, Fire Teams
++215, axis, 11, Brain Swarm, Fire Teams
++200, axis, 15, Brain Swarm, Fire Teams
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport java.util.Scanner;\r\n\r\n/**\r\n * Project: Swarm Capstone\r\n * : The Room Where It Happens\r\n *\r\n * @author David Thacker\r\n * Date: 21 Jan 21\r\n * Class: Capstone\r\n */\r\npublic class Main {\r\n    //determines the size of the graphics display window\r\n    static final int ratioX = 16;\r\n    static final int ratioY = 9;\r\n    static final int SIZE = 75;\r\n    static final int FLOOR = 1000;\r\n    static final int CEILING = 2000;\r\n    //the time to wait between drawing on screen and moving to next tick\r\n    private static final int TIME_STEP = 100;\r\n\r\n    public static void main(String[] args) {\r\n        //call for preset values or not user selected values for each warrior class\r\n//        while(true){\r\n//            Scanner myObj = new Scanner(System.in);\r\n//\r\n//            System.out.println(\"Enter 0th Drone #\");\r\n//\r\n//            // String input\r\n//            int droneZero = myObj.nextInt();\r\n//            if(droneZero == -1){\r\n//                System.exit(1);\r\n//            }\r\n//            System.out.println(\"Enter 1th Drone #\");\r\n//\r\n//            // String input\r\n//            int droneOne = myObj.nextInt();\r\n            Battle battle = new Battle(2,6);\r\n            BattleGUI battleGUI = new BattleGUI();\r\n            battleGUI.setBattle(battle);\r\n            JFrame jFrame = new JFrame(\"DRONE SWARMING\");\r\n            jFrame.setContentPane(battleGUI.getHello());\r\n            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n            jFrame.pack();\r\n            jFrame.setVisible(true);\r\n            AnimationThread animationThread = new AnimationThread(battleGUI.getAnimationArea());\r\n            animationThread.start();\r\n            animationThread.toggleAnimation();\r\n            battleGUI.setAnimationThread(animationThread);\r\n        }\r\n//    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision fdf4237a2d5f2f6512878fd4c66b58a95caeb9aa)
++++ b/src/Main.java	(date 1619108259354)
+@@ -35,7 +35,7 @@
+ //
+ //            // String input
+ //            int droneOne = myObj.nextInt();
+-            Battle battle = new Battle(2,6);
++            Battle battle = new Battle(1,1);
+             BattleGUI battleGUI = new BattleGUI();
+             battleGUI.setBattle(battle);
+             JFrame jFrame = new JFrame("DRONE SWARMING");
+Index: out/production/Mini - MASSIVE/results.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Ticks;  Losing Team; Number of Drones Left Alive; Winning Drone Num; Losing Drone Num\r\n219, axis, 16, Leeroy Jenkins, Flank\r\n175, axis, 8, Leeroy Jenkins, Fire Teams\r\n166, axis, 9, Leeroy Jenkins, Leeroy Jenkins\r\n50, allies, 0, Leeroy Jenkins, Leeroy Jenkins\r\n193, axis, 16, Fire Teams, Unknown Algo\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/Mini - MASSIVE/results.txt b/out/production/Mini - MASSIVE/results.txt
+--- a/out/production/Mini - MASSIVE/results.txt	(revision fdf4237a2d5f2f6512878fd4c66b58a95caeb9aa)
++++ b/out/production/Mini - MASSIVE/results.txt	(date 1619108399848)
+@@ -1,6 +1,4 @@
+-Ticks;  Losing Team; Number of Drones Left Alive; Winning Drone Num; Losing Drone Num
+-219, axis, 16, Leeroy Jenkins, Flank
+-175, axis, 8, Leeroy Jenkins, Fire Teams
+-166, axis, 9, Leeroy Jenkins, Leeroy Jenkins
+-50, allies, 0, Leeroy Jenkins, Leeroy Jenkins
+-193, axis, 16, Fire Teams, Unknown Algo
++180, axis, 24, Flank, Flank
++212, allies, 26, Flank, Flank
++319, axis, 10, Flank, Flank
++166, allies, 26, Flank, Flank

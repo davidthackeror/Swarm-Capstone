@@ -1,0 +1,30 @@
+Index: out/production/Mini - MASSIVE/results.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>182, axis, 5, 2, 0\r\n272, axis, 13, 5, 2\r\n221, axis, 22, Brain Swarm, Leeroy Jenkins\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/Mini - MASSIVE/results.txt b/out/production/Mini - MASSIVE/results.txt
+--- a/out/production/Mini - MASSIVE/results.txt	(revision 969f589affe60e29bb8e732e1c6a2e199762d062)
++++ b/out/production/Mini - MASSIVE/results.txt	(date 1618945193051)
+@@ -1,3 +1,4 @@
+ 182, axis, 5, 2, 0
+ 272, axis, 13, 5, 2
+ 221, axis, 22, Brain Swarm, Leeroy Jenkins
++239, axis, 14, Brain Swarm, Fire Teams
+Index: src/results.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>182, axis, 5, 2, 0\r\n272, axis, 13, 5, 2\r\n221, axis, 22, Brain Swarm, Leeroy Jenkins\r\n239, axis, 14, Brain Swarm, Fire Teams\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/results.txt b/src/results.txt
+--- a/src/results.txt	(revision 969f589affe60e29bb8e732e1c6a2e199762d062)
++++ b/src/results.txt	(date 1618945298086)
+@@ -2,3 +2,4 @@
+ 272, axis, 13, 5, 2
+ 221, axis, 22, Brain Swarm, Leeroy Jenkins
+ 239, axis, 14, Brain Swarm, Fire Teams
++422, allies, 3, Brain Swarm, Flank
