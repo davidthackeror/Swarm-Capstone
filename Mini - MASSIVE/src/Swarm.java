@@ -7,6 +7,12 @@ import java.util.Random;
  * : Organizes groups of drones
  *
  * @author David Thacker
+ * @author Manny Riolo
+ * @author Jesse Sidhu
+ * @author Josiah Goosen
+ * @author Luke Ruan
+ * @author Michael Shumate
+ * @author Addison Brown
  * Date: 21 Jan 21
  * Class: Capstone
  */
@@ -175,10 +181,18 @@ public class Swarm {
         }
     }
 
+    /**
+     * Fetch the algo from the swarm
+     * @return the swarm number
+     */
     public int getSwarmAlgo(){
         return swarmAlgo;
     }
 
+    /**
+     * set the swarm algo
+     * @param x the swarm number to be input
+     */
     public void setSwarmAlgo(int x){
         swarmAlgo = x;
     }
@@ -191,8 +205,11 @@ public class Swarm {
         return allianceNum;
     }
 
-    public String getArmyName(){return armyName;}
-
+    /**
+     * fetch the name of the swarm
+     * @return the swarm name
+     */
+    public String getSwarmName(){return armyName;}
 
     /**
      * numAlive() fetches the number of warriors in an army with a health greater than 0

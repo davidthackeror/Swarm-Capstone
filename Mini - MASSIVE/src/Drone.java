@@ -5,6 +5,12 @@ import java.util.Random;
  * Project: Swarm Capstone
  * : General category and attributes of the drone sub-classes
  * @author David Thacker
+ * @author Manny Riolo
+ * @author Jesse Sidhu
+ * @author Josiah Goosen
+ * @author Luke Ruan
+ * @author Michael Shumate
+ * @author Addison Brown
  * Date: 21 Jan 21
  * Class: Capstone
  */

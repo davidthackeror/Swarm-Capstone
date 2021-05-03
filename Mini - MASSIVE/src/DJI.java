@@ -7,15 +7,19 @@ import java.io.IOException;
 
 /**
  * Project: Swarm Capstone
- * : The DJI Drone Sub-Class (fake)
+ * : The DJI Drone Sub-Class (not actually a DJI drone)
  *
  * @author David Thacker
+ * @author Manny Riolo
+ * @author Jesse Sidhu
+ * @author Josiah Goosen
+ * @author Luke Ruan
+ * @author Michael Shumate
+ * @author Addison Brown
  * Date: 21 Jan 21
  * Class: Capstone
  */
 class DJI extends Drone {
-
-
 
     DJI(int minHealth, int maxHealth, int minSpeed, int maxSpeed, int minCourage, int maxCourage, int size, int minAttack, int maxAttack, int range, String name){
         super();
@@ -121,8 +125,6 @@ class DJI extends Drone {
 
         }
     }
-
-    //TODO: check Z above and below
 
     /**
      * draws the laser coming from each drone

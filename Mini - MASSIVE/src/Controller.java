@@ -1,5 +1,19 @@
 import java.util.ArrayList;
 
+/**
+ * Project: Swarm Capstone
+ * : Controls which algorithm a drone executes
+ *
+ * @author David Thacker
+ * @author Manny Riolo
+ * @author Jesse Sidhu
+ * @author Josiah Goosen
+ * @author Luke Ruan
+ * @author Michael Shumate
+ * @author Addison Brown
+ * Date: 21 Jan 21
+ * Class: Capstone
+ */
 public class Controller {
 
     int algoChoice;

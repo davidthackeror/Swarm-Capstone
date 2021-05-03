@@ -6,6 +6,12 @@ import java.util.Scanner;
  * : The Room Where It Happens
  *
  * @author David Thacker
+ * @author Manny Riolo
+ * @author Jesse Sidhu
+ * @author Josiah Goosen
+ * @author Luke Ruan
+ * @author Michael Shumate
+ * @author Addison Brown
  * Date: 21 Jan 21
  * Class: Capstone
  */

@@ -54,8 +54,8 @@ public class AnimationThread extends Thread {
                     System.out.println(
                             // Using ticks because speeds is affected by computer power but ticks are consistent
                             "Battle was completed in " + ticks + " ticks.\n" +
-                                    currSwarm.getArmyName() + " was defeated.\n" +
-                                    otherSwarm.numAlive() + " " + otherSwarm.getArmyName() + " remain.\n" +
+                                    currSwarm.getSwarmName() + " was defeated.\n" +
+                                    otherSwarm.numAlive() + " " + otherSwarm.getSwarmName() + " remain.\n" +
                                     "Algo " + otherSwarm.swarmAlgo + " beat Algo " + currSwarm.swarmAlgo + ".");
                     toggleAnimation();
                     File tempFile = new File("src/results.txt");
@@ -64,7 +64,7 @@ public class AnimationThread extends Thread {
                         FileWriter fw = new FileWriter("src/results.txt", true);
                         BufferedWriter bw = new BufferedWriter(fw);
                         PrintWriter pw = new PrintWriter(bw);
-                        String resultsString = ticks + ", " + currSwarm.getArmyName() + ", " + otherSwarm.numAlive() + ", " + findName(otherSwarm.swarmAlgo) + ", " + findName(currSwarm.swarmAlgo);
+                        String resultsString = ticks + ", " + currSwarm.getSwarmName() + ", " + otherSwarm.numAlive() + ", " + findName(otherSwarm.swarmAlgo) + ", " + findName(currSwarm.swarmAlgo);
                         //BufferedWriter writer = new BufferedWriter(new FileWriter("src/results.txt", true));
                         pw.println(addInfo);
                         pw.println(resultsString);
@@ -77,7 +77,7 @@ public class AnimationThread extends Thread {
                         FileWriter fw = new FileWriter("src/results.txt", true);
                         BufferedWriter bw = new BufferedWriter(fw);
                         PrintWriter pw = new PrintWriter(bw);
-                        String resultsString = ticks + ", " + currSwarm.getArmyName() + ", " + otherSwarm.numAlive() + ", " + findName(otherSwarm.swarmAlgo) + ", " + findName(currSwarm.swarmAlgo);
+                        String resultsString = ticks + ", " + currSwarm.getSwarmName() + ", " + otherSwarm.numAlive() + ", " + findName(otherSwarm.swarmAlgo) + ", " + findName(currSwarm.swarmAlgo);
                         //BufferedWriter writer = new BufferedWriter(new FileWriter("src/results.txt", true));
                         pw.println(resultsString);
                         pw.flush();

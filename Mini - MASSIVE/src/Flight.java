@@ -1,6 +1,19 @@
 import java.util.ArrayList;
-import java.util.Random;
 
+/**
+ * Project: Swarm Capstone
+ * : Organize and Execute control routines for drone algorithms
+ * @author David Thacker
+ * @author Manny Riolo
+ * @author Jesse Sidhu
+ * @author Josiah Goosen
+ * @author Luke Ruan
+ * @author Michael Shumate
+ * @author Addison Brown
+ *
+ * Date: 21 Jan 21
+ * Class: Capstone
+ */
 public class Flight {
 
     /**
@@ -256,7 +269,7 @@ public class Flight {
      * @throws InterruptedException handles a thread.sleep if necessary, fucks with the GUI though
      */
     public static void gameOver(Swarm Victors) throws InterruptedException {
-        System.out.println(Victors.getArmyName() + " has won!");
+        System.out.println(Victors.getSwarmName() + " has won!");
     }
 
     /**
