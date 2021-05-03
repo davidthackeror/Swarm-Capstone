@@ -86,6 +86,8 @@ public class AnimationThread extends Thread {
                         bw.close();
                         fw.close();
                     }
+                    this.stopper = true;
+                    run();
 
                     //writer.close();
                 }
