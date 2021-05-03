@@ -26,29 +26,19 @@ public class Main {
     private static final int TIME_STEP = 100;
 
     public static void main(String[] args) {
-        int testNumber = 0; //the test number variable
-        Battle battle;
-        BattleGUI battleGUI;
-        JFrame jFrame;
-        AnimationThread animationThread;
-//        while (testNumber < 3) { //loop through all the tests
-            battle = new Battle(2, 2);
-            battleGUI = new BattleGUI();
+            Battle battle = new Battle(2,2);
+            BattleGUI battleGUI = new BattleGUI();
             battleGUI.setBattle(battle);
-            jFrame = new JFrame("DRONE SWARMING");
+            JFrame jFrame = new JFrame("DRONE SWARMING");
             jFrame.setContentPane(battleGUI.getHello());
             jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             jFrame.pack();
             jFrame.setVisible(true);
-            animationThread = new AnimationThread(battleGUI.getAnimationArea());
+            AnimationThread animationThread = new AnimationThread(battleGUI.getAnimationArea());
             animationThread.start();
-            //animationThread.toggleAnimation();
+            animationThread.toggleAnimation();
             battleGUI.setAnimationThread(animationThread);
-            while (Battle.getSwarms().get(0).numAlive() > 0 && Battle.getSwarms().get(1).numAlive() > 0){ //waits for the fight to finish
-                System.out.println("waiting");
-            }
-            testNumber++; //increment the test
-//        }
-    }
+        }
+//    }
 }
 
