@@ -68,58 +68,59 @@ class DJI extends Drone {
     public void draw(Graphics2D g) {
         {
             BufferedImage img = null;
-            try {
-                String opacityNumber;
-                if (this.getzPos() > 0 && this.getzPos() <= Main.CEILING / 20) {
-                    opacityNumber = "5";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 2) {
-                    opacityNumber = "10";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 3) {
-                    opacityNumber = "15";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 4) {
-                    opacityNumber = "20";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 5) {
-                    opacityNumber = "25";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 6) {
-                    opacityNumber = "30";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 7) {
-                    opacityNumber = "35";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 8) {
-                    opacityNumber = "40";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 9) {
-                    opacityNumber = "45";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 10) {
-                    opacityNumber = "50";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 11) {
-                    opacityNumber = "55";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 12) {
-                    opacityNumber = "60";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 13) {
-                    opacityNumber = "65";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 14) {
-                    opacityNumber = "70";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 15) {
-                    opacityNumber = "75";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 16) {
-                    opacityNumber = "80";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 17) {
-                    opacityNumber = "85";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 18) {
-                    opacityNumber = "90";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 19) {
-                    opacityNumber = "95";
-                } else if (this.getzPos() <= (Main.CEILING / 20) * 20) {
-                    opacityNumber = "100";
-                } else {
-                    opacityNumber = "100";
-                }
-                img = ImageIO.read(new File("drones/drone" + opacityNumber + ".png"));
-            } catch (IOException ignored) {
-            }
+//            try {
+//                String opacityNumber;
+//                if (this.getzPos() > 0 && this.getzPos() <= Main.CEILING / 20) {
+//                    opacityNumber = "5";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 2) {
+//                    opacityNumber = "10";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 3) {
+//                    opacityNumber = "15";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 4) {
+//                    opacityNumber = "20";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 5) {
+//                    opacityNumber = "25";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 6) {
+//                    opacityNumber = "30";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 7) {
+//                    opacityNumber = "35";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 8) {
+//                    opacityNumber = "40";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 9) {
+//                    opacityNumber = "45";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 10) {
+//                    opacityNumber = "50";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 11) {
+//                    opacityNumber = "55";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 12) {
+//                    opacityNumber = "60";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 13) {
+//                    opacityNumber = "65";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 14) {
+//                    opacityNumber = "70";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 15) {
+//                    opacityNumber = "75";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 16) {
+//                    opacityNumber = "80";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 17) {
+//                    opacityNumber = "85";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 18) {
+//                    opacityNumber = "90";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 19) {
+//                    opacityNumber = "95";
+//                } else if (this.getzPos() <= (Main.CEILING / 20) * 20) {
+//                    opacityNumber = "100";
+//                } else {
+//                    opacityNumber = "100";
+//                }
+////                img = ImageIO.read(new File("drone.png"));
+//            }
+////            } catch (IOException ignored) {
+////            }
 
             g.setColor(this.getColor());
-            g.drawRect(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), img.getWidth(), img.getHeight());
-            g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
+            g.drawRect(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), 50, 50);
+//            g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
             g.drawString(this.getName(), this.getxPos(), this.getyPos() - 15);
             g.drawString(String.valueOf(this.getzPos()), this.getxPos(), this.getyPos() - 30);
 
