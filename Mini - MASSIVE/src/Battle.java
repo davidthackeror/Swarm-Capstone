@@ -247,7 +247,11 @@ class Battle {
         for (Swarm swarm : armies) {
             for (int i = 0; i < swarm.drones.size(); i++) {
                 if (swarm.drones.get(i).isAlive()) {
-                    swarm.drones.get(i).draw(g);
+                    try {
+                        swarm.drones.get(i).draw(g);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     swarm.drones.get(i).drawFire(g);
                     swarm.drones.get(i).locationTracking();
                     swarm.drones.get(i).drawTracking(g);

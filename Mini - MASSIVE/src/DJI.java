@@ -117,10 +117,12 @@ class DJI extends Drone {
 //            }
 ////            } catch (IOException ignored) {
 ////            }
-
+            try {
+                img = ImageIO.read(new File("Mini - MASSIVE/drone.png"));
+            }catch (IOException ignored){}
             g.setColor(this.getColor());
-            g.drawRect(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), 50, 50);
-//            g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
+            g.drawRect(this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), img.getWidth(), img.getHeight());
+            g.drawImage(img, this.getxPos()-this.getSize(), this.getyPos()-this.getSize(), null);
             g.drawString(this.getName(), this.getxPos(), this.getyPos() - 15);
             g.drawString(String.valueOf(this.getzPos()), this.getxPos(), this.getyPos() - 30);
 

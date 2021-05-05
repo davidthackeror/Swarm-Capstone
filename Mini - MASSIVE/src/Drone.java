@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
 /**
@@ -161,7 +162,7 @@ public abstract class Drone {
      *
      * @param g The graphics window to be written to
      */
-    public abstract void draw(Graphics2D g);
+    public abstract void draw(Graphics2D g) throws IOException;
 
     /**
      * overrided method to draw lasers from drones

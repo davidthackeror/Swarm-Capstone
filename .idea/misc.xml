@@ -5,7 +5,7 @@
     <option name="OPTION_SCOPE" value="private" />
     <option name="OPTION_INCLUDE_LIBS" value="true" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" project-jdk-name="14.0.2" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="adopt-openj9-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/Mini - MASSIVE/out" />
   </component>
 </project>
