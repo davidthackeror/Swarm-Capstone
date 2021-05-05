@@ -501,7 +501,7 @@ public class Flight {
                             double k = magnitude(e,Attackers,i)*200.0;
                             if(k<-50.0) {
                                 int[] movementCoords = Battle.enemyDetection(Attackers, i);
-                                e.move((int)(0.1*(-1*movementCoords[0])),((int) (-1*movementCoords[1])), (1*movementCoords[2]));
+                                e.move((int)(0.1*(-1*movementCoords[0])), -1*movementCoords[1], (1*movementCoords[2]));
                             }
                             else {
                                 int[] movementCoords = Battle.enemyDetection(Attackers, i);

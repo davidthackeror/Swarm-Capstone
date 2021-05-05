@@ -150,7 +150,7 @@ class DJI extends Drone {
             if(this.getHealth() <= 0 && this.getHealth() >= -10){ //change the greaterthan or equal to change duration
                 BufferedImage img = null;
                 try {
-                    img = ImageIO.read(new File("explosion.png")); //relative file path
+                    img = ImageIO.read(new File("Mini - MASSIVE/explosion.jpg")); //relative file path
                 } catch (IOException ignored) {
                 }
 

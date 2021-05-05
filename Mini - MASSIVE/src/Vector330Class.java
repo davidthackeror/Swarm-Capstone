@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class Vector330Class {
 
     //Tolerance for equality between two vectors
-    private static double TOLERANCE = 0.000000001;
+    private static final double TOLERANCE = 0.000000001;
     private double x;
     private double y;
     private double z;

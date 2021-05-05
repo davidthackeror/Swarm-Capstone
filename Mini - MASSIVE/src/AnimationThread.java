@@ -13,7 +13,7 @@ import java.util.ArrayList;
 // AnimationThread - subclass of Thread to run the animation
 public class AnimationThread extends Thread {
 
-    private AnimationArea animationArea;  // points to JPanel subclass object
+    private final AnimationArea animationArea;  // points to JPanel subclass object
     private boolean stopper = false;    // toggles animation on and off
     private int animationDeathTimer = 60; // allows animations to subside once battle has ended
     private int ticks = 0;

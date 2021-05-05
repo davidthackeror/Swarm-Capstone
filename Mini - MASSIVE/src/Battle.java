@@ -24,12 +24,12 @@ class Battle {
     /**
      * the armies arraylist containing all armys and therefore warriors
      */
-    private static ArrayList<Swarm> swarms = new ArrayList<>();
+    private static final ArrayList<Swarm> swarms = new ArrayList<>();
 
     //TODO: Placeholder for a gui assignment of the # of drones.
     public static int numDrones = 30;
 
-    private static int collisionRadius = 300;
+    private static final int collisionRadius = 300;
     //TODO: do drone attributes in a different location
     /**
      * sets the attributes of the drones, should be refactored
@@ -289,7 +289,7 @@ class Battle {
                     } catch (Exception e) {
                         break;
                     }
-                    Swarm Defenders = (Swarm) armies.get(intArray[2]);
+                    Swarm Defenders = armies.get(intArray[2]);
 
                     //TODO: make this a test case
                     if (magnitude(Attackers.drones.get(i), Defenders, intArray[0]) <= Attackers.drones.get(i).getRange() + Attackers.drones.get(i).getSize() * (Attackers.drones.get(i).getzPos() * 0.03)&& Defenders.drones.get(intArray[0]).isAlive()) {

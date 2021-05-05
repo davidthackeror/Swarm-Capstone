@@ -12,8 +12,8 @@ import java.awt.*;
 @SuppressWarnings("serial")
 public class AnimationArea extends JPanel {
 
-    private int height;  // dot's position
-    private int width;
+    private final int height;  // dot's position
+    private final int width;
 
     // constructor for AnimationArea objects
     public AnimationArea() {

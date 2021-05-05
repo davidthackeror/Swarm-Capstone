@@ -73,13 +73,14 @@ public class DrawingPanel extends Thread
   // @formatter:off
 
   // The window objects
-  private int              width, height;     // dimensions of window frame
+  private final int              width;
+  private final int height;     // dimensions of window frame
   private JFrame           frame;             // overall window frame
   private MyCanvas         canvas;            // drawing canvas for window (inside panel)
   private BufferedImage    image;             // remembers drawing commands
   private Graphics2D       offscreenGraphics; // buffered graphics context for painting
   private JLabel           statusBar;         // status bar showing mouse position
-  private Thread           application;
+  private final Thread           application;
 
   // The status of interactive mouse clicks
   private boolean []       buttonDown;
@@ -694,7 +695,6 @@ public class DrawingPanel extends Thread
           application.wait();
         } catch (InterruptedException e) {
         }
-        ;
       }
     } else {
       System.out.printf("%d is an invalid parameter to waitForMouseClick\n",
@@ -941,7 +941,6 @@ public class DrawingPanel extends Thread
         application.wait();
       } catch (InterruptedException e) {
       }
-      ;
     }
   }
 
@@ -1292,7 +1291,7 @@ class MyCanvas extends Canvas {
 
   private static final long serialVersionUID = 1L;
   // -------------------------------------------------------------------
-  private DrawingPanel      panel;
+  private final DrawingPanel      panel;
 
   // -------------------------------------------------------------------
   public MyCanvas(DrawingPanel thisPanel) {

@@ -18,8 +18,8 @@ import java.util.Random;
  */
 public class Swarm {
 
-    private int allianceNum;
-    private String armyName;
+    private final int allianceNum;
+    private final String armyName;
     public int swarmAlgo;
     ArrayList<Drone> drones = new ArrayList<Drone>();
 
