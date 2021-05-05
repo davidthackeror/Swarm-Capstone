@@ -36,6 +36,10 @@ public class AnimationThread extends Thread {
     public boolean getToggle() {
         return this.stopper;}
 
+    /**
+     * Keystone of the automated testing
+     * Outputs the results of the battle to results.txt
+     */
     public void battleSummary() throws IOException {
         ArrayList<Swarm> swarms = Battle.getSwarms();
         for (int i = 0; i < swarms.size(); i++) {
